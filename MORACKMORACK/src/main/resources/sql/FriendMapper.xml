@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FriendMapper">
+ 	
+ 	
+	<resultMap id="friendSelectMap" type="friend">
+		<result property="friendNo" column="friend_no" jdbcType="INTEGER"/>
+		<result property="reqFriend.userId" column="req_friend_id" jdbcType="VARCHAR" />
+		<result property="recvFriend.userId" column="recv_friend_id" jdbcType="VARCHAR" />
+		<result property="friendCode" column="friend_code" jdbcType="CHAR" />
+		<result property="reqFriendDate" column="req_friend_date" jdbcType="DATE" />
+		<result property="friendDate" column="friend_date" jdbcType="DATE"/>
+	</resultMap>
+	
+
+	<insert id="reqFriend" parameterType="friend" >
+	 	INSERT INTO	friend(friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date) 
+	 	VALUES (seq_friend_friend_no.nextval, #{reqFriend.userId},	#{recvFriend.userId}, '0', sysdate, #{friendDate:DATE})	 					
+	</insert>
+	
+	<select id="listRecvFriend" parameterType="String" resultMap="friendSelectMap">
+		SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
+		FROM friend
+		WHERE recv_friend_id = #{recvFriend.userId} and friend_code='0'
+	</select>
+	
+	<select id="listFriend" parameterType="String" resultMap="friendSelectMap">
+		SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
+		FROM friend
+		WHERE recv_friend_id = #{value} or req_friend_id = #{value} and friend_code='1'
+	</select>
+	
+	<select id="getFriend" parameterType="String" resultMap="friendSelectMap">
+		SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
+		FROM friend
+		WHERE friend_no = #{friendNo}
+	</select>
+	
+	<update id="okFriend" parameterType="integer">
+		UPDATE friend
+		SET friend_code='1', friend_Date = sysdate
+		WHERE friend_no = #{friendNo}
+	</update>
+	
+	<update id="delFriend" parameterType="integer">
+		DELETE FROM friend 
+		WHERE friend_no = #{friendNo}
+	</update>
+	
+	<select id="getTotalCount" parameterType="String" resultType="integer">
+		SELECT COUNT(*)
+		FROM ( SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
+				FROM friend
+				WHERE recv_friend_id = #{value} or req_friend_id = #{value} and friend_code='1')
+	</select>
+	
+	<select id="isFriend" parameterType="map" resultMap="friendSelectMap">
+		SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
+		FROM friend
+		WHERE (recv_friend_id = #{userId} or recv_friend_id = #{meetMemId}) and (req_friend_id = #{userId} or req_friend_id = #{meetMemId})
+	</select>
+	
+</mapper>
+		
+		
+		

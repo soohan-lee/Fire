@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace = "MeetMapper">
+
+	<resultMap id="meetSelectMap" type="meet">
+		<result property="meetId" column="meet_id" jdbcType="VARCHAR"/>
+		<result property="leaderId" column="leader_id" jdbcType="VARCHAR"/>
+		<result property="meetName" column="meet_name" jdbcType="VARCHAR"/>
+		<result property="meetLoc" column="meet_loc" jdbcType="VARCHAR"/>
+		<result property="maxNum" column="max_num" jdbcType="INTEGER"/>
+		<result property="memNum" column="mem_num" jdbcType="INTEGER"/>
+		<result property="meetImg" column="meet_img" jdbcType="VARCHAR"/>
+		<result property="sIntro" column="s_intro" jdbcType="VARCHAR"/>
+		<result property="lIntro" column="l_intro" jdbcType="VARCHAR"/>
+		<result property="regDate" column="reg_date" jdbcType="DATE"/>
+		<result property="meetStar" column="meet_star" jdbcType="INTEGER"/>
+		<result property="bank" column="bank" jdbcType="VARCHAR"/>
+		<result property="accNum" column="accNum" jdbcType="VARCHAR"/>
+		<result property="category" column="category" jdbcType="VARCHAR"/>
+		<result property="meetAppr" column="meet_appr" jdbcType="CHAR"/>
+		<result property="meetType" column="meet_type" jdbcType="CHAR"/>
+	</resultMap>
+	
+	<resultMap id="meetMemSelectMap" type="meetMem">
+		<result property="memNo" column="mem_no" jdbcType="INTEGER"/>
+		<result property="user.userId" column="user_id" jdbcType="VARCHAR"/>
+		<result property="meet.meetId" column="meet_id" jdbcType="VARCHAR"/>
+		<result property="joinCode" column="join_code" jdbcType="CHAR"/>
+		<result property="meetRole" column="meet_role" jdbcType="CHAR"/>
+		<result property="joinReqDate" column="join_req_date" jdbcType="DATE"/>
+		<result property="joinDate" column="join_date" jdbcType="DATE"/>
+		<result property="intro" column="intro" jdbcType="VARCHAR"/>
+		<result property="notifyCount" column="notify_count" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<resultMap id="wishMeetSelectMap" type="wishMeet">
+		<result property="meet.meetId" column="meet_id" jdbcType="VARCHAR"/>
+		<result property="userId" column="user_id" jdbcType="VARCHAR"/>
+		<result property="wishDate" column="wish_date" jdbcType="DATE"/>
+	</resultMap>
+	
+	<resultMap id="lImgSelectMap" type="files">
+		<result property="fileNo" column="file_no" jdbcType="INTEGER"/>
+		<result property="postNo" column="post_no" jdbcType="INTEGER"/>
+		<result property="meetId" column="meet_id" jdbcType="VARCHAR"/>
+		<result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+		<result property="fileExtension" column="file_extension" jdbcType="VARCHAR"/>
+		<result property="fileSize" column="file_size" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<resultMap id="categorySelectMap" type="category">
+		<result property="categoryNo" column="category_no" jdbcType="INTEGER"/>
+		<result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<insert id="addLimg" parameterType="files">
+	INSERT INTO files(file_no, post_no, meet_id, file_name, file_extension, file_size)
+	VALUES (seq_files_file_no.nextval, #{postNo:INTEGER}, #{meetId:VARCHAR}, #{fileName:VARCHAR}, #{fileExtension:VARCHAR}, #{fileSize:INTEGER})
+	</insert>
+	
+	<select id="getLimg" parameterType="String" resultMap="lImgSelectMap">
+	SELECT file_no, post_no, meet_id, file_name, file_extension, file_size
+	FROM files
+	WHERE post_no IS NULL AND meet_id = #{meetId}
+	</select>
+	
+	<select id="listCategory" resultMap="categorySelectMap">
+	SELECT category_no, category_name
+	FROM category
+	ORDER BY category_no
+	</select>
+	
+	<insert id="addMeet" parameterType="meet">
+	INSERT INTO meet (meet_id, leader_id, meet_name, meet_loc, max_num, mem_num, meet_img, s_intro, l_intro, reg_date, meet_star, bank, accNum, category, meet_appr, meet_type)
+	VALUES(#{meetId}, #{leaderId}, #{meetName}, #{meetLoc:VARCHAR}, #{maxNum}, 0, #{meetImg:VARCHAR}, #{sIntro:VARCHAR}, #{lIntro:VARCHAR}, SYSDATE, 0, #{bank:VARCHAR}, #{accNum}, #{category}, #{meetAppr}, #{meetType})
+	</insert>
+	
+	<select id="getMeet" parameterType="String" resultMap="meetSelectMap">
+	SELECT meet.meet_id, meet.leader_id, meet.meet_name, meet.meet_loc, meet.max_num, meet.mem_num, meet.meet_img, meet.s_intro, meet.l_intro, meet.reg_date, meet.meet_star, meet.bank, meet.accNum, meet.category, meet.meet_appr, meet.meet_type
+	FROM meet
+	WHERE meet.meet_id = #{meetId}
+	</select>
+	
+	<select id="getMeetHashtag" parameterType="String" resultType="java.util.HashMap">
+	SELECT hashtag.hash_name 
+	FROM meet, meet_hashtag, hashtag
+	WHERE meet.meet_id = #{meetId} and meet.meet_id = meet_hashtag.meet_Id and meet_hashtag.hash_no = hashtag.hash_no
+	</select>
+	
+	<insert id="addHash" parameterType="String">
+	INSERT INTO hashtag (hash_no, hash_name) 
+	VALUES (seq_hashtag_hash_no.nextval, #{hashtag})
+	</insert>
+	
+	<select id="getHash" parameterType="String" resultType="String">
+	SELECT hash_no 
+	FROM hashtag 
+	WHERE hash_name = #{hashtag}
+	ORDER BY hash_no 
+	</select>
+	
+	<select id="getHashtagFromMain" parameterType="String" resultType="java.util.Map">
+	SELECT hash_name 
+	FROM hashtag
+	WHERE hash_name LIKE  #{hashtag} || '%'
+	</select>
+	
+	<insert id="addMeet_Hash" parameterType="map">
+	INSERT INTO meet_hashtag (meet_hash_no, meet_id, hash_no) 
+	VALUES (seq_meet_hashtag_meet_hash_no.nextval, #{meetId}, #{hashNo})
+	</insert>
+	
+	<insert id="joinMeet" parameterType="meetMem">	
+	INSERT INTO meetmem(mem_no, user_id, meet_id, join_code, meet_role, join_req_date, join_date, intro, notify_count)
+	<if test="joinCode != null and joinCode.equals('0')">
+	VALUES (seq_meetmem_mem_no.nextval, #{user.userId}, #{meet.meetId}, #{joinCode}, #{meetRole}, SYSDATE, #{joinDate:DATE}, #{intro:VARCHAR}, 0)
+	</if>
+	<if test="joinCode != null and joinCode.equals('1')">
+	VALUES (seq_meetmem_mem_no.nextval, #{user.userId}, #{meet.meetId}, #{joinCode}, #{meetRole}, SYSDATE, SYSDATE, #{intro:VARCHAR}, 0)	
+	</if>
+	</insert>
+	
+	<update id="addMemNum" parameterType="String">
+	UPDATE meet 
+	SET mem_num = mem_num+1
+	WHERE meet_id = #{meetId}
+	</update>
+	
+	<select id="getMeetMem" parameterType="map" resultMap="meetMemSelectMap">
+	SELECT mem_no, user_id, meet_id, join_code, meet_role, join_req_date, join_date, intro, notify_count
+	FROM meetmem
+	WHERE meet_id = #{meetId} and user_id = #{userId}
+	</select>
+	
+	<select id="listMeetMem" parameterType="String" resultMap="meetMemSelectMap">
+	SELECT mem_no, user_id, meet_id, join_code, meet_role, join_req_date, join_date, intro, notify_count
+	FROM meetmem
+	WHERE meet_id = #{meetId} and join_code = '1'
+	ORDER BY meet_role, join_date
+	</select>
+	
+	<select id="listJoinMeetUser" parameterType="String" resultMap="meetMemSelectMap">
+	SELECT mem_no, user_id, meet_id, join_code, meet_role, join_req_date, join_date, intro, notify_count
+	FROM meetmem
+	WHERE meet_id = #{meetId} and join_code = '0'
+	ORDER BY join_req_date
+	</select>
+	
+	<update id="okJoinMeetUser" parameterType="map">
+	UPDATE meetmem 
+	SET join_code ='1', join_date = SYSDATE
+	WHERE user_id = #{userId} AND meet_id = #{meetId}
+	</update>
+	
+	<delete id="refuseJoinMeetUser" parameterType="map">
+	DELETE FROM meetmem 
+	WHERE user_id = #{userId} and meet_id = #{meetId}
+	</delete>
+	
+	<select id="listMyMeet" parameterType="String" resultMap="meetMemSelectMap">
+	SELECT user_id, meet_id, join_code, meet_role, join_req_date, join_date, intro, notify_count
+	FROM meetmem
+	WHERE user_id = #{userId} and join_code = '1'
+	ORDER BY join_date
+	</select>
+	
+	<select id="listMeet" parameterType="search" resultMap="meetSelectMap">
+	SELECT meet.meet_id, meet.leader_id, meet.meet_name, meet.meet_loc, meet.max_num, meet.mem_num, meet.meet_img, meet.s_intro, meet.l_intro, meet.reg_date, meet.meet_star, meet.bank, meet.accNum, meet.category, meet.meet_appr, meet.meet_type
+	from meet LEFT OUTER JOIN meet_hashtag ON meet.meet_id = meet_hashtag.meet_id, hashtag
+	<if test='searchType.equals("0")'>
+		WHERE meet.meet_type = #{searchCondition}
+		<if test='searchKeyword != null'>
+			AND meet.meet_name LIKE '%${searchKeyword}%'
+		</if>
+	</if>
+	<if test='searchType.equals("1")'>
+		WHERE meet.category= #{searchCondition}
+		<if test='searchKeyword != null'>
+			AND meet.meet_name LIKE '%${searchKeyword}%'
+		</if>
+	</if>
+	<if test='searchType.equals("2") and searchKeyword != null'>
+		WHERE hashtag.hash_name = #{searchKeyword} and hashtag.hash_no = meet_hashtag.hash_no and meet_hashtag.meet_id = meet.meet_id
+	</if>	
+	GROUP BY meet.meet_id, meet.leader_id, meet.meet_name, meet.meet_loc, meet.max_num, meet.mem_num, meet.meet_img, meet.s_intro, meet.l_intro, meet.reg_date, meet.meet_star, meet.bank, meet.accNum, meet.category, meet.meet_appr, meet.meet_type
+	ORDER BY meet.reg_date DESC
+	</select>
+	
+	<select id="listMeetMain" parameterType="Integer" resultMap="meetSelectMap">
+	SELECT * 
+	FROM(SELECT meet.meet_id, meet.leader_id, meet.meet_name, meet.meet_loc, meet.max_num, meet.mem_num, meet.meet_img, meet.s_intro, meet.l_intro, meet.reg_date, meet.meet_star, meet.bank, meet.accNum, meet.category, meet.meet_appr, meet.meet_type
+		FROM meet
+		<if test='category != null'>
+		WHERE category = #{categoryNo}
+		</if>
+		ORDER BY meet.meet_star)
+	<![CDATA[ WHERE ROWNUM <= 5 ]]>
+	</select>
+	
+	<select id="listMeetRank" resultMap="meetSelectMap">
+	SELECT * 
+	FROM(SELECT meet.meet_id, meet.leader_id, meet.meet_name, meet.meet_loc, meet.max_num, meet.mem_num, meet.meet_img, meet.s_intro, meet.l_intro, meet.reg_date, meet.meet_star, meet.bank, meet.accNum, meet.category, meet.meet_appr, meet.meet_type
+		FROM meet
+		ORDER BY meet.meet_star)
+	<![CDATA[ WHERE ROWNUM <= 3 ]]>
+	</select>
+	
+	<select id="getMeetMain" resultMap="meetSelectMap">
+	SELECT meet.meet_id, meet.leader_id, meet.meet_name, meet.meet_loc, meet.max_num, meet.mem_num, meet.meet_img, meet.s_intro, meet.l_intro, meet.reg_date, meet.meet_star, meet.bank, meet.accNum, meet.category, meet.meet_appr, meet.meet_type
+	FROM meet
+	ORDER BY meet.meet_star, meet.reg_date
+	</select>
+	
+	<insert id="addWishMeet" parameterType="map">
+	INSERT INTO wishmeet(wish_no, user_id, meet_id, wish_date)
+	VALUES (seq_wishmeet_wish_no.nextval, #{userId}, #{meetId}, sysdate)
+	</insert>
+	
+	<select id="getWishMeet" parameterType="map" resultMap="wishMeetSelectMap">
+	SELECT meet_id
+	FROM wishmeet
+	WHERE meet_id = #{meetId} and user_id = #{userId}
+	GROUP BY meet_id
+	</select>
+	
+	<select id="listWishMeet" parameterType="String" resultMap="wishMeetSelectMap">
+	SELECT meet_id, wish_date 
+	FROM wishmeet
+	WHERE user_id = #{userId}
+	ORDER BY wish_date
+	</select>
+	
+	<select id="getWishMeetCount" parameterType="String" resultType="int">
+	SELECT COUNT(*)
+	FROM wishmeet
+	WHERE user_id = #{userId}
+	</select>
+	
+	<delete id="delWishMeet" parameterType="map">
+	DELETE FROM wishmeet
+	WHERE user_id = #{userId} and meet_id = #{meetId}
+	</delete>
+	
+	<update id="provideStaff" parameterType="map">
+	UPDATE meetmem 
+	SET meet_role = #{pstnNum}
+	WHERE user_id = #{userId} and meet_id = #{meetId}
+	</update>
+	
+	<update id="provideLeader" parameterType="map">
+	UPDATE meet
+	SET leader_id = #{userId}
+	WHERE meet_id = #{meetId}
+	</update>
+	
+	<update id="updateMeet" parameterType="meet">
+	UPDATE meet
+	SET meet_loc = #{meetLoc:VARCHAR}, max_num = #{maxNum:INTEGER}, mem_num = #{memNum:INTEGER}, meet_img = #{meetImg:VARCHAR}, s_intro = #{sIntro:VARCHAR}, l_intro = #{lIntro:VARCHAR}
+	WHERE meet_id = #{meetId}
+	</update>
+	
+	<delete id="delMeet" parameterType="String">
+	DELETE FROM meet
+	WHERE meet_id = #{meetId}
+	</delete>
+	
+	<delete id="delMeetWithReqJoinUser" parameterType="String">
+	DELETE FROM meetmem 
+	where meet_id = #{meetId}
+	</delete>
+	
+	<delete id="delHash" parameterType="String">
+	DELETE FROM meet_hashtag
+	WHERE meet_id = #{meetId}
+	</delete>
+	
+	<delete id="outMeet" parameterType="map">
+	DELETE FROM meetmem
+	WHERE meet_id = #{meetId} and user_id = #{userId}
+	</delete>
+	
+
+</mapper>

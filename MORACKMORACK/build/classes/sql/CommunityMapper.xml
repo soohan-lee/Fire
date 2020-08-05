@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CommunityMapper">
+
+	<resultMap type ="community" id="communitySelectMap">
+		<result property="postNo" column="post_no" jdbcType="INTEGER" />
+		<result property="user.userId" column="user_id" jdbcType="VARCHAR" />
+		<result property="communityName" column="communites_name" jdbcType="CHAR" />
+		<result property="meet.meetId" column="meet_id" jdbcType="VARCHAR" />
+		<result property="offMeet.offNo" column="off_no" jdbcType="INTEGER" />
+		<result property="business_businessId" column="business_id" jdbcType="VARCHAR"/>
+		<result property="title" column="title" jdbcType="VARCHAR"/>
+		<result property="content" column="content" jdbcType="VARCHAR"/>
+		<result property="regDate" column="reg_date" jdbcType="DATE"/>
+	     <result property="modDate" column="mod_date" jdbcType="DATE"/>
+	    <result property="viewCount" column="view_count" jdbcType="NUMERIC"/>
+	    <result property="likeCount" column="like_count" jdbcType="NUMERIC"/>
+	    <result property="rvstar" column="rvstar" jdbcType="INTEGER"/>
+	    
+    </resultMap>
+
+  <resultMap id="commentsSelectMap" type="comments">
+	    <result property="commentNo" 		  column= "COMMENT_NO" 			   jdbcType="INTEGER"/>
+		<result property="postNo" 			  column= "POST_NO" 			   jdbcType="INTEGER"/>
+		<result property="userId"	          column= "USER_ID" 		       jdbcType="VARCHAR" />
+		<result property="businessId"	      column= "BUSINESS_ID" 	       jdbcType="VARCHAR" />
+		<result property="parentCommentNo" 	  column= "PARENT_COMMENT_NO" 	   jdbcType="INTEGER" />
+		<result property="commentContent"	  column= "COMMENT_CONTENT"		   jdbcType="VARCHAR" />
+		<result property="regDate" 			  column= "REG_DATE" 		       jdbcType="DATE" />
+		<result property="modDate" 			  column= "MOD_DATE" 			   jdbcType="DATE" />
+		<result property="commentDepth"       column= "COMMENT_DEPTH"          jdbcType="INTEGER"/>
+		<result property="imgName" 			  column= "IMG_NAME" 			   jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<insert id="addPost"		parameterType="community" >
+		INSERT
+		INTO communites( post_no , user_id , communites_name , meet_id , title , content , reg_date , mod_date) 
+		VALUES	 ( seq_communites_post_no.NEXTVAL , #{user.userId:VARCHAR} , '0' , #{meet.meetId:VARCHAR} , 
+							#{title:VARCHAR} ,  #{content:VARCHAR}, SYSDATE, NULL)
+	</insert>
+	
+	<select id="getPostList" parameterType="map" resultMap="communitySelectMap">
+  		SELECT *
+  		FROM ( SELECT inner_table.*, ROWNUM AS row_seq
+  						FROM ( SELECT  post_no, communites_name, meet_id, user_id, title, content,reg_date,mod_date
+										FROM communities
+										WHERE 
+										communites_name  = '0'
+										AND meet_id = #{meetId}
+										ORDER BY reg_date DESC ) inner_table)
+
+	</select>
+	
+	<update id="updatePost" parameterType="community" >
+		UPDATE communites
+		<set>
+		title = #{title}, 
+		content = #{content} , 
+	    modDate = sysdate
+		</set>
+		WHERE communites_name = '0' and post_no = #{postNo} 
+	</update>
+	
+	<delete id="deletePost" parameterType="community" >
+		DELETE FROM communites 
+		WHERE post_no = #{postNo}
+	</delete>	
+	
+</mapper>

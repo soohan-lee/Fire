@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BusinessMapper">
+ 	
+ 	
+	<resultMap id="BusinessSelectMap" type="business">
+		<result property="businessId" 					column="business_id" 					jdbcType="VARCHAR"/>
+		<result property="businessPass" 				column="business_pass" 					jdbcType="VARCHAR"/>
+		<result property="businessName" 				column="business_name" 					jdbcType="VARCHAR"/>
+		<result property="businessLoc" 					column="business_loc" 					jdbcType="VARCHAR"/>
+		<result property="categoryNo" 					column="category_no" 					jdbcType="INTEGER"/>
+		<result property="businessPhone" 				column="business_phone" 				jdbcType="VARCHAR"/>
+		<result property="businessImg" 					column="business_img" 					jdbcType="VARCHAR"/>
+		<result property="businessNum" 					column="business_num" 					jdbcType="VARCHAR"/>
+		<result property="businessOwner" 				column="business_owner" 				jdbcType="VARCHAR"/>
+		<result property="regDate" 						column="reg_date" 						jdbcType="DATE"/>
+		<result property="bank" 						column="bank" 							jdbcType="VARCHAR"/>
+		<result property="depositAccNum" 				column="deposit_acc_num" 				jdbcType="VARCHAR"/>
+		<result property="businessStar" 				column="business_star" 					jdbcType="VARCHAR"/>
+		<result property="businessStartTime"	 		column="business_start_time" 			jdbcType="VARCHAR"/>
+		<result property="businessEndTime" 				column="business_end_time" 				jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="MenuSelectMap" type="menu">
+		<result property="menuNo" 						column="menu_no" 						jdbcType="INTEGER"/>
+		<result property="businessId" 					column="business_id" 					jdbcType="VARCHAR"/>
+		<result property="businessMenu" 				column="business_menu" 					jdbcType="VARCHAR"/>
+		<result property="businessMenuFee" 				column="business_menu_fee" 				jdbcType="INTEGER"/>
+		<result property="businessMenuImg" 				column="business_menu_img" 				jdbcType="VARCHAR"/>
+		<result property="businessMenuCnt" 				column="business_menu_cnt" 				jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<resultMap id="ReserveAbleSelectMap" type="reserveAble">
+		<result property="reserveAbleNo" 				column="reserve_able_no" 				jdbcType="INTEGER"/>
+		<result property="businessId" 					column="business_id" 					jdbcType="VARCHAR"/>
+		<result property="reserveAbleStartTime" 		column="reserve_able_start_time" 		jdbcType="VARCHAR"/>
+		<result property="reserveAbleEndTime" 			column="reserve_able_end_time" 			jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	
+	
+	
+	<resultMap type="pay" id="paySelectMap">
+		<result property="payNo" 				column="PAY_NO" 		jdbcType="INTEGER"/>
+  		<result property="user.userId" 	column="USER_ID" 		jdbcType="VARCHAR"/>
+  		<result property="meet.meetId" 		column="MEET_ID"		jdbcType="VARCHAR"/>
+  		<result property="offMeet.offNo" 		column="OFF_NO"		jdbcType="INTEGER"/>	
+  		<result property="reserveMemNum"		column="RESERVE_MEM_NUM" jdbcType="INTEGER"/>
+  		<result property="reserveStartTime" 		column="RESERVE_START_TIME" 	jdbcType="VARCHAR"/>
+  		<result property="reserveEndTime" 		column="RESERVE_END_TIME" jdbcType="VARCHAR"/>
+  		<result property="reserveDate" 			column="RESERVE_DATE" 		jdbcType="VARCHAR"/>
+  		<result property="totalAmount" 			column="TOTAL_AMOUNT" 	jdbcType="INTEGER"/>
+  	    <result property="payStatus" 		column="PAY_STATUS"	jdbcType="CHAR"/>
+  		<result property="payDate" 			column="PAY_DATE" 	jdbcType="DATE"/>
+  		<result property="payMethod" 			column="PAY_METHOD" 		jdbcType="CHAR"/> 
+  		<result property="reserveAbleNo" 			column="RESERVE_ABLE_NO" 		jdbcType="INTEGER"/> 	
+  		
+  		<collection property="business" resultMap="BusinessSelectMap"/>
+  	</resultMap>
+  	
+  	
+  	
+  	
+	
+	<!-- 제휴 업체 -->
+	
+	<!-- SQL : Business_INSERT -->
+	<!-- 가입 시 은행이랑 계좌번호도 같이 받기!!!! -->
+	<insert  id="addBusiness"	parameterType="business">
+	  	INSERT
+	  	INTO business ( business_id, business_pass, business_num, business_owner, business_name, business_phone, business_loc, business_start_time, business_end_time, category_no, bank, deposit_acc_num, reg_date )
+	  	VALUES ( #{businessId}, #{businessPass}, #{businessNum}, #{businessOwner}, #{businessName}, #{businessPhone}, #{businessLoc}, #{businessStartTime:VARCHAR}, #{businessEndTime:VARCHAR}, #{categoryNo}, #{bank}, #{depositAccNum}, SYSDATE  )
+	</insert>
+	
+	<!-- SQL : Business_SELECT -->
+	<select  id="getBusiness"	parameterType="String"	resultMap="BusinessSelectMap">
+	  	SELECT
+		business_id, business_pass, business_name, business_loc, category_no, business_phone, business_img, business_num, business_owner, reg_date, bank, deposit_acc_num, business_star, business_start_time, business_end_time
+		FROM business
+		WHERE business_id = #{businessId}
+	</select>
+	
+	<!-- SQL : Business_UPDATE -->
+	<update  id="updateBusiness"	parameterType="business">
+	   	UPDATE business
+	   	SET
+	   		business_pass			=		#{businessPass},
+	   		business_name			=		#{businessName},
+	   		business_loc			=		#{businessLoc},
+	   		business_phone			=		#{businessPhone},
+	   		business_img			=		#{businessImg:VARCHAR},
+	   		business_owner			=		#{businessOwner},
+	   		bank					=		#{bank},
+	   		deposit_acc_num			=		#{depositAccNum},
+	   		business_start_time		=		#{businessStartTime:VARCHAR},
+	   		business_end_time		=		#{businessEndTime:VARCHAR}
+	   	WHERE business_id = #{businessId}
+	</update>
+	
+	<!-- SQL : Business_SELECT LIST -->
+	<select  id="getBusinessList"	parameterType="search"	resultMap="BusinessSelectMap">
+		SELECT business_id, business_name, business_loc, business_phone, category_no, business_img
+		FROM business
+		WHERE 1=1
+			<if test=" searchKeyword!=null and searchKeyword!='' ">
+				 AND business_name LIKE '%'||#{searchKeyword}||'%'
+			</if>
+		ORDER BY reg_date
+	</select>
+	
+	<!-- SQL : Business_DELETE -->
+	<delete  id="delBusiness"	parameterType="String">
+	  	DELETE FROM business
+	  	WHERE business_id = #{businessId}
+	</delete>
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	<!-- 업체 메뉴 -->
+	
+	<!-- SQL : MENU_INSERT -->
+	<insert 	id="addBusinessMenu"		parameterType="menu" >
+		INSERT
+		INTO menu( menu_no, business_id, business_menu, business_menu_fee, business_menu_img, business_menu_cnt) 
+		VALUES	 (	seq_menu_menu_no.nextval, #{businessId}, #{businessMenu}, #{businessMenuFee}, #{businessMenuImg} ,#{businessMenuCnt}  )
+	</insert>
+	
+	<!-- SQL : MENU_SELECT -->
+	<select 	id="getBusinessMenu"	parameterType="int"	resultMap="MenuSelectMap">
+		SELECT
+		menu_no, business_id, business_menu, business_menu_fee, business_menu_img, business_menu_cnt
+		FROM menu
+		WHERE menu_no = #{menuNo}
+	</select>
+	
+	<!-- SQL : MENU_UPDATE -->
+	<update	id="updateBusinessMenu"	parameterType="menu" >
+		UPDATE menu
+		SET
+				business_menu			=		#{businessMenu} ,
+				business_menu_fee		=		#{businessMenuFee} ,
+				business_menu_img		=		#{businessMenuImg}
+		WHERE menu_no = #{menuNo}
+	</update>
+	 
+	<!-- SQL : MENU_SELECT LIST -->
+	<select  id="getBusinessMenuList"  parameterType="String"	resultMap="MenuSelectMap">
+	  	SELECT menu_no, business_id, business_menu , business_menu_fee , business_menu_img , business_menu_cnt
+		FROM menu
+		WHERE business_id = #{businessId}
+		ORDER BY menu_no
+	</select>
+	
+	<!-- SQL : MENU_DELETE -->
+	<delete  id="delBusinessMenu"  parameterType="int">
+		DELETE FROM menu
+		WHERE menu_no = #{menuNo}
+	</delete>
+	
+	
+	
+	
+	
+	
+	<!-- 업체 예약 가능 시간 -->
+	
+	<!-- SQL : RESERVEABLE_INSERT -->
+	<insert 	id="addReserveAbleTime"		parameterType="reserveAble" >
+		INSERT
+		INTO reserveable( reserve_able_no, business_id, reserve_able_start_time, reserve_able_end_time ) 
+		VALUES	 (	seq_reserve_able_no.nextval, #{businessId}, #{reserveAbleStartTime}, #{reserveAbleEndTime} )
+	</insert>
+	
+	<!-- SQL : RESERVEABLE_DELETE -->
+	<delete  id="delReserveAbleTime"  parameterType="String">
+		DELETE FROM reserveable
+		WHERE business_id = #{businessId}
+	</delete>
+	
+	<!-- SQL : RESERVEABLE_SELECT LIST -->
+	<select  id="getReserveAbleTimeList"  parameterType="String"	resultMap="ReserveAbleSelectMap">
+	  	SELECT reserve_able_no, business_id, reserve_able_start_time , reserve_able_end_time
+		FROM reserveable
+		WHERE business_id = #{businessId}
+		ORDER BY reserve_able_start_time
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 예약 관련 -->
+	
+	<!-- SQL : RESERVEABLE_TIME_LIST -->
+	<select id="showReserveAbleTimeList" parameterType="map" resultMap="ReserveAbleSelectMap">
+		SELECT reserve_able_no, business_id, reserve_able_start_time, reserve_able_end_time
+		FROM reserveable
+		WHERE reserve_able_no
+								NOT IN ( SELECT reserve_able_no FROM pay WHERE reserve_date = #{reserveDate} )
+		AND reserve_able_no IS NOT NULL
+		AND business_id = #{businessId}
+		ORDER BY reserve_able_no
+	</select>
+	
+	<!-- SQL : RESERVEABLE_TIME_LIST -->
+	<select id="getReservAbleTime" parameterType="int" resultMap="ReserveAbleSelectMap">
+		SELECT reserve_able_no, business_id, reserve_able_start_time, reserve_able_end_time
+		FROM reserveable
+		WHERE reserve_able_no = #{reserveAbleNo}
+	</select>
+	
+	
+	
+	
+	<!-- SQL : USED_BUSINESS_LIST -->
+	<select id="getUsedBusinessList" parameterType="String" resultMap="paySelectMap">
+		SELECT b.business_id, b.business_name, b.business_img,
+		        p.pay_no, p.meet_id, p.off_no, p.business_id, p.reserve_date, p.reserve_able_no, p.reserve_start_time, p.reserve_end_time
+		FROM business b,
+		                ( SELECT pay_no, meet_id, off_no, business_id, reserve_date, reserve_able_no, reserve_start_time, reserve_end_time
+		                from pay
+		                where off_no IN ( SELECT off_no
+		                                    FROM meetmem_offmeet
+		                                    WHERE mem_id in ( 
+		                                                    SELECT mem_no
+		                                                    FROM meetmem
+		                                                    WHERE user_id = #{userId}
+		                                                    ) )
+		                AND reserve_able_no IS NOT NULL ) p
+		WHERE b.business_id IN p.business_id
+	</select>
+	
+	
+	 
+	 
+</mapper>
