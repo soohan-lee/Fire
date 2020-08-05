@@ -21,10 +21,8 @@ public class User {
     private String naverId;
     private String kakaoId;
     private String googleId;
-    private int meetCount;
     private String role;
-    private List<String> category;
-    private List<String> meetList;
+    
     
     
     public String getUserId() {
@@ -138,14 +136,6 @@ public class User {
 	public void setGoogleId(String googleId) {
 		this.googleId = googleId;
 	}
-	
-	public int getMeetCount() {
-		return meetCount;
-	}
-
-	public void setMeetCount(int meetCount) {
-		this.meetCount = meetCount;
-	}
 
 	public String getRole() {
 		return role;
@@ -155,31 +145,12 @@ public class User {
 		this.role = role;
 	}
 
-	public List<String> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<String> category) {
-		this.category = category;
-	}
-	
-	public List<String> getMeetList() {
-		return meetList;
-	}
-
-	public void setMeetList(List<String> meetList) {
-		this.meetList = meetList;
-	}
-
-	
-
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", userName=" + userName + ", email=" + email
 				+ ", phoneNumber=" + phoneNumber + ", birthday=" + birthday + ", nickName=" + nickName + ", profileImg="
 				+ profileImg + ", address=" + address + ", gender=" + gender + ", userStateList=" + userStateList
-				+ ", naverId=" + naverId + ", kakaoId=" + kakaoId + ", googleId=" + googleId + ", meetCount="
-				+ meetCount + ", role=" + role + ", category=" + category + ", meetList=" + meetList + "]";
+				+ ", naverId=" + naverId + ", kakaoId=" + kakaoId + ", googleId=" + googleId + ", role=" + role + "]";
 	}
 	
 	

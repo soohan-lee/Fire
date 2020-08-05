@@ -12,21 +12,24 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
+	<!-- cdn부분
+	
+	참조 : http://getbootstrap.com/css/   참조
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
+	 ///////////////////////// Bootstrap, jQuery CDN //////////////////////////
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
-	<!-- Bootstrap Dropdown Hover CSS -->
+	Bootstrap Dropdown Hover CSS
    <link href="/css/animate.min.css" rel="stylesheet">
    <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
    
-    <!-- Bootstrap Dropdown Hover JS -->
-   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+    Bootstrap Dropdown Hover JS
+   <script src="/javascript/bootstrap-dropdownhover.min.js"></script> -->
+   <jsp:include page="/common/listCdn.jsp" />
    
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
@@ -79,7 +82,7 @@
 			var addr=$("input[id='sample4_roadAddress']").val();
 			var daddr=$("input[id='sample4_detailAddress']").val();
 			
-var fullAddr=addr +" "+daddr;
+			var fullAddr=addr +" "+daddr;
 			
 			$("input[id='sample4_roadAddress']").val(fullAddr);
 			
@@ -201,52 +204,13 @@ var fullAddr=addr +" "+daddr;
 	    
 	    <!-- form Start /////////////////////////////////////-->
 		<form class="form-horizontal">
-		
-		<section id="wrapper">
-    <!-- <header>
-      <h1>File API (simple)</h1>
-    </header> -->
 
-<article>
-  <!-- <p id="status">File API &amp; FileReader API not supported</p> -->
-  <p id="status">
-  <p><input type=file></p>
-  <!-- <p>Select an image from your machine to read the contents of the file without using a server</p> -->
-  <div id="holder"></div>
-</article>
-<script>
-var upload = document.getElementsByTagName('input')[0],
-    holder = document.getElementById('holder'),
-    state = document.getElementById('status');
-
-if (typeof window.FileReader === 'undefined') {
-  state.className = 'fail';
-} else {
-  state.className = 'success';
-  /* state.innerHTML = 'File API & FileReader available'; */
-}
- 
-upload.onchange = function (e) {
-  e.preventDefault();
-
-  var file = upload.files[0],
-      reader = new FileReader();
-  reader.onload = function (event) {
-    var img = new Image();
-    img.src = event.target.result;
-    // note: no onload required since we've got the dataurl...I think! :)
-    if (img.width > 200) { // holder width
-      img.width = 200;
-    }
-    holder.innerHTML = '';
-    holder.appendChild(img);
-  };
-  reader.readAsDataURL(file);
-
-  return false;
-};	
-
-</script>
+		<div class="form-group">
+		    <label for="profileImg" class="col-sm-offset-1 col-sm-3 control-label">프로필사진</label>
+		    <div class="col-sm-4">
+		      <input type="file" class="form-control" id="profileImg" name="profileImg" value= {user.profileImg}>
+		    </div>
+		  </div>
 		
 		  <div class="form-group">
 		    <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">ID</label>
@@ -313,25 +277,6 @@ upload.onchange = function (e) {
 		      <input type="text" class="form-control" id="certificationNumber" name="certificationNumber" placeholder="인증번호">
 		    </div>
 		  </div>
-		  
-		  <label for="category" class="col-sm-offset-1 col-sm-3 control-label" value="${user.category}">관심 카테고리</label>
-			<input type="checkbox" name="category" value="0"> 여행
-  			<input type="checkbox" name="category" value="1"> 게임
-  			<input type="checkbox" name="category" value="2"> 음악
-  			<input type="checkbox" name="category" value="3"> 영화
-  			<input type="checkbox" name="category" value="4"> 공연
-  			<input type="checkbox" name="category" value="5"> 맛집
-  			<input type="checkbox" name="category" value="6"> 취업/자기계발
-  			<input type="checkbox" name="category" value="7"> 액티비티<br>
-  			<input type="checkbox" name="category" value="8"> 독서/만화
-  			<input type="checkbox" name="category" value="9"> 댄스
-  			<input type="checkbox" name="category" value="10"> 사진
-  			<input type="checkbox" name="category" value="11"> 반려동물
-  			<input type="checkbox" name="category" value="12"> 요리
-  			<input type="checkbox" name="category" value="13"> 차
-  			<input type="checkbox" name="category" value="14"> 스포츠
-  			<input type="checkbox" name="category" value="15"> 공예
-  			<input type="checkbox" name="category" value="16"> 기타<br><br>
 		  
 		  <div class="form-group">
 		    <label for="address" class="col-sm-offset-1 col-sm-3 control-label">주소</label>

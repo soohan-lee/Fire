@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.morackmorack.mvc.service.domain.User;
@@ -48,13 +49,14 @@ public class UserController {
 		System.out.println("/user/addUser : GET");
 		
 		return "redirect:/user/addUserView.jsp";
+		
 	}
 	
 	@RequestMapping( value="addUser", method=RequestMethod.POST)
 	public String addUser( @ModelAttribute("user") User user, HttpServletRequest request) throws Exception {
 
 		System.out.println("/user/adduser : POST");
-		System.out.println("µé¾î¿Â °´Ã¼:"+ user);
+		/* System.out.println("µé¾î¿Â °´Ã¼:"+ user); */
 		
 		@Component class StringToDateConverter
 		  implements Converter<String, Date> {
@@ -70,6 +72,7 @@ public class UserController {
 				}
 				return null; 
 		    }
+		    
 		}
 		
 		//Business Logic
