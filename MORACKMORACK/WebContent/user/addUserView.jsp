@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!DOCTYPE html>
@@ -14,10 +15,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script> -->
+	<jsp:include page="/common/listCdn.jsp" />
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
@@ -81,13 +83,26 @@
 				alert("ID는 5-20자의 영문 소문자, 숫자와 특수문자 중 (_),(-)만 사용할 수 있다.")
             return;
         	}
-			if(id == userId){
-				alret("중복된 ID는 가입이 안됩니다.");
-				return;
-			}
+			$.ajax(
+					{
+						url : "/user/json/checkDuplication/"+userId ,
+						method : "GET" ,
+						dataType : "json" ,
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status){
+							//alert(status)
+							//var JSONdata = JSON.stringify(JSONData);
+							//alert(JSONdata);
+							//alert(JSONData)
+							//alert(JSONData.result)
+						}
+					});
 			////////////////////////////////////////
 			if(pw == null || pw.length <1){
-				alert("비밀번호는  반드시 입력하셔야 합니다.");
+				alert("비밀번호는 반드시 입력하셔야 합니다.");
 			return;
 			}
 			////////////////////////////////////////
@@ -124,6 +139,23 @@
 				alert("닉네임이 너무 길어요 ㅠㅠ")
             return;
         	}
+			$.ajax(
+					{
+						url : "/user/json/checkDuplication2/"+nickName ,
+						method : "GET" ,
+						dataType : "json" ,
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status){
+							//alert(status)
+							//var JSONdata = JSON.stringify(JSONData);
+							//alert(JSONdata);
+							//alert(JSONData)
+							//alert(JSONData.result)
+						}
+					});
 			////////////////////////////////////////////////////
 			if(em == null || em.length <1){
 				alert("이메일은 반드시 입력하셔야 합니다.");
@@ -394,26 +426,7 @@
 		    <div class="col-sm-4">
 		      <input type="date" class="form-control" id="birthday" name="birthday" value="yyyy-MM-dd">
 		    </div>
-		 </div>
-		  
-		  <label for="category" class="col-sm-offset-1 col-sm-3 control-label">관심 카테고리</label>
-			<input type="checkbox" name="category" value="0"> 여행
-  			<input type="checkbox" name="category" value="1"> 게임
-  			<input type="checkbox" name="category" value="2"> 음악
-  			<input type="checkbox" name="category" value="3"> 영화
-  			<input type="checkbox" name="category" value="4"> 공연
-  			<input type="checkbox" name="category" value="5"> 맛집
-  			<input type="checkbox" name="category" value="6"> 취업/자기계발
-  			<input type="checkbox" name="category" value="7"> 액티비티<br>
-  			<input type="checkbox" name="category" value="8"> 독서/만화
-  			<input type="checkbox" name="category" value="9"> 댄스
-  			<input type="checkbox" name="category" value="10"> 사진
-  			<input type="checkbox" name="category" value="11"> 반려동물
-  			<input type="checkbox" name="category" value="12"> 요리
-  			<input type="checkbox" name="category" value="13"> 차
-  			<input type="checkbox" name="category" value="14"> 스포츠
-  			<input type="checkbox" name="category" value="15"> 공예
-  			<input type="checkbox" name="category" value="16"> 기타<br><br>					
+		 </div>						
   						  
 		  <div class="form-group">
 		    <label for="address" class="col-sm-offset-1 col-sm-3 control-label" >주소</label>
@@ -471,7 +484,6 @@
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
 		      <button type="button" class="btn btn-primary"  >가 &nbsp;입</button>
 			  <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a>
-<!-- 			  <button type="button" onclick="location.href='/index.jsp' ">메인페이지</button> -->
 		    </div>
 		  </div>
 		</form>

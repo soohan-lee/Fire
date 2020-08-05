@@ -22,9 +22,7 @@
 		<result property="naverId" 			column="naver_id" 		jdbcType="VARCHAR" />
 		<result property="kakaoId" 			column="kakao_id" 		jdbcType="VARCHAR" />
 		<result property="googleId" 			column="google_id" 		jdbcType="VARCHAR" />
-		<result property="meetCount" 			column="join_meet_count" 		jdbcType="NUMERIC" />
 		<result property="role" 			column="role" 		jdbcType="VARCHAR" />
-		<result property="category" 		column="category" 	jdbcType="INTEGER"/>
 	</resultMap>
 	
 	<!-- SQL : INSERT -->
@@ -37,35 +35,21 @@
 								
 	 </insert>
 	 
-	 <insert 	id="addCategory"		parameterType="map" >
-	 	INSERT
-		INTO users_category 
-		VALUES	 (	seq_users_category_category_no.nextval, #{userId}, #{categoryNo}  )
-								
-	 </insert>
-	 
 	 
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getUser"	parameterType="string"	resultMap="userSelectMap">
 		SELECT
 		*
 		FROM users 
-		WHERE user_id = #{value}
+		WHERE user_id = #{value} 
 	 </select>
 	 
-	 <select 	id="getCategory"	parameterType="string"	resultType="string">
-		SELECT
-		category.category_name
-		FROM users, users_category , category
-		WHERE users.user_id = #{value} AND users.user_id = users_category.user_id AND users_category.category_no=category.category_no
+	 <select id="getNickName" parameterType="string" resultMap="userSelectMap">
+	 	SELECT
+		*
+		FROM users 
+		WHERE nick_name = #{value} 
 	 </select>
-	 
-	 <!-- <select 	id="getCategory"	parameterType="string"	resultMap="userSelectMap">
-		SELECT
-		category.category_no
-		FROM users, users_category
-		WHERE users.user_id = #{value} AND users.user_id = users_category.user_id
-	 </select> -->
 	 
 	 <!-- SQL : UPDATE -->
 	 <update	id="updateUser"	parameterType="user" >
@@ -76,33 +60,18 @@
 	   		nick_name		= #{nickName} ,
 	   		email			= #{email} , 
 			phone_number	= #{phoneNumber} ,
-			address 		= #{address}
+			address 		= #{address} ,
 			
 	   	</set>
 	   	WHERE user_id = #{userId}
 	 </update>
-	 
-	 <!-- <update	id="updateCategory"	parameterType="user" >
-	   	UPDATE users
-	   	<set>
-	   		image_file		= #{profileImg:VARCHAR} ,
-	   		user_name 		= #{userName} ,
-	   		nick_name		= #{nickName} ,
-	   		email			= #{email} , 
-			phone_number	= #{phoneNumber} ,
-			address 		= #{address}
-			
-	   	</set>
-	   	WHERE user_id = #{userId}
-	 </update> -->
-	 
 	 
 	 <!-- 회원탈퇴 -->
 	<delete id="delUser" parameterType="user" >
 		DELETE FROM users
 		WHERE user_id = #{userId}
 	  		AND password = #{password} 
-</delete>
+	</delete>
 	 
 
 </mapper>

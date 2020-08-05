@@ -28,21 +28,14 @@ public class UserDaoImpl implements UserDao{
 	
 	public void addUser(User user) throws Exception {
 		sqlSession.insert("UserMapper.addUser", user); // 유저 정보 insert
-		
-		List<String> listCategory = user.getCategory();
-		
-		Map map = new HashMap();
-		map.put("userId",user.getUserId());
-		
-		for(int i=0; i<listCategory.size(); i++) {
-			map.put("categoryNo",listCategory.get(i));
-			sqlSession.insert("UserMapper.addCategory",map); //카테고리 insert
-		}
 	}
 
 	public User getUser(String userId) throws Exception {
-		User user = sqlSession.selectOne("UserMapper.getUser", userId);
-		//user.setCategory(sqlSession.selectList("UserMapper.getCategory", userId));
+		return sqlSession.selectOne("UserMapper.getUser", userId);
+	}
+	
+	public User getNickName(String nickName) throws Exception {
+		User user = sqlSession.selectOne("UserMapper.getNickName", nickName);
 		
 		return user;
 	}

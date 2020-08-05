@@ -468,6 +468,69 @@ $(function (){
 
 });
 
+//============= "로그인"  Event 연결 =============
+$( function() {
+	
+	$("#userId").focus();
+	
+	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	$("button").on("click" , function() {
+		var id=$("input:text").val();
+		var pw=$("input:password").val();
+		
+		if(id == null || id.length <1) {
+			alert('ID 를 입력하지 않으셨습니다.');
+			$("#userId").focus();
+			return;
+		}
+		
+		if(pw == null || pw.length <1) {
+			alert('패스워드를 입력하지 않으셨습니다.');
+			$("#password").focus();
+			return;
+		}
+		
+		//////////////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
+		//$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+		////////////////////////////////////////////////////////////////////////////////////
+		$.ajax(
+				{
+					url : "/user/json/login",
+					method : "POST" ,
+					dataType : "json" ,
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					data : JSON.stringify({
+						userId : id,
+						password : pw
+					}),
+					success : function(JSONData , status) {
+						
+						//Debug...
+						//alert(status);
+						//alert("JSONData : \n"+JSONData);
+						//alert( "JSON.stringify(JSONData) : \n"+JSON.stringify(JSONData) );
+						//alert( JSONData != null );
+						
+						if( JSONData.userId != null ){
+							$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+							//[방법1]
+							//$(window.parent.document.location).attr("href","/index.jsp");
+							
+							//[방법2]
+							//window.parent.document.location.reload();
+							
+						}else{
+							alert("아이디 , 패스워드를 확인하시고 다시 로그인...");
+						}
+					}
+			});
+			////////////////////////////////////////////////////////////////////////////////////////////////	
+	});
+});
+
 </script>
 </head>
 <body>
@@ -486,19 +549,19 @@ $(function (){
     <h1 class="title">Login</h1>
     <form>
       <div class="input-container">
-        <input type="" id=""/>
-        <label for="">Username</label>
+        <input type="text" id="userId"/>
+        <label for="userId">ID</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="" id=""/>
-        <label for="">Password</label>
+        <input type="password" id="password"/>
+        <label for="password">비밀번호</label>
         <div class="bar"></div>
       </div>
       <div class="button-container">
-        <button><span>Go</span></button>
-      </div>
-      <div class="footer"><a href="#">Forgot your password?</a></div>
+        <button><span>로그인</span></button>
+      <!-- </div>
+      <div class="footer"><a href="#">Forgot your password?</a></div> -->
     </form>
   </div>
 </div>
