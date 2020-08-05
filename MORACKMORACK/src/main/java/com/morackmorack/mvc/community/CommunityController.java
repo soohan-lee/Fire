@@ -80,7 +80,7 @@ public class CommunityController {
 	
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("community", community);
-		mav.setViewName("/commnity/getPost/");
+		mav.setViewName("/commnity/getPost.jsp");
 		return mav;
 	}
 	
@@ -111,7 +111,7 @@ public class CommunityController {
 		return mav;
 	}
 	
-	@RequestMapping("getPost")
+	@RequestMapping(value="getPost", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getPost(@RequestParam("postNo") int postNo) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
