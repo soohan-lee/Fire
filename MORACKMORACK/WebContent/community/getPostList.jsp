@@ -27,7 +27,7 @@
 		$("td:nth-child(2)").on("click",function(){
 			
 			var postNo = $(this).next().val();
-			
+			alert(postNo);
 			self.location="/community/getPost?postNo="+postNo;
 			
 		});
@@ -93,7 +93,7 @@
 			<c:set var="i" value="${i+1}"/>
 			<tr>
 			<td align="left">${i}</td>
-			<td align="left">${community.title}<input type ="hidden" class="postNo" value="${community.postNo}"/></td>
+			<td align="left">${community.title}</td><input type ="hidden" name="postNo" id="postNo" value="${community.postNo}"/>
 			<td align="left">${community.user.userId}</td>
 			<td align="left">${community.regDate}</td>
 			</tr>

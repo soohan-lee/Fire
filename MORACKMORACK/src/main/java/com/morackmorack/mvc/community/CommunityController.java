@@ -73,14 +73,22 @@ public class CommunityController {
 		return mav;
 	}
 	
-	@RequestMapping(value="addPost", method=RequestMethod.GET)
-	public ModelAndView addPost(HttpSession session, Community community) throws Exception {
+	@RequestMapping(value="addPost", method=RequestMethod.POST)
+	public ModelAndView addPost(@RequestParam("meetId")String meetId, HttpServletRequest request, Community community) throws Exception {
+		
+		HttpSession session = request.getSession(true);
+		String userId = ((User)session.getAttribute("user")).getUserId();
+		
+		Meet meet = meetService.getMeet(meetId);
+		
+		community.setMeet(meet);
+		community.setUser(userService.getUser(userId));
 		
 		communityService.addPost(community);
 	
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("community", community);
-		mav.setViewName("/commnity/getPost.jsp");
+		mav.setViewName("/community/getPost.jsp");
 		return mav;
 	}
 	
@@ -117,6 +125,17 @@ public class CommunityController {
 		ModelAndView mav = new ModelAndView();
 		
 		Community community = communityService.getPost(postNo);
+		
+		String userId = community.getUser().getUserId();
+		String meetId = community.getMeet().getMeetId();
+		
+		User user = userService.getUser(userId);
+		Meet meet = meetService.getMeet(meetId);
+		
+		community.setMeet(meet);
+		community.setUser(user);
+		
+		System.out.println(community);
 		
 		mav.addObject("community", community);
 		mav.setViewName("/community/getPost.jsp");

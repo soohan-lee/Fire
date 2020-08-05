@@ -41,11 +41,12 @@ $(function(){
  			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 	  });
 	});
-	TooManyResultsException
+
+	
 	$(function(){
-		$("button").on("click",function(){
-			
-			fncAddPost()
+		$("button.btn.btn-warning").on('click',function(){
+			alert("12345")
+			fncAddPost();
 			
 		});
 	});
@@ -66,16 +67,16 @@ $(function(){
 			
 			<div class="form-group">
 				<div class="col-xs-7 col-sm-6">
-				<input type="text" class="form-control" id="user" name="user" placeholder="${user.nickName}(${user.userId})" disabled>
+				<input type="text" class="form-control" id="userId" name="userId" placeholder="${user.nickName}(${user.userId})" disabled>
 				</div>
 				<div class="col-xs-4 col-sm-6">
-				<input type="text" class="form-control" id="meet" name="meet" placeholder="${meet.meetName}"disabled>
+				<input type="text" class="form-control" id="meetId" name="meetId" placeholder="${meet.meetName}"disabled>
 				</div>
 			</div>
 		
 			<div class="form-group">
 					<div class="col-sm-12">
-					<textarea id="summernote" name="content"></textarea>
+					<textarea id="summernote" name="content" id="content"></textarea>
 					</div>
 			</div>
 			
@@ -83,8 +84,9 @@ $(function(){
 	
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-4 text-center">
-					<button type="button" class="btn btn-primary">등록</button>
-						<a class="btn btn-primary btn" href="#" role="button">취소</a>
+					<button type="button" class="btn btn-warning">등록</button>
+					<input type="hidden" id="userId" name="userId" value="${user.userId}"/>
+					<input type="hidden" id="meetId" name="meetId" value="${meet.meetId}"/>
 				</div>
 			</div>
 		</form>

@@ -38,10 +38,16 @@
 	
 	<insert id="addPost"		parameterType="community" >
 		INSERT
-		INTO communites( post_no , user_id , communites_name , meet_id , title , content , reg_date , mod_date) 
+		INTO communities( post_no , user_id , communites_name , meet_id , title , content , reg_date , mod_date) 
 		VALUES	 ( seq_communites_post_no.NEXTVAL , #{user.userId:VARCHAR} , '0' , #{meet.meetId:VARCHAR} , 
 							#{title:VARCHAR} ,  #{content:VARCHAR}, SYSDATE, NULL)
 	</insert>
+	
+	<select id="getPost" parameterType="int" resultMap="communitySelectMap">
+	SELECT post_no, user_id, meet_id, title, content, reg_date, mod_date
+	FROM communities
+	WHERE post_no=#{value}
+	</select>
 	
 	<select id="getPostList" parameterType="map" resultMap="communitySelectMap">
   		SELECT *
