@@ -456,27 +456,6 @@ body {
 
 </style>
 
-<!-- ///////////////////////////////////////////////////////////////////////////// -->
-
-<center>
-<script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
- 
-<div id = "naver_id_login"></div>
- 
-<script type="text/javascript">
- 
-         var naver_id_login = new naver_id_login("uFVRC_BCJShyhfeTfdgA", "http://localhost:8080/index.jsp");    // Client ID, CallBack URL 삽입
-                                            // 단 'localhost'가 포함된 CallBack URL
-         var state = naver_id_login.getUniqState();
-        
-         naver_id_login.setButton("white", 4, 40);
-         naver_id_login.setDomain("http://localhost:8080/user/loginView.jsp");    //  URL
-         naver_id_login.setState(state);
-         naver_id_login.setPopup();
-         naver_id_login.init_naver_id_login();
- 
-</script>
-</center>
 
 <script type ="text/javascript">
 
@@ -564,7 +543,7 @@ $( function() {
 </header>
 
 <div class="pen-title">
-  <h1>Login</h1>
+  <!-- <h1>Login</h1> -->
 </div>
 <!-- <div class="rerun"><a href="#">업체 로그인</a></div> -->
 <div class="container">
@@ -584,6 +563,27 @@ $( function() {
       </div>
       <div class="button-container">
         <button><span>로그인</span></button>
+      <!-- ///////////////////////////////////////////////////////////////////////////// -->
+
+<center>
+<script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+ 
+<div id = "naver_id_login"></div>
+ 
+<script type="text/javascript">
+ 
+         var naver_id_login = new naver_id_login("uFVRC_BCJShyhfeTfdgA", "http://localhost:8080/index.jsp");    // Client ID, CallBack URL 삽입
+                                            // 단 'localhost'가 포함된 CallBack URL
+         var state = naver_id_login.getUniqState();
+        
+         naver_id_login.setButton("white", 4, 40);
+         naver_id_login.setDomain("http://localhost:8080/user/loginView.jsp");    //  URL
+         naver_id_login.setState(state);
+         naver_id_login.setPopup();
+         naver_id_login.init_naver_id_login();
+ 
+</script>
+</center>
       <!-- </div>
       <div class="footer"><a href="#">Forgot your password?</a></div> -->
     </form>

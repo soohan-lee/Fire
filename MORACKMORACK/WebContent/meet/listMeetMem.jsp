@@ -114,7 +114,7 @@ $(function(){
             <td>모임 가입 날짜</td>
             <td>성별</td>
             <td>나이</td>
-            <td>회원 관심 카테고리</td>
+<!--             <td>회원 관심 카테고리</td> -->
              <c:if test="${meetMem.meetRole eq '0'.charAt(0)}">
             <td>블랙리스트 이력</td>
             </c:if>
@@ -133,7 +133,7 @@ $(function(){
                 <td><fmt:formatDate value="${listMeetMem.joinDate}" pattern="yyyy.MM.dd" /></td>
                 <td>${listMeetMem.user.gender}</td>             
                 <td>${listMeetMem.user.birthday}</td>              
-                <td><c:forEach var="category" items="${listMeetMem.user.category}"> ${category} </c:forEach></td>
+<%--                 <td><c:forEach var="category" items="${listMeetMem.user.category}"> ${category} </c:forEach></td> --%>
                  <c:if test="${meetMem.meetRole eq '0'.charAt(0)}">
                 <td><c:forEach var="blacklist" items="${listMeetMem.blackList}"> ${blacklist} </c:forEach></td> 
                 </c:if>

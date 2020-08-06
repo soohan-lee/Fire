@@ -54,7 +54,7 @@ import com.morackmorack.mvc.service.domain.User;
 		@Override
 		public Community getPost(int postNo) throws Exception {
 			// TODO Auto-generated method stub
-			return sqlSession.selectOne("CommunityMaper.getPost", postNo);
+			return sqlSession.selectOne("CommunityMapper.getPost", postNo);
 		}
 		@Override
 		public void updatePost(Community community) throws Exception {

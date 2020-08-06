@@ -132,6 +132,15 @@ public class UserController {
 		return "redirect:/user/loginView.jsp";
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * @RequestMapping(value="loginResult", method=RequestMethod.GET) public String
+	 * loginResult(HttpSession session) {
+	 * 
+	 * return "redirect:/user/loginResult.jsp"; }
+	 */
+	////////////////////////////////////////////////////////////////////////////////
+	
 	@RequestMapping( value="login", method=RequestMethod.POST )
 	public String login(@ModelAttribute("user") User user , HttpSession session ) throws Exception{
 		
