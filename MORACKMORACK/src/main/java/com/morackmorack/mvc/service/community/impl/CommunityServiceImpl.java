@@ -48,7 +48,9 @@ import com.morackmorack.mvc.service.domain.Community;
 			// TODO Auto-generated method stub
 			List<Community> list = communityDao.getPostList(search, meetId);
 			Map <String,Object> map = new HashMap<String,Object>();
+			int totalCount = communityDao.getTotalCount(meetId);
 			map.put("list", list);
+			map.put("totalCount", new Integer(totalCount));
 			System.out.println(map);
 			return map;
 		}

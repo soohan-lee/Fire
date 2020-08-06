@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -99,21 +100,23 @@ public class CommunityController {
 			search.setCurrentPage(1);
 		}
 		
+		System.out.println("설마사카"+search);
 		search.setPageSize(pageSize);
 		
 		ModelAndView mav = new ModelAndView();
 		
 		Map<String,Object> map = communityService.getPostList(search, meetId);
 		
+
 		
 		System.out.println(map.get("list")+"1234");
 		
-//		Page resultPage = new Page (search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
+		Page resultPage = new Page (search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
 		
 		mav.addObject("list", map.get("list"));
-//		mav.addObject("resultPage", resultPage);
+		mav.addObject("resultPage", resultPage);
 		mav.addObject("search", search);
-//		mav.addObject("totalCount", map.get("totalCount"));
+		mav.addObject("totalCount", map.get("totalCount"));
 		mav.setViewName("/community/getPostList.jsp");
 		
 		return mav;
@@ -123,7 +126,7 @@ public class CommunityController {
 	public ModelAndView getPost(@RequestParam("postNo") int postNo) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		
+
 		Community community = communityService.getPost(postNo);
 		
 		String userId = community.getUser().getUserId();
@@ -150,16 +153,34 @@ public class CommunityController {
 		
 		Community community = communityService.getPost(postNo);
 		
+//		String meetId = community.getMeet().getMeetId();
+//		String userId = community.getUser().getUserId();
+//		
+//		User user = userService.getUser(userId);
+//		Meet meet = meetService.getMeet(meetId);
+//		
+		community.setUser(userService.getUser(community.getUser().getUserId()));
+		community.setMeet(meetService.getMeet(community.getMeet().getMeetId()));
+		
 		mav.addObject("community", community);
-		mav.setViewName("/community/updatePostView.jsp");
+		mav.setViewName("/community/updatePost.jsp");
 		
 		return mav;
 	}
 	
 	@RequestMapping(value="updatePost", method=RequestMethod.POST)
-	public ModelAndView updatePost(@ModelAttribute("community") Community community)throws Exception {
+	public ModelAndView updatePost(@ModelAttribute("community") Community community, @RequestParam("userId") String userId, @RequestParam("meetId") String meetId)throws Exception {
 		
 		ModelAndView mav = new ModelAndView ();
+		
+		System.out.println(132131231+userId);
+		
+		System.out.println("123456:"+community);
+		
+		User user = userService.getUser(userId);
+		community.setUser(user);
+		Meet meet = meetService.getMeet(meetId);
+		community.setMeet(meet);
 		
 		communityService.updatePost(community);
 		
@@ -169,12 +190,12 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="deletePost", method=RequestMethod.GET)
-	public ModelAndView deletePost(@RequestParam("postNo") int postNo) throws Exception {
+	public ModelAndView deletePost(@RequestParam("postNo") int postNo, @RequestParam("meetId") String meetId) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		communityService.deletePost(postNo);
 		
-		mav.setViewName("/community/getPostList.jsp");
+		mav.setViewName("/community/getPostList?meetId"+meetId);
 		
 		return mav;
 	}

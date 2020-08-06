@@ -66,5 +66,11 @@ import com.morackmorack.mvc.service.domain.User;
 			// TODO Auto-generated method stub
 			sqlSession.update("CommunityMapper.deletePost", postNo);
 		}
-			
+		@Override
+		public int getTotalCount(String meetId) throws Exception {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne("CommunityMapper.getTotalCount",meetId);
+		}
+		
+		
 }

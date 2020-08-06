@@ -38,19 +38,50 @@ $(function(){
  			    ['view', ['fullscreen', 'help']]
  			  ],
  			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
- 			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+ 			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+ 			callbacks:{
+ 				onImageUpload: function(files, editor, welEditable){
+ 					console.log(files);
+ 					
+ 					for(var i = files.length-1; i>=0; i--){
+ 						sendFile(files[i],this);
+ 					}
+ 				}
+ 			}
 	  });
 	});
-
+	$("div.note-editable").on('drop',function(e){
+        for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+        	sendFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+        }
+  		e.preventDefault();
+		});
 	
-	$(function(){
 		$("button.btn.btn-warning").on('click',function(){
 			alert("12345")
 			fncAddPost();
 			
 		});
-	});
+
 });
+
+function sendFile(file,editor){
+	//파일 전송을 위한 폼생성
+	var data = new FormData();
+	data.append("file",file);
+	$.ajax({ //ajax를 이용 하여 파일 업로드 처리
+		data:form_data,
+		type:"POST",
+		url:"/community/json/addPost",
+		contentType :false,
+		processData:false,
+		success :function(data){ //처리가 성공할 경우
+			//에디터 이미지 출력
+			$(editor).summernote('insertImage',data.url);
+		}
+	});
+}
+
 </script>
 </head>
 <body>

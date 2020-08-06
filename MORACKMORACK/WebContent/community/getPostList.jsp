@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 
@@ -16,6 +17,12 @@
 
 <script type="text/javascript">
 	
+	function fncGetUserList(currentPage){
+		$("#currentPage").val(currentPage);
+		var meetId = $(this).next().val();
+		
+	}
+	
 	$(function(){
 		$("#addPost").on("click",function(){
 			
@@ -31,6 +38,13 @@
 			self.location="/community/getPost?postNo="+postNo;
 			
 		});
+		
+		$('button[name=search]').on("click",function(){
+			$("#currentPage").val(currentPage);
+			var meetId = $(this).next().val();
+			alert("엣헴")
+			$("form").attr("method","GET").attr("action","/community/getPostList?meetId="+meetId);
+		})
 	})
 </script>
 	</head>
@@ -52,7 +66,7 @@
 		</div>
 		
 		<div class="col-md-6 text-right">
-			<form class="form-inline" name="detailForm">
+			<form class="form-inline text-right" style="float:right; margin-top:30px;">
 			
 				<div class="form-group">
 					<select class="form-control" name="searchCondition">
@@ -67,10 +81,10 @@
  								 value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
  				</div>
  				
- 				<button type="button" class="btn btn-default">검색</button>
- 				<button type="button" class="btn btn-primary" id="addPost" name="addPost">글쓰기</button>
- 				<input type="hidden" value="${param.meetId}"/>
- 				
+ 				<button type="button" name="search" class="btn btn-default">검색</button> 				
+ 				<button type="button" class="btn btn-default" id="addPost" name="addPost">글쓰기</button>
+ 				<input type="hidden" name=meetId value="${param.meetId}"/>
+ 				<input type="hidden" id="currentPage" name="currentPage" value=""/>
  	 			</form>
  		</div>
  	</div>
@@ -101,5 +115,7 @@
 		</tbody>
 		</table>
 		</div>
+		
+		<jsp:include page ="/common/pageNavigator_new.jsp"/>
 	</body>
 	</html>
