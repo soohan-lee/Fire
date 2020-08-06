@@ -247,6 +247,7 @@ $(function(){
 			document.all.offMeetImg.click();
 			
 			var aa = $(this).next.id();
+			alert(aa);
 		}) 
 		
 });
@@ -397,7 +398,7 @@ var businessLoc = "비트캠프 강남센터";
 					$("#businessList").html(displayValue);
 					
 					$("img").on("click", function() {
-			 			businessLoc = $( $(this).parents("span").children()[2] ).val();
+			 			businessLoc = $( $(this).parents("span").children()[3] ).val();
 			 			document.getElementById("offLoc").value = businessLoc;
 			 			markMap(businessLoc);
 			 			
@@ -478,13 +479,12 @@ var businessLoc = "비트캠프 강남센터";
 <div class="col-xs-6 col-md-6">
   		
 	<div class="form-group">
-		<label for="offMeetImg" id ="offMeetImg">오프라인 모임 이미지 선택</label>
+		<label for="offMeetImg" id ="offMeetImg2">오프라인 모임 이미지 선택</label>
 			<a href="#" class="thumbnail" id="offMeetImgThum" style="height:330px; width:500px">
 			<input type="file" name="image" id="offMeetImg" accept="image/*" style="display: none;" />  
 			<div id="offMeetImgPrev"></div>
 			</a>
 			
-
 
  <div class="form-group">
 		  <p><strong>오프라인 모임장소</strong></p>

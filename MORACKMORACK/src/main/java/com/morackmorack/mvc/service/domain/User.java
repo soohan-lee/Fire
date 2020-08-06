@@ -23,10 +23,18 @@ public class User {
     private String googleId;
     private int meetCount;
     private String role;
+    private String category;
     
     
-    
-    public String getUserId() {
+    public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getUserId() {
         return userId;
     }
    
@@ -160,10 +168,9 @@ public class User {
 				+ ", phoneNumber=" + phoneNumber + ", birthday=" + birthday + ", nickName=" + nickName + ", profileImg="
 				+ profileImg + ", address=" + address + ", gender=" + gender + ", userStateList=" + userStateList
 				+ ", naverId=" + naverId + ", kakaoId=" + kakaoId + ", googleId=" + googleId + ", meetCount="
-				+ meetCount + ", role=" + role + "]";
+				+ meetCount + ", role=" + role + ", category=" + category + "]";
 	}
 
-	
-	
+
 	
 }
