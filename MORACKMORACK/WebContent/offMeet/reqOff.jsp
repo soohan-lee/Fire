@@ -12,11 +12,23 @@
 
 <jsp:include page="/common/listCdn.jsp" />
 <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
  body > div.container{
            padding-top : 50px;
  }
+ .swal-footer {
+ 	text-align : center;
+ }
+ .swal-button
+ {
+ 	background-color: #D2691E;
+ }
+ 
+ .swal-button-active {
+    background: #D2691E;
+}
+
 </style> 
 
 <script type="text/javascript">
@@ -33,7 +45,13 @@ function fncreqOk() {
 	var offMax ='${offMeet.offMax}';
 	
 	if(parseInt(offMem) >= parseInt(offMax)){
-		alert("오프라인 모임 참여 정원 수가 가득 찼습니다. ");
+		swal({
+		  icon : 'warning',
+		  title : "오프라인 모임 참여 정원 수가 가득 찼습니다.",
+		  text:" ",
+		  closeOnClickOutside : false,
+		  button: "확인"
+	})
 		return;
 	}
 	
@@ -94,8 +112,15 @@ function fncreqOk() {
 $(function() {
 
 	if(parseInt(amount) == 0){
-		alert("오프라인 참여비가 0원입니다. 결제 없이 참여 가능합니다.") 
+		swal({
+			icon : 'info',
+			title :"오프라인 참여비가 0원입니다. 결제 없이 참여 가능합니다.",
+			text:" ",
+			closeOnClickOutside : false,
+			button: "확인"
+		}) .then(function(){
 		$("form").attr("method" , "POST").attr("action" , "/offmeet/addOffPay?offNo=${offMeet.offNo}&memNo=${meetMem.memNo}").submit();
+		});
 	} else{
 	$( "button.btn.btn-primary" ).on("click" , function() {
 		fncreqOk();
@@ -103,7 +128,6 @@ $(function() {
 	}	
 });	
 
-	
 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			$("a[href='#' ]").on("click" , function() {

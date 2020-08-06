@@ -49,7 +49,7 @@ h2 {
 <jsp:include page="/business/businessToolbar.jsp" />
 </c:if>
 <c:if test="${ empty sessionScope.business }">
-<jsp:include page="/toolbar.jsp" />
+<jsp:include page="/toolbar2.jsp" />
 </c:if>
 </header>
 

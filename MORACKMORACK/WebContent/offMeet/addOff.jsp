@@ -14,11 +14,161 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b8a89bc94a4dd7edb06c8440bdd78b7c&libraries=services"></script> 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <style>
- body > div.container{
-           padding-top : 50px;
+			
+	#businessName{
+	text-align :center;
+	 font-family: 'Black Han Sans', sans-serif;
+   	font-size: 20px;
+	}		
+		
+ 	#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+
+	
+  .swal-footer {
+ 	text-align : center;
  }
+ .swal-button
+ {
+ 	background-color: #D2691E;
+ }
+ #button1{
+ border-top-left-radius: 8px;
+ border-top-right-radius: 8px;
+ border-bottom-left-radius: 8px;
+ border-bottom-right-radius: 8px;
+ margin-right-9px;
+ }
+ 
+ #button2{
+ border-top-left-radius: 8px;
+ border-top-right-radius: 8px;
+ border-bottom-left-radius: 8px;
+ border-bottom-right-radius: 8px;
+ margin-right-9px;
+ }
+ 
+  #button3{
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-left-radius: 5px;
+ border-bottom-right-radius: 5px;
+ margin-right-9px;
+ border : 1px solid #D2691E;
+ background-color:rgba(0,0,0,0);
+ color: #D2691E;
+ padding: 8px 15px;
+ }
+ 
+ div{
+ 
+ }
+ 
+ #button3 : hover{
+  color:white; background-color: #D2691E;
+ }
+ 
+ 
+ 
+ button[type=button]:first-child {
+     margin-right: 20px;
+}
+
+ #btn_group button:hover
+ { 
+ color:white; background-color: #D2691E;
+ }
+ 
+ 
+ 
+ #btn_group button{
+ border : 1px solid #D2691E;
+ background-color:rgba(0,0,0,0);
+ color: #D2691E;
+ padding: 10px 25px;
+ 
+ }
+ 
+ #search{
+  border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
+ border-bottom-left-radius: 5px;
+ border-bottom-right-radius: 5px;
+ margin-right-9px;
+ border : 1px solid #D2691E;
+ background-color:rgba(0,0,0,0);
+ color: #D2691E;
+ padding: 8px 15px;
+ 
+ }
+ 
+ 	#main {
+		margin-bottom: 0;
+	}
+
+		#main section:first-of-type {
+			padding-top: 2em;
+		}
+ 
+ p{
+	font-family: 'Black Han Sans', sans-serif;
+    font-size: 20px;
+ }
+ 
+ #offMeetImg{
+ font-family: 'Black Han Sans', sans-serif;
+    font-size: 20px;
+ }
+ 
 </style> 
 
 <script type="text/javascript">
@@ -106,29 +256,76 @@ function fncAddOffMeet(){
 	
 	
 	var name = $("input[name='offName']").val();
+	var loc = $("input[name ='offLoc']").val();
 	var date =$("input[name='offDate']").val();
 	var time = $("input[name='offTime']").val();
 	var max = $("input[name='offMax']").val();
-
+	
 	
 	if(name == null || name.length<1){
-		alert("오프라인명은 반드시 입력하여야 합니다.");
+		swal({
+			  icon : 'warning',
+			  title : "오프라인명은 반드시 입력해야 합니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
 		return;
 	}
+	
 	if(date == null || date.length<1){
-		alert("모임날짜는 반드시 입력하여야 합니다.");
+		swal({
+			  icon : 'warning',
+			  title : "모임 날짜는 반드시 입력하여야 합니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
 		return;
 	}
+	
 	if(time == null || time.length<1){
-		alert("모임시간은 반드시 입력하셔야 합니다.");
+		swal({
+			  icon : 'warning',
+			  title : "모임 시간은 반드시 입력하여야 합니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
 		return;
 	}
 	if(max == null || max.length < 1){
-		alert("모임최대인원은 반드시 입력하셔야 합니다.");
+		swal({
+			  icon : 'warning',
+			  title : "모임 최대 인원은 반드시 입력하여야 합니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
 		return;
 	}
+	
+	if(loc == null || loc.length < 1){
+		swal({
+			  icon : 'warning',
+			  title : "모임 장소는 반드시 입력하여야 합니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
+		return;
+	}
+	
+	
+	
 	if(max > 21 ){
-		alert("모임최대인원 최대 20명 입력하셔야 합니다.");
+		swal({
+			  icon : 'warning',
+			  title : "모임 최대 인원 20명입니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
 		return;
 	}
 	
@@ -139,16 +336,15 @@ function fncAddOffMeet(){
 
 $(function() {
 	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-	$( "button.btn.btn-primary" ).on("click" , function() {
+	$( "#button1" ).on("click" , function() {
 		fncAddOffMeet();
 	});
 });	
 
-	
 
 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
+			$("#button2").on("click" , function() {
 				$("form")[0].reset();
 			});
 		});	
@@ -163,7 +359,7 @@ var businessLoc = "비트캠프 강남센터";
 
 	function getBusinessList(searchKeyword) {
 
-		$("#list").remove();
+		$("#button2").remove();
 		
 		$.ajax( 
 			{
@@ -185,8 +381,8 @@ var businessLoc = "비트캠프 강남센터";
 						
 						displayValue += "<span>" +
 										"<span class='thumbnail' style='height:200px;'>" +
-										"<img src='/resources/images/uploadFiles/business/"+JSONData[i].businessImg+"' alt='업체 대표 이미지' title='"+JSONData[i].businessName+"' style='height:150px'>" +
-										"<div id='businessName'>"+JSONData[i].businessName+"</div>" +
+										"<img src='/resources/images/uploadFiles/business/"+JSONData[i].businessImg+"' alt='업체 대표 이미지' title='"+JSONData[i].businessName+"' style='height:150px; width : 300px;'>" +
+										"</br>"+"<div id='businessName'>"+JSONData[i].businessName+"</div>" +
 										"<input type='hidden' value='"+JSONData[i].businessLoc+"'/>" +
 										"</span>" +
 										
@@ -202,7 +398,7 @@ var businessLoc = "비트캠프 강남센터";
 					
 					$("img").on("click", function() {
 			 			businessLoc = $( $(this).parents("span").children()[2] ).val();
-			 			
+			 			document.getElementById("offLoc").value = businessLoc;
 			 			markMap(businessLoc);
 			 			
 			 		});
@@ -237,20 +433,43 @@ var businessLoc = "비트캠프 강남센터";
 		})
 		
 	});
-	
+	 
 </script>
 </head>
 
+
+
 <body>
+
+
+
 
 <header>
 <jsp:include page="/toolbar.jsp" />
 </header>
 
-<div class="container">
-	
 
-<h2 class=" text">오프라인 모임 생성</h2>  
+
+<div id="head">
+		
+		
+			<div class="inner">
+				<header>
+				<h1>오프라인 모임 생성</h1>
+				</header>
+			</div>
+
+		</div>
+
+
+</br>
+</br>
+</br>
+<div class="container">
+
+
+
+
 <form class="form-horizontal" enctype="multipart/form-data">
 
 
@@ -259,7 +478,7 @@ var businessLoc = "비트캠프 강남센터";
 <div class="col-xs-6 col-md-6">
   		
 	<div class="form-group">
-		<label for="offMeetImg">오프라인 모임 이미지 선택</label>
+		<label for="offMeetImg" id ="offMeetImg">오프라인 모임 이미지 선택</label>
 			<a href="#" class="thumbnail" id="offMeetImgThum" style="height:330px; width:500px">
 			<input type="file" name="image" id="offMeetImg" accept="image/*" style="display: none;" />  
 			<div id="offMeetImgPrev"></div>
@@ -276,7 +495,7 @@ var businessLoc = "비트캠프 강남센터";
 		    </span>
 		    </div>
 		    <div class="col-sm-3">
-		    <button type="button" class="btn btn-info" onclick="execDaumPostcode()" value="주소검색">주소 검색</button>
+		    <button type="button" onclick="execDaumPostcode()" value="주소검색" id ="button3">주소 검색</button>
 		    </div> 	 
 		  </div>
  
@@ -395,14 +614,14 @@ var businessLoc = "비트캠프 강남센터";
 <div class="container">
 	
 		<div>
-			<h3>추천 업체 목록</h3>
+			<h3 id="business">추천 업체 목록</h3>
 	    </div>
 
 		<span style="width:30%; float:left">
 		
 			<span>
 				<input type="text" id="searchKeyword" name="searchKeyword">
-				<input type="button" id="search" name="search" class="btn btn-primary" value="검색">
+				<input type="button" id="search" name="search"  value="검색">
 			</span>
 
 			<span id="businessList">
@@ -411,7 +630,7 @@ var businessLoc = "비트캠프 강남센터";
 					<c:forEach var="business" items="${businessList}">
 						<span>
 							<span class="thumbnail" style="height:200px;">
-								<img src="resources/images/uploadFiles/${business.businessImg}" alt="업체 대표 이미지" title="${business.businessName}" style="height:150px">
+								<img src="/resources/images/uploadFiles/business/${business.businessImg}" alt="업체 대표 이미지" title="${business.businessName}" style="height:150px; width : 300px;">
 								<input type="hidden" value="${business.businessLoc}"/>
 								<p id="businessName">${business.businessName}</p>
 								<input type="hidden" value="${business.businessId}"/>
@@ -505,16 +724,20 @@ var businessLoc = "비트캠프 강남센터";
 	  
  	</div>
 
- <div class="form-group">
+	<br/>
+ 	<div id ="btn_group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >등 &nbsp;록</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a>
+		      <button type="button"  id ="button1" >등 &nbsp;록</button>
+			  <button type="button"  id ="button2" >취&nbsp;소</button>
 		    </div>
 		  </div>
-		</form>
 </div>
 
+</br>
+</br>
+</br>
 
 
+</div>
 </body>
 </html>

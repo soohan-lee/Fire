@@ -2,19 +2,25 @@
     pageEncoding="EUC-KR"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<header>
+<jsp:include page="/toolbar.jsp" />
+</header> 
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>제휴업체 상세 조회</title>
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script>
 <script type="text/javascript" src="./fullcalendar-3.9.0/gcal.js"></script>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css'rel='stylesheet'/>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css' rel='stylesheet' media='print'/>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 참조 : http://getbootstrap.com/css/   참조 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -31,11 +37,25 @@
 	<!-- Bootstrap Dropdown Hover JS -->
 	<script src="/javascript/bootstrap-dropdownhover.min.js"></script>
 	
-	
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<!-- jQuery UI toolTip 사용 CSS-->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- jQuery UI toolTip 사용 JS-->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<style>
+  .swal-footer {
+ 	text-align : center;
+ }
+ .swal-button
+ {
+ 	background-color: #D2691E;
+ }
+ 
+
+</style>
+
 
 <script type="text/javascript">
 
@@ -63,7 +83,7 @@
 		
 		var reserveDate = year+"-"+month+"-"+j; //"2019-11-04" 형식의  reserveDate
 		var businessId = $("#businessId").val();
-
+			
 		$.ajax({
 			url : "/business/json/showReserveAbleTimeList/"+businessId+"/"+reserveDate,
 			type : 'GET', //GET방식으로
@@ -120,15 +140,32 @@
 				$("#addReserve").on("click", function() {
 				
 					if(listSelectedTime.length==0) {
-						alert("시간이 선택되지 않았습니다.");
+						swal({
+							  icon : 'warning',
+							  title : "시간이 선택 되지 않았습니다.",
+							  text:" ",
+							  closeOnClickOutside : false,
+							  button: "확인"
+						})
+						return;
 					} else {
-						alert("선택된 예약시간 번호 : " + listSelectedTime);
 						
 						$("#listSelectedTime").val(listSelectedTime)
 						$("#reserveDate").val(reserveDate)
 						var businessMenuCnt = $("#businessMenuCnt").val()
 						var menuNo = $("#menuNo").val()
-						alert(menuNo)
+						var businessMenuCnt = $("input[name='businessMenuCnt']").val()
+						
+					if(businessMenuCnt == null || businessMenuCnt.length<1){
+						swal({
+							  icon : 'warning',
+							  title : "모임 인원은 반드시 입력하여야 합니다.",
+							  text:" ",
+							  closeOnClickOutside : false,
+							  button: "확인"
+						})
+						return;
+					}
  						$("form").attr("method", "POST").attr("action", "/offmeet/addBusinessPay?listSelectedTime="+listSelectedTime+"&reserveDate="+reserveDate+"&businessId="+businessId+"&menuNo="+menuNo+"&businessMenuCnt="+businessMenuCnt).submit();
 					}
 					
@@ -142,7 +179,9 @@
 
 </script>
 
+
 </head>
+
 <body>
 
 
@@ -158,33 +197,24 @@
 	    		<input type="hidden" id="businessId" name="businessId" value="${business.businessId }"/>
 				<img src="/resources/images/uploadFiles/business/${business.businessImg}">
 				<p id="businessName" style="font-size:30px;">${business.businessName}</p>
-				<h3>업체 위치</h3>
-				<h5 style="padding-bottom:10px;">${business.businessLoc }</h5>
-				<h3>업체 번호</h3>
-				<h5 style="padding-bottom:10px;">${business.businessPhone }</h5>
-				<h3>업체 운영 시간</h3>
-				<h5 style="padding-bottom:10px;">${business.businessStartTime } &nbsp; ~ &nbsp; ${business.businessEndTime }</h5>
-				
-				
+				<div>
+				<p class="glyphicon glyphicon-map-marker" style="font-size:20px;"> ${business.businessLoc}</p>
+				</div>
+				<div>
+				<h2 class="glyphicon glyphicon-earphone" style="font-size:20px;">  ${business.businessPhone}</p>
+				</div>
+				<div>
+				<h2 class="glyphicon glyphicon-calendar" style="font-size:20px;">  ${business.businessStartTime}  ~  ${business.businessEndTime }</p>
+				</div>
+			
 		
 		
-		
-				
-				
-				
-				<h3>메뉴</h3>
 				<c:forEach var="menu" items="${menu}">
 					<form name='form' class='form-horizontal'>
 						<span class='form-group' style="float:left; padding:15px;">
-							<span class='page-header'>
 								<input type="hidden" class="menuNo" id="menuNo" value="${menu.menuNo}">
-								<p style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;</p>
-								<img src="/resources/images/uploadFiles/business/${menu.businessMenuImg}" width="175" height="170">
-						  		<div>
-						  		메뉴 가격 : ${menu.businessMenuFee} 
-						  		</div>
+						  		<i class="fas fa-dollar-sign" style="font-size:20px;"></i> <fmt:formatNumber value="${menu.businessMenuFee}" pattern="###,###" />원
 						  		<br><br>
-						  	</span>
 						</span>
 					</form>
 			  	</c:forEach>
