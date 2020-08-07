@@ -17,7 +17,18 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <style>
-			
+
+
+	#offMeetImg2{
+	font-family: 'Black Han Sans', sans-serif;
+   	font-size: 20px;
+	}
+    #business{
+     font-family: 'Black Han Sans', sans-serif;
+   	font-size: 30px;
+    
+    }
+	 			
 	#businessName{
 	text-align :center;
 	 font-family: 'Black Han Sans', sans-serif;
