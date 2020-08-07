@@ -10,11 +10,45 @@
 
 <head>
 	<meta charset="EUC-KR">
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<jsp:include page="/common/listCdn.jsp" />
 	
 	
 	<style>
+			
+
+
+	#btn_group button:hover
+ 	{ 
+ 	color:white; background-color: #D2691E;
+ 	}		
+	
+	 #btn_group button{
+ 	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
+ 
+ 	}
+ 	
+ 	#button1{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+ 	}
+ 
+ 	#button2{
+ 	border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+	 }
+ 
+			
+
 			
  	#head {
 		position: relative;
@@ -65,21 +99,60 @@
 
 	
 	}
+	
+.swal-footer {
+ 	text-align : center;
+ }
+ .swal-button
+ {
+ 	background-color: #D2691E;
+ 	text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+ }
+ 
+  .swal-button : over
+ {
+ 	background-color: #D2691E;
+ }
+ 
+ 
      </style>
      
 <script type="text/javascript">
 
 
 $(function() {
+	
 
-	$( "button.btn.btn-primary" ).on("click" , function() {
+
+	$( "#button1" ).on("click" , function() {
+		
+		
 		var offNo = $(this).next().val();
 		var meetId = $(this).next().val();
 		var memNo = $(this).next().val();
+		var offMem ='${offMeet.offMem}';
+		var offMax ='${offMeet.offMax}';
+		
+		
+		if(parseInt(offMem) >= parseInt(offMax)){
+			swal({
+			  icon : 'warning',
+			  title : "오프라인 모임 인원이 마감되었습니다.",
+			  text:" ",
+			  closeOnClickOutside : false,
+			  button: "확인"
+		})
+			return;
+		}else{
 		window.location.href =  "/offmeet/reqOff?offNo=${offMeet.offNo}&meetId=${meet.meetId}&memNo=${meetMem.memNo}";
+		}
+		
 		}); 
-	});
-	
+
+	$( "#button2" ).on("click" , function() {
+		window.location.href =  "/offmeet/getOffList?meetId=${offMeet.meet.meetId}";
+	});	
+});
 </script>
 </head>
 
@@ -115,13 +188,13 @@ $(function() {
 
 <form class="form-horizontal" enctype="multipart/form-data">
 
-
+<input type ="hidden" id="meetId" name="meetId" value="${offMeet.meet.meetId}"/>
 
 <div class="col-xs-6 col-md-6">
   		
 	<div class="form-group">
 			<a href="#" class="thumbnail" id="offMeetImgThum" style=" width:430px; height:310px;">
-			<img src="/resources/images/uploadFiles/offmeet/${offMeet.imageFile}" style="width:430px; height:300px;"  onError="this.src='/resources/images/uploadFiles/Morack.png'" alt="noImage">
+			<img src="/resources/images/uploadFiles/offmeet/${offMeet.imageFile}" class="image" style="width:430px; height:300px;"  onError="this.src='/resources/images/uploadFiles/Morack.png'" alt="noImage">
 			<div id="offMeetImgPrev"></div>
 			</a>
 		
@@ -173,14 +246,15 @@ ${offMeet.offMem}/${offMeet.offMax}
 
 
 	
-	<br/>
- <br/>
 	
-<div class="row"> 
- 		<div class="col-md-12 text-center"> 
- 		 	  <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >참여 신청</button> 
- 		</div> 
+<div id ="btn_group">
+		    <div class="col-sm-offset-4  col-sm-4 text-center">
+		      <button type="button"  id ="button1" >참여 신청</button>
+			  <button type="button"  id ="button2" >취&nbsp;소</button>
+		    </div>
+		  </div>
+		  
+		  
 	</div>
 </div>
 
