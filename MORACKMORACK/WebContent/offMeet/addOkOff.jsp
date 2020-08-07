@@ -13,9 +13,8 @@
 
 <jsp:include page="/common/listCdn.jsp" />
 
+	<style>	
 	
-
-	<style>
  		body {
             padding-top : 50px;
         }
