@@ -19,4 +19,5 @@ public interface CommunityDao {
 	
 	public void deletePost(int postNo) throws Exception ;
 	
+	public int getTotalCount(String meetId) throws Exception ;
 }

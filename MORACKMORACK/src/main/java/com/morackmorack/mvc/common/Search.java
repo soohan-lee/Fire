@@ -40,17 +40,12 @@ public class Search {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	public int getStartRowNum() {
-		return startRowNum;
-	}
-	public void setStartRowNum(int startRowNum) {
-		this.startRowNum = startRowNum;
-	}
 	public int getEndRowNum() {
-		return endRowNum;
+		return getCurrentPage()*getPageSize();
 	}
-	public void setEndRowNum(int endRowNum) {
-		this.endRowNum = endRowNum;
+
+	public int getStartRowNum() {
+		return (getCurrentPage()-1)*getPageSize()+1;
 	}
 	@Override
 	public String toString() {

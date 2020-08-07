@@ -50,30 +50,52 @@
 	</select>
 	
 	<select id="getPostList" parameterType="map" resultMap="communitySelectMap">
-  		SELECT *
+  	SELECT *
   		FROM ( SELECT inner_table.*, ROWNUM AS row_seq
   						FROM ( SELECT  post_no, communites_name, meet_id, user_id, title, content,reg_date,mod_date
 										FROM communities
-										WHERE 
-										communites_name  = '0'
-										AND meet_id = #{meetId}
-										ORDER BY reg_date DESC ) inner_table)
+										WHERE communites_name = '0' AND meet_id = #{meetId} 
+										<if test='search.searchCondition !=null'>
+											<where>
+												<if test='search.searchCondition == "0"'>
+													AND title LIKE '%#{search.searchKeyword}%'
+												</if>
+												<if test="search.searchCondition == '1' ">
+													 AND user_id=#{search.searchKeyword}
+												</if>
+											</where>
+										</if>
 
+<!-- 										WHERE  -->
+<!-- 										communites_name  = '0' -->
+<!-- 										AND meet_id = #{meetId} -->
+										ORDER BY reg_date DESC ) inner_table
+						WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}
 	</select>
 	
 	<update id="updatePost" parameterType="community" >
-		UPDATE communites
+		UPDATE communities
 		<set>
 		title = #{title}, 
 		content = #{content} , 
-	    modDate = sysdate
+	    reg_date = sysdate
 		</set>
 		WHERE communites_name = '0' and post_no = #{postNo} 
 	</update>
 	
 	<delete id="deletePost" parameterType="community" >
-		DELETE FROM communites 
+		DELETE FROM communities 
 		WHERE post_no = #{postNo}
 	</delete>	
 	
+	<select  id="getTotalCount"  parameterType="String"	 resultType="int">
+	  	SELECT COUNT(*)
+		FROM (SELECT inner_table.*, ROWNUM AS row_seq
+  						FROM ( SELECT  post_no, communites_name, meet_id, user_id, title, content,reg_date,mod_date
+										FROM communities
+										WHERE communites_name = '0' AND meet_id = #{meetId}
+										ORDER BY reg_date DESC ) inner_table
+			 ) countTable						
+	 </select>
 </mapper>
