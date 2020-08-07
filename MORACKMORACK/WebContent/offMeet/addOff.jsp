@@ -41,6 +41,7 @@
 		background-size: cover;
 		background-position: center center;
 		background-attachment: fixed;
+		
 		color: #fff;
 		text-align: center;
 		padding: 7.5em 0 2em 0;

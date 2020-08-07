@@ -19,6 +19,13 @@
  		body {
             padding-top : 50px;
         }
+        
+        
+       div.h3  {
+            background-color: #D2691E;
+            display: inline-block;
+        }
+        
      </style>
      
 <script type="text/javascript">

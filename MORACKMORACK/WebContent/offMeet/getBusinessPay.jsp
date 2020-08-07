@@ -13,13 +13,11 @@
 	<style>
 	
  
-        
-        div.h4  {
-            font-family: 'NIXGONM-Vb';
-            font-weight: bold;
+    	 div.h3  {
+            background-color: #D2691E;
             display: inline-block;
-         
         }
+        
         
         table  {
             font-size: 10pt;
@@ -54,7 +52,7 @@
 
 	
 			<div class="row">
-                    <div class="h4">예약 내역</div>
+                    <div class="h3">예약 내역</div>
             </div>
 				<br/>
 				<table class="table">
@@ -81,7 +79,7 @@
 		<br/>
 		
 		<div class="row">
-			<div class="h4" style="margin-top:80px;" >결제 완료 내역</div>
+			<div class="h3" style="margin-top:80px;" >결제 완료 내역</div>
 		</div>	
 			<hr/>
 	<div class="row">
@@ -101,7 +99,7 @@
 
 	<div class="row">
 	
-	<div class="h4" style="margin-top:80px;" >예약자 내역</div>
+	<div class="h3" style="margin-top:80px;" >예약자 내역</div>
 	</div>	
 			<hr/>
 	<div class="row">
