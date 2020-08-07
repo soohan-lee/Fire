@@ -14,6 +14,7 @@ import org.springframework.util.FileCopyUtils;
 import com.morackmorack.mvc.common.Search;
 import com.morackmorack.mvc.service.community.CommunityDao;
 import com.morackmorack.mvc.service.community.CommunityService;
+import com.morackmorack.mvc.service.domain.Comments;
 import com.morackmorack.mvc.service.domain.Community;
 
 
@@ -87,6 +88,47 @@ import com.morackmorack.mvc.service.domain.Community;
 		public Community getPost(int postNo) throws Exception {
 			// TODO Auto-generated method stub
 			return communityDao.getPost(postNo);
+		}
+
+
+		@Override
+		public void addComments(Comments comments) throws Exception {
+			// TODO Auto-generated method stub
+			communityDao.addComments(comments);;
+		}
+
+
+		@Override
+		public Comments getComments(int commentNo) throws Exception {
+			// TODO Auto-generated method stub
+			return communityDao.getComments(commentNo);
+		}
+
+
+		@Override
+		public void updateComments(Comments comments) throws Exception {
+			// TODO Auto-generated method stub
+			communityDao.updateComments(comments);
+		}
+
+		@Override
+		public Map<String, Object> getCommentsList(int postNo) throws Exception {
+			// TODO Auto-generated method stub
+			
+			List<Comments> list = communityDao.getCommentsList(postNo);
+			Map <String,Object> map = new HashMap<String,Object>();
+			int totalCount = communityDao.getCommentsTotalCount(postNo);
+			map.put("list", list);
+			map.put("totalCount", new Integer(totalCount));
+			System.out.println(map);
+			return map;
+		}
+
+
+		@Override
+		public void deleteComments(int commentNo) throws Exception {
+			// TODO Auto-generated method stub
+			communityDao.deleteComments(commentNo);
 		}
 
 
