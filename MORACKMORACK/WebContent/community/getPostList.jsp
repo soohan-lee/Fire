@@ -34,7 +34,7 @@
 		$("td:nth-child(2)").on("click",function(){
 			
 			var postNo = $(this).next().val();
-			alert(postNo);
+// 			alert(postNo);
 			self.location="/community/getPost?postNo="+postNo;
 			
 		});
@@ -42,7 +42,7 @@
 		$('button[name=search]').on("click",function(){
 			$("#currentPage").val(currentPage);
 			var meetId = $(this).next().val();
-			alert("¿§Çð")
+// 			alert("¿§Çð")
 			$("form").attr("method","GET").attr("action","/community/getPostList?meetId="+meetId);
 		})
 	})

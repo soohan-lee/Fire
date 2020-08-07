@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
 function fncAddPost(){
-$("form").attr("method","POST").attr("action","/community/addPost").submit();
+$("form").attr("method","POST").attr("action","/community/addPost").attr("enctype","multipart/form-data").submit();
 }
 $(function(){
 	$(document).ready(function() {
@@ -58,7 +58,7 @@ $(function(){
 		});
 	
 		$("button.btn.btn-warning").on('click',function(){
-			alert("12345")
+// 			alert("12345")
 			fncAddPost();
 			
 		});
@@ -67,10 +67,10 @@ $(function(){
 
 function sendFile(file,editor){
 	//파일 전송을 위한 폼생성
-	var data = new FormData();
+	data = new FormData();
 	data.append("file",file);
 	$.ajax({ //ajax를 이용 하여 파일 업로드 처리
-		data:form_data,
+		data: data,
 		type:"POST",
 		url:"/community/json/addPost",
 		contentType :false,

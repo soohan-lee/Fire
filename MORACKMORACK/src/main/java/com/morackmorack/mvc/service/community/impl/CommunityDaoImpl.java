@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.morackmorack.mvc.common.Search;
 import com.morackmorack.mvc.service.community.CommunityDao;
+import com.morackmorack.mvc.service.domain.Comments;
 import com.morackmorack.mvc.service.domain.Community;
 import com.morackmorack.mvc.service.domain.Meet;
 import com.morackmorack.mvc.service.domain.User;
@@ -70,6 +71,36 @@ import com.morackmorack.mvc.service.domain.User;
 		public int getTotalCount(String meetId) throws Exception {
 			// TODO Auto-generated method stub
 			return sqlSession.selectOne("CommunityMapper.getTotalCount",meetId);
+		}
+		@Override
+		public void addComments(Comments comments) throws Exception {
+			// TODO Auto-generated method stub
+			sqlSession.insert("CommunityMapper.addComments", comments);
+		}
+		@Override
+		public Comments getComments(int commentNo) throws Exception {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public List<Comments> getCommentsList(int postNo) throws Exception {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public void updateComments(Comments comments) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void deleteComments(int commentNo) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public int getCommentsTotalCount(int postNo) throws Exception {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 		
 		

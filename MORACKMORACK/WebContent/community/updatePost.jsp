@@ -43,7 +43,7 @@ $(function (){
 		var meetId = $('input[name=meetId]').val();
 		var postNo = $('input[name=postNo]').val();
 		var userId = $('input[name=userId]').val();
-		alert(meetId+"////"+postNo+"\\\\\\"+userId);
+// 		alert(meetId+"////"+postNo+"\\\\\\"+userId);
 		$("form").attr("method","POST").attr("action","/community/updatePost").submit();
 	})
 })
