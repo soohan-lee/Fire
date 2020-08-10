@@ -11,6 +11,8 @@
 <head>
 	<meta charset="UTF-8">
 	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -75,12 +77,22 @@
 			
 			
 			if(id == null || id.length <1){
-				alert("ID는 반드시 입력하셔야 합니다.");
+				/* alert("ID는 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "ID는 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			////////////////////////////////////////
 			if(!/^[a-z0-9_-]{5,20}$/.test(id)){
-				alert("ID는 5-20자의 영문 소문자, 숫자와 특수문자 중 (_),(-)만 사용할 수 있다.")
+				/* alert("ID는 5-20자의 영문 소문자, 숫자와 특수문자 중 (_),(-)만 사용할 수 있다.") */
+				swal({
+					title: "ID는 5-20자의 영문 소문자, 숫자와 특수문자 중 (_),(-)만 사용할 수 있다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			$.ajax(
@@ -98,45 +110,87 @@
 							//alert(JSONdata);
 							//alert(JSONData)
 							//alert(JSONData.result)
+							
+						
 						}
 					});
 			////////////////////////////////////////
 			if(pw == null || pw.length <1){
-				alert("비밀번호는 반드시 입력하셔야 합니다.");
+				/* alert("비밀번호는 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "비밀번호는 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 			return;
 			}
 			////////////////////////////////////////
 			if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^~*+=-])(?=.*[0-9]).{8,16}$/.test(pw)){
-				alert("비밀번호는 8-16자 영문 대소문자, 숫자, 특수문자만 사용할 수 있다.")
+				/* alert("비밀번호는 8-16자 영문 대소문자, 숫자, 특수문자만 사용할 수 있다.") */
+				swal({
+					title: "비밀번호는 8-16자 영문 대소문자, 숫자, 특수문자만 사용할 수 있다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			////////////////////////////////////////
 			if(pw_confirm == null || pw_confirm.length <1){
-				alert("비밀번호 확인은  반드시 입력하셔야 합니다.");
+				/* alert("비밀번호 확인은  반드시 입력하셔야 합니다."); */
+				swal({
+					title: "비밀번호 확인은  반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			if( pw != pw_confirm ) {				
-				alert("비밀번호 확인이 일치하지 않습니다.");
+				/* alert("비밀번호 확인이 일치하지 않습니다."); */
+				swal({
+					title: "비밀번호 확인이 일치하지 않습니다.",
+					text: "",
+					icon: "warning"
+				});
 				$("input:text[name='password2']").focus();
 				return;
 			}
 			if(name == null || name.length <1){
-				alert("회원명은 반드시 입력하셔야 합니다.");
+				/* alert("회원명은 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "회원명은 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			///////////////////////////////////////////////////
 			if(!/^[가-힣]{2,5}$/.test(name)){
-				alert("회원명에 적합하지 않습니다.")
+				/* alert("회원명에 적합하지 않습니다.") */
+				swal({
+					title: "회원명에 적합하지 않습니다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			////////////////////////////////////////////////////
 			if(nn == null || nn.length <1){
-				alert("닉네임은 반드시 입력하셔야 합니다.");
+				/* alert("닉네임은 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "닉네임은 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			///////////////////////////////////////////////////
 			if(!/^[a-zA-Z0-9가-힣]{1,10}$/.test(nn)){
-				alert("닉네임이 너무 길어요 ㅠㅠ")
+				/* alert("닉네임이 너무 길어요 ㅠㅠ") */
+				swal({
+					title: "닉네임이 너무 길어요 ㅠㅠ",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			$.ajax(
@@ -154,49 +208,96 @@
 							//alert(JSONdata);
 							//alert(JSONData)
 							//alert(JSONData.result)
+							
+							
 						}
 					});
 			////////////////////////////////////////////////////
 			if(em == null || em.length <1){
-				alert("이메일은 반드시 입력하셔야 합니다.");
+				/* alert("이메일은 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "이메일은 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			////////////////////////////////////////
 			if(!/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/.test(em)){
-				alert("이메일 형식이 맞지않습니다.")
+				/* alert("이메일 형식이 맞지않습니다.") */
+				swal({
+					title: "이메일 형식이 맞지않습니다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			////////////////////////////////////////
 			if(pn == null || pn.length <1){
-				alert("휴대폰 번호는 반드시 입력하셔야 합니다.");
+				/* alert("휴대폰 번호는 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "휴대폰 번호는 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			////////////////////////////////////////
 			if(!/^0[0-9]{2}-?[0-9]{3,4}-?[0-9]{4}$/.test(pn)){
-				alert("휴대폰 번호 형식이 맞지않습니다.")
+				/* alert("휴대폰 번호 형식이 맞지않습니다.") */
+				swal({
+					title: "휴대폰 번호 형식이 맞지않습니다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			////////////////////////////////////////
-			if(cn == null || cn.length <1){
+			/* if(cn == null || cn.length <1){
 				alert("인증번호는 반드시 입력하셔야 합니다.");
+				swal({
+					title: "인증번호는 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
-			}
+			} */
 			//유효성검사
 			if($(':radio[name="gender"]:checked').length < 1){
-			    alert('성별을 선택해주세요.');
+			    /* alert('성별을 선택해주세요.'); */
+			    swal({
+					title: "성별을 선택해주세요.",
+					text: "",
+					icon: "warning"
+				});
 			    document.frm.test[0].focus();
 			    return false;
 			}
 			if(bd == null || bd.length <1){
-				alert("생년월일은 반드시 선택하셔야 합니다.");
+				/* alert("생년월일은 반드시 선택하셔야 합니다."); */
+				swal({
+					title: "생년월일은 반드시 선택하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			if(addr == null || addr.length <1){
-				alert("주소를 입력해주세요.");
+				/* alert("주소를 입력해주세요."); */
+				swal({
+					title: "주소를 입력해주세요.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			if(daddr == null || daddr.length <1){
-				alert("상세주소를 입력해주세요.");
+				/* alert("상세주소를 입력해주세요."); */
+				swal({
+					title: "상세주소를 입력해주세요.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			
@@ -212,7 +313,12 @@
 				 var email=$("input[name='email']").val();
 			    
 				 if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1) ){
-			    	alert("이메일 형식이 아닙니다.");
+			    	/* alert("이메일 형식이 아닙니다."); */
+					 swal({
+							title: "이메일 형식이 아닙니다.",
+							text: "",
+							icon: "warning"
+						});
 			     }
 				 
 				 return;
@@ -222,8 +328,7 @@
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		
+
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -330,7 +435,7 @@
 	<!-- ToolBar Start /////////////////////////////////////-->
 	<div class="navbar  navbar-default">
         <div class="container">
-        	<a class="navbar-brand" href="/index.jsp">모락모락</a>
+        	<a class="navbar-brand" href="/index.jsp">morackmorack</a>
    		</div>
    	</div>
    	<!-- ToolBar End /////////////////////////////////////-->
@@ -402,9 +507,12 @@
 		     <div class="col-sm-3">
 				<input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="000-000(0)-0000"
 					pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required>		  	
-		  </div>
+		  	 </div>
+		 </div>
+		  
+		  <!-- /////////////////////////////////////////////////////////////////////////
 		  <div class="col-sm-3">
-		      <button type="button" id ="check" class="btn btn-info">인증</button>
+		      <button type="button" class="btn btn-info">전송</button>
 		    </div>
 		 </div>
 		 
@@ -412,10 +520,14 @@
 		    <label for="certificationNumber" class="col-sm-offset-1 col-sm-3 control-label">인증번호</label>
 		    <div class="col-sm-2">
 		      <input type="text" class="form-control" id="certificationNumber" name="certificationNumber" placeholder="인증번호">
-		    </div>
 		  </div>
+		  <div class="col-sm-3">
+		      <button type="button" class="btn btn-info">인증</button>
+		    </div>
+		 </div>
+		 //////////////////////////////////////////////////////////////////////////// -->
 		  
-		  <label for="certificationNumber" class="col-sm-offset-1 col-sm-3 control-label">성별</label>
+		  <label for="gender" class="col-sm-offset-1 col-sm-3 control-label">성별</label>
 			<input type="radio" id="male" name="gender" value="남">
   				<label for="male">남</label>
 			<input type="radio" id="female" name="gender" value="여">

@@ -127,7 +127,7 @@
 	  		<div class="col-md-12 text-center ">
 	  			<button type="button" class="btn btn-primary">내정보수정</button>
 	  			
-	  			<button type="button" onclick="location.href='/index.jsp' ">메인페이지</button>
+	  			<button type="button" class="btn btn-primary" onclick="location.href='/index.jsp' ">메인페이지</button>
 	  		</div>
 		</div>
 		

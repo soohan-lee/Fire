@@ -12,6 +12,8 @@
 <head>
 	<meta charset="UTF-8">
 	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 	<!-- cdn부분
 	
 	참조 : http://getbootstrap.com/css/   참조
@@ -66,7 +68,12 @@
 				 var email=$("input[name='email']").val();
 			    
 				 if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1) ){
-			    	alert("이메일 형식이 아닙니다.");
+			    	/* alert("이메일 형식이 아닙니다."); */
+			    	swal({
+						title: "이메일 형식이 아닙니다.",
+						text: "",
+						icon: "warning"
+					});
 			     }
 			});
 			 
@@ -87,55 +94,128 @@
 			$("input[id='sample4_roadAddress']").val(fullAddr);
 			
 			if(name == null || name.length <1){
-				alert("회원명은  반드시 입력하셔야 합니다.");
+				/* alert("회원명은  반드시 입력하셔야 합니다."); */
+				swal({
+					title: "회원명은 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			/////////////////////////////////////////////////
 			if(!/^[가-힣]{2,5}$/.test(name)){
-				alert("회원명에 적합하지 않습니다.")
+				/* alert("회원명에 적합하지 않습니다.") */
+				swal({
+					title: "회원명에 적합하지 않습니다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			/////////////////////////////////////////////////
 			if(nn == null || nn.length <1){
-				alert("닉네임은 반드시 입력하셔야 합니다.");
+				/* alert("닉네임은 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "닉네임은 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			///////////////////////////////////////////////////
 			if(!/^[a-zA-Z0-9가-힣]{1,10}$/.test(nn)){
-				alert("닉네임이 너무 길어요 ㅠㅠ")
+				/* alert("닉네임이 너무 길어요 ㅠㅠ") */
+				swal({
+					title: "닉네임이 너무 길어요 ㅠㅠ",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
+			$.ajax(
+					{
+						url : "/user/json/checkDuplication2/"+nickName ,
+						method : "GET" ,
+						dataType : "json" ,
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData, status){
+							//alert(status)
+							//var JSONdata = JSON.stringify(JSONData);
+							//alert(JSONdata);
+							//alert(JSONData)
+							//alert(JSONData.result)
+							
+						}
+					});
 			////////////////////////////////////////////////////
 			if(em == null || em.length <1){
-				alert("이메일은 반드시 입력하셔야 합니다.");
+				/* alert("이메일은 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "이메일은 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			////////////////////////////////////////
 			if(!/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/.test(em)){
-				alert("이메일 형식이 맞지않습니다.")
+				/* alert("이메일 형식이 맞지않습니다.") */
+				swal({
+					title: "이메일 형식이 맞지않습니다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			////////////////////////////////////////
 			if(pn == null || pn.length <1){
-				alert("휴대폰 번호는 반드시 입력하셔야 합니다.");
+				/* alert("휴대폰 번호는 반드시 입력하셔야 합니다."); */
+				swal({
+					title: "휴대폰 번호는 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			////////////////////////////////////////
 			if(!/^0[0-9]{2}-?[0-9]{3,4}-?[0-9]{4}$/.test(pn)){
-				alert("휴대폰 번호 형식이 맞지않습니다.")
+				/* alert("휴대폰 번호 형식이 맞지않습니다.") */
+				swal({
+					title: "휴대폰 번호 형식이 맞지않습니다.",
+					text: "",
+					icon: "warning"
+				});
             return;
         	}
 			////////////////////////////////////////
-			if(cn == null || cn.length <1){
+			/* if(cn == null || cn.length <1){
 				alert("인증번호는 반드시 입력하셔야 합니다.");
+				swal({
+					title: "인증번호는 반드시 입력하셔야 합니다.",
+					text: "",
+					icon: "warning"
+				});
 				return;
-			}
+			} */
 			if(addr == null || addr.length <1){
-				alert("주소를 입력해주세요.");
+				/* alert("주소를 입력해주세요."); */
+				swal({
+					title: "주소를 입력해주세요.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 			if(daddr == null || daddr.length <1){
-				alert("상세주소를 입력해주세요.");
+				/* alert("상세주소를 입력해주세요."); */
+				swal({
+					title: "상세주소를 입력해주세요.",
+					text: "",
+					icon: "warning"
+				});
 				return;
 			}
 				
@@ -265,18 +345,19 @@
 		     <div class="col-sm-4">
 				<input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}" placeholder="변경휴대폰번호 000-000(0)-0000"
 					pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required>		  	
+		  	</div>
 		  </div>
-		  <div class="col-sm-3">
+		  <!-- <div class="col-sm-3">
 		      <button type="button" id ="check" class="btn btn-info">인증</button>
 		    </div>
-		 </div>
+		 </div> -->
 		 
-		 <div class="form-group">
+		 <!-- <div class="form-group">
 		    <label for="certificationNumber" class="col-sm-offset-1 col-sm-3 control-label">인증번호</label>
 		    <div class="col-sm-2">
 		      <input type="text" class="form-control" id="certificationNumber" name="certificationNumber" placeholder="인증번호">
 		    </div>
-		  </div>
+		  </div> -->
 		  
 		  <div class="form-group">
 		    <label for="address" class="col-sm-offset-1 col-sm-3 control-label">주소</label>
@@ -330,9 +411,9 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >수 &nbsp;정</button>
+		      <button type="button" class="btn btn-primary"  >변 &nbsp;경</button>
 			  <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a>
-			  <button type="button" onclick="location.href='/index.jsp' ">메인페이지</button>
+			  <button type="button" class="btn btn-primary" onclick="location.href='/index.jsp' ">메인페이지</button>
 		    </div>
 		  </div>
 		</form>

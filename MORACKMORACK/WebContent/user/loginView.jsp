@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <jsp:include page="/common/listCdn.jsp" />
 
 <style>
@@ -33,10 +34,10 @@ body {
   font-size: 12px;
 }
 .pen-title span .fa {
-  color: #ed2553;
+  color: #d2691e;
 }
 .pen-title span a {
-  color: #ed2553;
+  color: #d2691e;
   font-weight: 600;
   text-decoration: none;
 }
@@ -49,7 +50,7 @@ body {
 .rerun a {
   cursor: pointer;
   display: inline-block;
-  background: #ed2553;
+  background: #d2691e;
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 10px 20px;
@@ -88,7 +89,7 @@ body {
 #portfolio {
   bottom: 96px;
   right: 36px;
-  background: #ed2553;
+  background: #d2691e;
   width: 44px;
   height: 44px;
   -webkit-animation: buttonFadeInUp 1s ease;
@@ -194,10 +195,10 @@ body {
 .card .title {
   position: relative;
   z-index: 1;
-  border-left: 5px solid #ed2553;
+  border-left: 5px solid #d2691e;
   margin: 0 0 35px;
   padding: 10px 0 10px 50px;
-  color: #ed2553;
+  color: #d2691e;
   font-size: 32px;
   font-weight: 600;
   text-transform: uppercase;
@@ -253,7 +254,7 @@ body {
 .card .input-container .bar:before, .card .input-container .bar:after {
   content: '';
   position: absolute;
-  background: #ed2553;
+  background: #d2691e;
   width: 0;
   height: 2px;
   -webkit-transition: .2s ease;
@@ -299,7 +300,7 @@ body {
   top: 50%;
   left: 50%;
   display: block;
-  background: #ed2553;
+  background: #d2691e;
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -309,10 +310,10 @@ body {
   transition: .3s ease;
 }
 .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
-  border-color: #ed2553;
+  border-color: #d2691e;
 }
 .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
-  color: #ed2553;
+  color: #d2691e;
 }
 .card .button-container button:active span, .card .button-container button:focus span {
   color: #ffffff;
@@ -358,7 +359,7 @@ body {
 }
 .card.alt .toggle {
   position: relative;
-  background: #ed2553;
+  background: #d2691e;
   width: 140px;
   height: 140px;
   border-radius: 100%;
@@ -429,7 +430,7 @@ body {
   border-color: #ffffff;
 }
 .card.alt .button-container button span {
-  color: #ed2553;
+  color: #d2691e;
 }
 .card.alt .button-container button:hover {
   background: rgba(255, 255, 255, 0.9);
@@ -482,13 +483,23 @@ $( function() {
 		var pw=$("input:password").val();
 		
 		if(id == null || id.length <1) {
-			alert('ID 를 입력하지 않으셨습니다.');
+			/* alert('ID를 입력하지 않으셨습니다.'); */
+			swal({
+				title: "ID를 입력하지 않으셨습니다.",
+				text: "",
+				icon: "warning"
+			});
 			$("#userId").focus();
 			return;
 		}
 		
 		if(pw == null || pw.length <1) {
-			alert('패스워드를 입력하지 않으셨습니다.');
+			/* alert('패스워드를 입력하지 않으셨습니다.'); */
+			swal({
+				title: "패스워드를 입력하지 않으셨습니다.",
+				text: "",
+				icon: "warning"
+			});
 			$("#password").focus();
 			return;
 		}
@@ -526,7 +537,12 @@ $( function() {
 							//window.parent.document.location.reload();
 							
 						}else{
-							alert("아이디 , 패스워드를 확인하시고 다시 로그인...");
+							/* alert("아이디, 패스워드를 확인하시고 다시 로그인..."); */
+							swal({
+								title: "아이디, 패스워드를 확인하시고 다시 로그인...",
+								text: "",
+								icon: "warning"
+							});
 						}
 					}
 			});
@@ -563,9 +579,10 @@ $( function() {
       </div>
       <div class="button-container">
         <button><span>로그인</span></button>
+      </div>
       <!-- ///////////////////////////////////////////////////////////////////////////// -->
 
-<center>
+<!-- <center>
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
  
 <div id = "naver_id_login"></div>
@@ -583,7 +600,7 @@ $( function() {
          naver_id_login.init_naver_id_login();
  
 </script>
-</center>
+</center> -->
       <!-- </div>
       <div class="footer"><a href="#">Forgot your password?</a></div> -->
     </form>
