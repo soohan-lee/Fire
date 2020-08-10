@@ -15,10 +15,19 @@
 	font-family: 'TmoneyRoundWindExtraBold';
 	font-size : 28px;
 }
-
+			
 .navigation {
-  height: 80px;
+  height: 70px;
   background: #FAEBD7;
+  color: #ffffff;
+  border: 1px solid #FAEBD7;
+}
+
+li{
+ text-align: center;
+ background-color: #ffffff;
+  z-index : 1;
+  opacity: 0.8;
 }
 
 .brand {
@@ -28,29 +37,34 @@
   line-height: 70px;
   text-transform: uppercase;
   font-size: 1.4em;
+	
 }
 .brand a,
 .brand a:visited {
   color: #D2691E;
-  text-decoration: none;
+  text-decoration: none
 }
-
 .nav-container {
   max-width: 1000px !important;
   margin: 0 auto !important;
-}
 
+}
 nav {
   float: right;
+
 }
+
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+ 
+        
 }
 nav ul li {
   float: left;
   position: relative;
+
 }
 nav ul li a,
 nav ul li a:visited {
@@ -65,27 +79,28 @@ nav ul li a:hover,
 nav ul li a:visited:hover {
   background: #FAEBD7;
   color: #D2691E;
+ 
 }
 nav ul li a:not(:only-child):after,
 nav ul li a:visited:not(:only-child):after {
   padding-left: 4px;
-
 }
 nav ul li ul li {
   min-width: 190px;
+
+
 }
 nav ul li ul li a {
   padding: 14px;
   line-height: 20px;
-}
 
+}
 .nav-dropdown {
   position: absolute;
   display: none;
-  z-index: 1;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-}
 
+ 
+}
 /* Mobile navigation */
 .nav-mobile {
   display: none;
@@ -97,107 +112,12 @@ nav ul li ul li a {
   width: 70px;
 }
 
-@media only screen and (max-width: 798px) {
-  .nav-mobile {
-    display: #FAEBD7;
-  }
-
-  nav {
-    width: 100%;
-    padding: 70px 0 15px;
-  }
-  nav ul {
-    display: none;
-  }
-  nav ul li {
-    float: none;
-  }
-  nav ul li a {
-    padding: 15px;
-    line-height: 20px;
-  }
-  nav ul li ul li a {
-    padding-left: 30px;
-  }
-
-  .nav-dropdown {
-    position: static;
-  }
-}
-@media screen and (min-width: 799px) {
-  .nav-list {
-    display: block important;
-  }
-}
-#nav-toggle {
-  position: absolute;
-  left: 18px;
-  top: 22px;
-  cursor: pointer;
-  padding: 10px 35px 16px 0px;
-}
-#nav-toggle span,
-#nav-toggle span:before,
-#nav-toggle span:after {
-  cursor: pointer;
-  border-radius: 1px;
-  height: 5px;
-  width: 35px;
-  background: #D2691E;
-  position: absolute;
-  display: #8cafb9
-  content: '';
-  transition: all 300ms ease-in-out;
-}
-#nav-toggle span:before {
-  top: -10px;
-}
-#nav-toggle span:after {
-  bottom: -10px;
-}
-#nav-toggle.active span {
-  background-color: #FAEBD7;
-}
-#nav-toggle.active span:before, #nav-toggle.active span:after {
-  top: 0;
-}
-#nav-toggle.active span:before {
-  transform: rotate(45deg);
-}
-#nav-toggle.active span:after {
-  transform: rotate(-45deg);
-}
-
-article {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.home {
-    background-color: darkorange;
-    width: 100px;
-    text-align: center;
-    font-weight: bold;
-    float: right;
-}
-
-.home a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    padding: 16px 16px;
-}
-
 
 </style>
 
 <script type ="text/javascript">
-
 var ws;
 var userId = "${sessionScope.user.userId}"; //sender
-
-
 (function($) { // Begin jQuery
 	  $(function() { // DOM ready
 		    // If a link has a dropdown, add sub menu toggle.
@@ -255,13 +175,11 @@ var userId = "${sessionScope.user.userId}"; //sender
 			};
 			
 		}
-
 		function addMsg(msg){ //원래 채팅 메세지에 방금 받은 메세지 더해서 set
 			var chat = $("#msgArea").val();
 			chat = chat + "\n 상대방 : "+ msg;
 			$("#msgArea").val(chat);
 		}
-
 		function sender(){ //메세지 수신을 위한 서버에 id 등록
 			var msg = {
 					type : "senderId", //메세지 구분하는 구분자 - 상대방 아이디와 메세지 포함
@@ -271,7 +189,6 @@ var userId = "${sessionScope.user.userId}"; //sender
 			
 			ws.send(JSON.stringify(msg));
 		}
-
 		function sendMsg(){
 			var msg = {
 					type : "message", //메세지 구분하는 구분자 - 상대방 아이디와 메세지 포함
@@ -284,6 +201,9 @@ var userId = "${sessionScope.user.userId}"; //sender
 		
 </script>
 
+
+<div id="wrapper">
+	
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
@@ -332,25 +252,19 @@ var userId = "${sessionScope.user.userId}"; //sender
             </li>
           </ul>
         </li>
+        
         <li>
-          <a href="#!">BUSINESS</a>
-          <ul class="nav-dropdown">
-            <li>
-              <a href="/business/listBusiness">업체 목록</a>
-            </li>
-            <li>
-              <a href="/business/listUsedBusiness">이용한 업체 목록</a>
-            </li>
-          </ul>
+          <a href="/business/listBusiness"">BUSINESS</a>
         </li>
+        
         <li>
           <a href="#!">MY PAGE</a>
           <ul class="nav-dropdown">
           <li>
-              <a href="/offmeet/addBusinessPay">모임 후기</a>
+              <a href="/offmeet/listOffPay">참여비 참여 목록</a>
             </li>
             <li>
-              <a href="/community/getBusinessReviewList">업체 후기</a>
+              <a href="/offmeet/listBusinessPay?userId=${user.userId}">제휴 업체 예약 목록</a>
             </li>         
             <div class="dropdown-divider" style="border-color:white;"></div>
               <li>
@@ -365,19 +279,11 @@ var userId = "${sessionScope.user.userId}"; //sender
           </ul>
         </li>
         
+        
          <c:if test="${empty sessionScope.user}">
-         <li>
-		<a href="#!">로그인</a>
-          <ul class="nav-dropdown">
-            <li>
-              <a href="/user/login">회원 로그인</a>
-            </li>
-            <li>
-             <a href="/business/BusinessTestURL.jsp">업체 로그인</a>
-              <%-- <jsp:include page="/business/loginBusiness2.jsp"/> --%>
-            </li>
-          </ul>
-          </li>
+        <li>
+		<a href="/user/login">로그인</a>       
+        </li>
           
          <li>
           <a href="#!">회원가입</a>
@@ -401,62 +307,10 @@ var userId = "${sessionScope.user.userId}"; //sender
          	</li>
           </c:if>
          </c:if> 
-         
-         <!-- 업체 -->
-         <c:if test="${!empty sessionScope.business}">
-         <li>
-          <a href="/business/listBusiness">업체목록</a>
-          <ul class="nav-dropdown">
-          </ul>
-        </li>
-        <li>
-          <a href="/business/listBusinessMenu">업체 메뉴 목록</a>
-          <ul class="nav-dropdown">
-          </ul>
-        </li>
-        <li>
-          <a href="/business/listReserveAbleTime">업체 예약 가능 시간 목록</a>
-        </li>
-        <li>
-          <a href="#!">업체 후기 조회</a>
-        </li>
-        <li>
-          <a href="/business/listReserveBusiness">예약 목록 조회</a>
-        </li>
         
-         <c:if test="${empty sessionScope.user && empty sessionScope.business}">
-         <li>
-		<a href="#!">로그인</a>
-          <ul class="nav-dropdown">
-            <li>
-              <a href="/user/login">회원 로그인</a>
-            </li>
-            <li>
-              <a href="/business/BusinessTestURL.jsp">업체 로그인</a>
-              <%-- <jsp:include page="/business/loginBusiness2.jsp"/> --%>
-            </li>
-          </ul>
-          </li>
-          
-         <li>
-          <a href="#!">회원가입</a>
-           <ul class="nav-dropdown">
-            <li>
-              <a href="/user/addUser">회원가입</a>
-            </li>
-            <li>
-              <a href="/business/addBusiness">업체 회원가입</a>
-            </li>
-          </ul>
-          </li>
-          </c:if>
- 
- 		  <c:if test="${!empty sessionScope.business}">
-			<li>
-         		<a href="/business/logout">로그아웃</a>
-         	</li>
-          </c:if>
-        </c:if>  
+        </div>
+        
+      
           
      </ul>
     </nav>

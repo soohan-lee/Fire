@@ -12,23 +12,34 @@
 	<style>
 	
  
-        
-        div.h4  {
-            font-family: 'NIXGONM-Vb';
-            font-weight: bold;
+      div.h3  {
+            background-color: #D2691E;
             display: inline-block;
-         
         }
+        
+        
         
         table  {
             font-size: 10pt;
         }
    
+     #button1{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+  	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
+ 	}
+ 	
     </style>
     <script type="text/javascript">
     $(function() {
     	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-    	$("a[href='#' ]").on("click" , function() {
+    	$("#button1").on("click" , function() {
     		var businessId = $(this).next().val();
     		 window.location.href = "/business/getBusiness?businessId="+businessId;
     
@@ -120,7 +131,7 @@
 	   <div class="row"> 
  		<div class="col-md-12 text-center"> 
  		   <div class="col-sm-offset-4  col-sm-4 text-center">
-		     <a class="btn btn-primary btn" href="#" role="button">확 &nbsp;인</a>
+		     <button type="button"  id ="button1">확인</button>
 		     	<input type="hidden" name="businessId"value="${pay.business.businessId }" />
  			</div> 
 			</div>

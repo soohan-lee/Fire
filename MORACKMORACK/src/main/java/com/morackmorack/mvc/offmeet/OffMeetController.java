@@ -109,7 +109,6 @@ public String addOffView(@ModelAttribute ("offMeet") OffMeet offMeet, @RequestPa
 public String addOff (@RequestParam("meetId") String meetId, @ModelAttribute ("offMeet") OffMeet offMeet,  HttpSession session ) throws Exception {
 
     offMeet.setUser((User)session.getAttribute("user"));
-	offMeet.setOffMem(1);
 	offMeet.setMeet(meetService.getMeet(meetId));
 	
 	

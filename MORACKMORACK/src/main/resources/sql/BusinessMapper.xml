@@ -103,7 +103,7 @@
 	
 	<!-- SQL : Business_SELECT LIST -->
 	<select  id="getBusinessList"	parameterType="search"	resultMap="BusinessSelectMap">
-		SELECT business_id, business_name, business_loc, business_phone, category_no, business_img
+		SELECT business_id, business_name, business_loc, business_phone, category_no, business_img , business_start_time, business_end_time
 		FROM business
 		WHERE 1=1
 			<if test=" searchKeyword!=null and searchKeyword!='' ">

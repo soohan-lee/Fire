@@ -12,29 +12,61 @@
 	<style>
 	
  
-        
-        div.h4  {
-            font-family: 'NIXGONM-Vb';
-            font-weight: bold;
+   	 div.h3  {
+            background-color: #D2691E;
             display: inline-block;
-         
         }
+        
+        
         
         table  {
             font-size: 10pt;
         }
+        
+        
+        	#btn_group button:hover
+ 	{ 
+ 	color:white; background-color: #D2691E;
+ 	}		
+	
+	 #btn_group button{
+ 	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
+ 
+ 	}
+ 	
+ 	#button1{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+ 	}
+ 
+ 	#button2{
+ 	border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+	 
+}
+
+
    
     </style>
     <script type="text/javascript">
     $(function() {
     	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-    	$("a[href='#' ]").on("click" , function() {
+    	$("#button1").on("click" , function() {
     		var meetId = $(this).next().val();
     		window.location.href="/meet/getMeet/"+meetId
     	
     	});
     	
-    	$("#list").click(function (){
+    	$("#button2" ).click(function (){
     		window.location.href = "/offmeet/listOffPay";
     	})
     	
@@ -150,15 +182,23 @@
 	</br>
 	
 	
-		
-<div class="row"> 
- 		<div class="col-md-12 text-center"> 
- 		 	  <div class="col-sm-offset-4  col-sm-4 text-center">
-		         <a class="btn btn-primary btn" href="#" role="button">확 &nbsp;인</a>
-		      <input type="hidden" id="meetId" value="${pay.meet.meetId}"/> 
-		      <button type="button" class="btn btn-primary btn" id="list" >참여비 목록</button>
- 		</div> 
-	</div>
-</div>
+	
+
+
+
+		<div id ="btn_group">
+		    <div class="col-sm-offset-4  col-sm-4 text-center">
+		      <button type="button"  id ="button1" >확 &nbsp;인</button>
+		       <input type="hidden" id="meetId" value="${pay.meet.meetId}"/> 
+			  <button type="button"  id ="button2" >참여비 목록으로 이동</button>
+		    </div>
+		    </br>
+	</br>
+	</br>
+	</br>
+
+		  </div>
+
+
 </body>
 </html>

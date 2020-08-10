@@ -100,7 +100,7 @@
                         <td>${pay.reserveDate}</td>
                         <td>${pay.reserveStartTime}</td>
                         <td>${pay.reserveEndTime}</td>   
-                        <td>${pay.reserveMemNum}</td>   
+                        <td>${pay.reserveMemNum}Έν</td>   
                          <td>            
                          <fmt:formatNumber value="${pay.totalAmount}" pattern="###,###" />Ώψ</td>     
                      </tr> 

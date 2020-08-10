@@ -388,9 +388,6 @@ CREATE TABLE comments(
 	parent_comment_no	NUMBER(20)		REFERENCES comments(comment_no),
 	comment_content		VARCHAR2(100),
 	reg_date			DATE			NOT NULL,
-	mod_date		DATE,		
-	comment_depth		NUMBER(10),
-	IMG_NAME		VARCHAR2(100),
 	PRIMARY KEY(comment_no)
 );
 

@@ -12,11 +12,62 @@
 
 <jsp:include page="/common/listCdn.jsp" />
 <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
+
+
+
+	#btn_group button:hover
+ 	{ 
+ 	color:white; background-color: #D2691E;
+ 	}		
+	
+	 #btn_group button{
+ 	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
+ 
+ 	}
+ 	
+ 	#button1{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+ 	}
+ 
+ 	#button2{
+ 	border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+	 
+}
+			
  body > div.container{
            padding-top : 50px;
  }
+ .swal-footer {
+ 	text-align : center;
+ }
+ .swal-button
+ {
+ 	background-color: #D2691E;
+ }
+ 
+ .swal-button-active {
+    background: #D2691E;
+}
+
+
+    div.h3  {
+            background-color: #D2691E;
+            display: inline-block;
+        }
+        
 </style> 
 
 <script type="text/javascript">
@@ -32,10 +83,6 @@ function fncreqOk() {
 	var offMem ='${offMeet.offMem}';
 	var offMax ='${offMeet.offMax}';
 	
-	if(parseInt(offMem) >= parseInt(offMax)){
-		alert("오프라인 모임 참여 정원 수가 가득 찼습니다. ");
-		return;
-	}
 	
 	if (pay == '0') {
 		pay = 'trans';
@@ -94,16 +141,22 @@ function fncreqOk() {
 $(function() {
 
 	if(parseInt(amount) == 0){
-		alert("오프라인 참여비가 0원입니다. 결제 없이 참여 가능합니다.") 
+		swal({
+			icon : 'info',
+			title :"오프라인 참여비가 0원입니다. 결제 없이 참여 가능합니다.",
+			text:" ",
+			closeOnClickOutside : false,
+			button: "확인"
+		}) .then(function(){
 		$("form").attr("method" , "POST").attr("action" , "/offmeet/addOffPay?offNo=${offMeet.offNo}&memNo=${meetMem.memNo}").submit();
+		});
 	} else{
-	$( "button.btn.btn-primary" ).on("click" , function() {
+	$( "#button1" ).on("click" , function() {
 		fncreqOk();
 	});
 	}	
 });	
 
-	
 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			$("a[href='#' ]").on("click" , function() {
@@ -116,6 +169,12 @@ $( function() {
     	dateFormat: 'yy-mm-dd'
   });  
 });		
+
+$(function() {
+$( "#button2" ).on("click" , function() {
+	window.location.href =  "/offmeet/getOffList?meetId=${offMeet.meet.meetId}";
+	});	
+});	
 
 </script>
 </head>
@@ -233,10 +292,10 @@ $( function() {
 		<hr/>
 	
 			
-	<div class="form-group">
+			<div id ="btn_group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >참여비 결제</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a>
+		      <button type="button"  id ="button1" >참여비 결제</button>
+			  <button type="button"  id ="button2" >취&nbsp;소</button>
 		    </div>
 		  </div>
 		</form>		
