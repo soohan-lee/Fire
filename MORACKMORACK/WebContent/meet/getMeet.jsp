@@ -26,6 +26,7 @@
   border: 0;
   outline: 0;
   padding: 22px 18px;
+
 }
 
 *, *:after, *:before {
@@ -110,6 +111,34 @@
   background: #009688;
   left: 40px;
 }
+
+
+#inviteToMessage{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+  	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	margin-right: 400px;
+}
+
+
+#joinMeet{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+  	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
+    margin-right: 400px;
+}
+
 
 button {
   background: #ebc088;
@@ -436,44 +465,7 @@ $(function(){
 		$("form").attr("method", "POST").attr("action", "/message/invMeet").submit();
 	});
 
-	//var count = 0;
-	var count = $("#wishCount").val();
-	$("a.cart > span").addClass("counter");
-	$("a.cart > span.counter").text(count);
-	
-	$("a.add-to-cart").click(function(event) {
-		if($("#wishMeet").val() == ''){
-		$("a.add-to-cart").addClass("size");
-		setTimeout(function() {
-			$("a.add-to-cart").addClass("hover");
-		}, 200);
-		setTimeout(function() {
-			$("a.cart > span").addClass("counter");
-			$("a.cart > span.counter").text(count);
-		}, 400);
-		setTimeout(function() {
-			$("a.add-to-cart").removeClass("hover");
-			$("a.add-to-cart").removeClass("size");
-		}, 600);
-		event.preventDefault();
-		window.location.href = "/meet/addWishMeet?meetId="+meetId;
-		}else if($("#wishMeet").val() != ''){
-			$("a.add-to-cart").addClass("size");
-			setTimeout(function() {
-				$("a.add-to-cart").addClass("hover");
-			}, 200);
-			setTimeout(function() {
-				$("a.cart > span").addClass("counter");
-				$("a.cart > span.counter").text(count);
-			}, 400);
-			setTimeout(function() {
-				$("a.add-to-cart").removeClass("hover");
-				$("a.add-to-cart").removeClass("size");
-			}, 600);
-			event.preventDefault();
-			window.location.href = "/meet/delWishMeet/"+meetId+"/get";
-		}
-	}); 
+
 })
 </script>
 
@@ -502,31 +494,21 @@ $(function(){
 <aside >
 <section>
 
-  <div id="mainCart" style="float:right; margin-top:50px;">
-  <c:if test="${empty wishMeet}">
-	<a href="#" class="add-to-cart">임시 가입</a>
-	</c:if>
-	<c:if test="${!empty wishMeet}">
-	<a href="#" class="add-to-cart">임시 가입 삭제</a>
-	</c:if>
-	<a href="#" class="cart"><span></span></a>
-</div>
 
+<br>
+<br>
 <div style="float:right;">
 <c:if test="${empty meetMem}">
 <button type="button" class="draw meet" id="joinMeet">모임가입</button>
 </c:if>
 <c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}">
-<button type="button" class="draw meet" id="inviteToMessage">쪽지 초대</button>
-<button type="button" class="draw meet" id="inviteToKakao">카카오톡 초대</button>
-<c:if test="${meetMem.meetRole eq '0'.charAt(0) or meetMem.meetRole eq '1'.charAt(0)}">
-<button type="button" class="draw meet" id="addOffMeet">오프라인 모임 생성</button>
+<button type="button" class="draw meet" id="inviteToMessage" >쪽지 초대</button>
 </c:if>
-</c:if>
+
 </div>
 </section>
 
-<section style="float: left; margin-bottom:10px; margin-top:100px;">
+<section style="float: left; margin-bottom:10px;">
 <div class="grid12-6">
 <img src="/resources/images/uploadFiles/meet/${meet.meetImg}" width="1150" height="1000">
 <div class="inner_box">

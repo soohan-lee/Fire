@@ -6,13 +6,10 @@
 <jsp:include page="/common/listCdn.jsp" />
 <script src="/resources/js/sockjs.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
-
-
 @charset "UTF-8";
 @font-face { font-family: 'TmoneyRoundWindExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
-
     
    div.toolbar-wrapper {
  
@@ -31,12 +28,10 @@
 	font-family: 'TmoneyRoundWindExtraBold';
 	font-size : 28px;
 }
-
 .navigation {
   height: 80px;
   background: #FAEBD7;
 }
-
 .brand {
   position: absolute;
   padding-left: 0px;
@@ -50,14 +45,13 @@
   color: #D2691E;
   text-decoration: none;
 }
-
 .nav-container {
   max-width: 1000px !important;
   margin: 0 auto !important;
 }
-
 nav {
-  float: right;
+  margin: 0 auto;
+  font-family: 'Nanum Pen Script', cursive;
 }
 nav ul {
   list-style: none;
@@ -70,10 +64,12 @@ nav ul li {
 }
 nav ul li a,
 nav ul li a:visited {
+  font-size : 25px;
   display: block;
-  padding: 0 20px;
+  padding: 0 40px;
   line-height: 70px;
   background: #FAEBD7;
+  text-align: center;
   color: #D2691E;
   text-decoration: none;
 }
@@ -85,7 +81,6 @@ nav ul li a:visited:hover {
 nav ul li a:not(:only-child):after,
 nav ul li a:visited:not(:only-child):after {
   padding-left: 4px;
-
 }
 nav ul li ul li {
   min-width: 190px;
@@ -94,16 +89,15 @@ nav ul li ul li a {
   padding: 14px;
   line-height: 20px;
 }
-
 .nav-dropdown {
   position: absolute;
   display: none;
   z-index: 1;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
-
 /* Mobile navigation */
 .nav-mobile {
+	margin: 0 auto;
   display: none;
   position: absolute;
   top: 0;
@@ -112,12 +106,10 @@ nav ul li ul li a {
   height: 70px;
   width: 70px;
 }
-
 @media only screen and (max-width: 798px) {
   .nav-mobile {
     display: #FAEBD7;
   }
-
   nav {
     width: 100%;
     padding: 70px 0 15px;
@@ -135,7 +127,6 @@ nav ul li ul li a {
   nav ul li ul li a {
     padding-left: 30px;
   }
-
   .nav-dropdown {
      position: relative;
      
@@ -187,13 +178,11 @@ nav ul li ul li a {
 #nav-toggle.active span:after {
   transform: rotate(-45deg);
 }
-
 article {
   max-width: 1000px;
   margin: 0 auto;
   padding: 10px;
 }
-
 .home {
     background-color: darkorange;
     width: 100px;
@@ -201,15 +190,12 @@ article {
     font-weight: bold;
     float: right;
 }
-
 .home a {
     display: block;
     text-decoration: none;
     color: white;
     padding: 16px 16px;
 }
-
-
 </style>
 
 <script type ="text/javascript">
@@ -363,8 +349,7 @@ var userId = "${sessionScope.user.userId}"; //sender
         <li>
           <a href="/business/listBusiness">BUSINESS</a>
         </li>
-        
-        
+       
            <li>
           <a href="#!">MY PAGE</a>
           <ul class="nav-dropdown">

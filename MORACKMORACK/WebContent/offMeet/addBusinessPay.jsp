@@ -12,14 +12,41 @@
 
 	<style>
 	
+ 	#btn_group button:hover
+ 	{ 
+ 	color:white; background-color: #D2691E;
+ 	}		
+	
+	 #btn_group button{
+ 	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
  
-        
-        div.h4  {
-            font-family: 'NIXGONM-Vb';
-            font-weight: bold;
+ 	}
+ 	
+ 	#button1{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+ 	}
+ 
+ 	#button2{
+ 	border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+	 }
+ 
+       
+         div.h3  {
+            background-color: #D2691E;
             display: inline-block;
-         
         }
+        
         
         table  {
             font-size: 10pt;
@@ -68,9 +95,14 @@ var amount = '${menu.businessMenuFee* businessMenuCnt}';
 
 
 $(function() {
-	$( "button.btn.btn-primary" ).on("click" , function() {
+	$( "#button1" ).on("click" , function() {
 		reserveBusiness();
 	});
+	
+	$( "#button2" ).on("click" , function() {
+		 var businessId = '${business.businessId }'
+		 window.location.href = "/business/getBusiness?businessId="+businessId;
+	});	
 });	
 
 
@@ -86,12 +118,12 @@ $(function() {
 
 <form>
 
-<div class="container getOrder" >
+<div class="container" >
 <br/>
 
-	
+
 			<div class="row">
-                    <div class="h4">업체 정보</div>
+                    <div class="h3">업체 정보</div>
             </div>
 				<br/>
 				<table class="table">
@@ -116,7 +148,7 @@ $(function() {
 		<br/>
 		
 		<div class="row">
-			<div class="h4" style="margin-top:80px;" >예약 정보</div>
+			<div class="h3" style="margin-top:80px;" >예약 정보</div>
 		</div>	
 			<hr/>
 			
@@ -147,7 +179,7 @@ $(function() {
 	
 	<div class="row"> 
 	  	<div class="col-xs-4 col-md-2" style="margin-top:20px;"><strong>예약 인원</strong></div> 
- 		<div class="col-xs-8 col-md-4" style="margin-top:20px;">${businessMenuCnt}</div> 
+ 		<div class="col-xs-8 col-md-4" style="margin-top:20px;">${businessMenuCnt}명</div> 
 	</div>  
 
 	
@@ -164,7 +196,7 @@ $(function() {
 
 	<div class="row">
 	
-	<div class="h4" style="margin-top:80px;" >예약자 내역</div>
+	<div class="h3" style="margin-top:80px;" >예약자 내역</div>
 	</div>	
 			<hr/>
 	<div class="row">
@@ -181,15 +213,17 @@ $(function() {
 			</div>
 		<hr/>
 	
-			<div class="form-group">
+			<div id ="btn_group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary" > 결 &nbsp;제</button>
+		     <button type="button" id="button1" > 결 &nbsp;제</button>
 		    <input type="hidden" id="businessId" value="${business.businessId}"/>
 		    <input type="hidden" name="reserveDate" value= "${reserveDate}"/>
 		     <input type="hidden" name="reserveStartTime" value= "${reserveStartTime}"/>
 		    <input type="hidden" name="reserveEndTime" value= "${reserveEndTime}"/>
 			<input type="hidden" name="amount" value="${menu.businessMenuFee* businessMenuCnt}" />
  			<input type="hidden" name="businessMenuCnt" value= "${businessMenuCnt}"/>	   
+ 			 <button type="button"  id ="button2" >취&nbsp;소</button>
+
 		    </div>
 		  </div>
 			

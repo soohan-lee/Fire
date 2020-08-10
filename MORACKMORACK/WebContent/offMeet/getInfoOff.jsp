@@ -11,9 +11,10 @@
 <head>
 	<meta charset="EUC-KR">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 	<jsp:include page="/common/listCdn.jsp" />
 	
-	
+
 	<style>
 			
 

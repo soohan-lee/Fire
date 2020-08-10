@@ -23,7 +23,34 @@
             display: inline-block;
         }
         
+	#btn_group button:hover
+ 	{ 
+ 	color:white; background-color: #D2691E;
+ 	}		
 	
+	 #btn_group button{
+ 	border : 1px solid #D2691E;
+ 	background-color:rgba(0,0,0,0);
+ 	color: #D2691E;
+ 	padding: 10px 25px;
+ 
+ 	}
+ 	
+ 	#button1{
+	 border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+ 	border-bottom-left-radius: 8px;
+ 	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+ 	}
+ 
+ 	#button2{
+ 	border-top-left-radius: 8px;
+ 	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+ 	margin-right-9px;
+	 }
 	
      </style>
      
@@ -32,19 +59,18 @@
 
 $(function() {
 	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-	$("a[href='#' ]").on("click" , function() {
+	$("#button1").on("click" , function() {
 		var meetId = $(this).next().val();
 		window.location.href="/meet/getMeet/"+meetId
 		});	
 	});
 $(function() {
-	$($("a:contains('참여비목록')")[0]).on("click" , function() {
+	$("#button2").on("click" , function() {
 		history.go(-1);
 		});
-	$($("a:contains('참여비목록')")[1]).on("click" , function() {
-		window.location.href = "/offmeet/getPayList";
-		});
+
 });	
+
 
 
 
@@ -136,20 +162,15 @@ $(function() {
 	
 	
 		
-<div class="row"> 
- 		<div class="col-md-12 text-center"> 
- 		 	  <div class="col-sm-offset-4  col-sm-4 text-center">
-		         <a class="btn btn-primary btn" href="#" role="button">확 &nbsp;인</a>
-		      <input type="hidden" id="meetId" value="${pay.meet.meetId}"/> 
-		    	<c:if test="${!empty param.currentPage }">
-				  <a class="btn btn-primary btn" href="#" role="button">확인</a>
-				</c:if>
-				<c:if test="${empty param.currentPage }">
-				<a class="btn btn-primary btn" href="#" role="button">참여비목록</a>
-				</c:if>
- 		</div> 
-	</div>
-</div>
+
+<div id ="btn_group">
+		    <div class="col-sm-offset-4  col-sm-4 text-center">
+		      <button type="button"  id ="button1" >모임 페이지로</button>
+		      <input type="hidden" id="meetId" value="${pay.meet.meetId}"/>
+			  <button type="button"  id ="button2" >참여비 목록</button>
+		    </div>
+		  </div>
+		  
 </form>
 
 </br>
