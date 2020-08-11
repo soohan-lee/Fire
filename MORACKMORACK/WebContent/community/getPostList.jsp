@@ -39,25 +39,27 @@
 			
 		});
 		
-		$('button[name=search]').on("click",function(){
+		$("#search").on("click",function(){
 			$("#currentPage").val(currentPage);
 			var meetId = $(this).next().val();
 // 			alert("¿§Çð")
-			$("form").attr("method","GET").attr("action","/community/getPostList?meetId="+meetId);
+			$("form").attr("method","GET").attr("action","/community/getPostList?meetId="+meetId).submit();
 		})
 	})
 </script>
 	</head>
 	
 	<body>
+
+	
 	<header>
 		<jsp:include page ="/toolbar.jsp"/>
 	</header>
 	
-	<jsp:include page="../meet/sidebar.jsp"/>
 	
 	<div class ="container">
-	
+		<input type="hidden" name=meetId value="${meet.meetId}"/>
+	<input type="hidden" name=meetMem value="${meetMem}"/>
 	<div class ="row">
 		<div class="col-md-6 text-left">
 			<p class = "text-primary">
@@ -81,7 +83,7 @@
  								 value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
  				</div>
  				
- 				<button type="button" name="search" class="btn btn-default">°Ë»ö</button> 				
+ 				<button type="button" name="search" class="btn btn-default" id="search">°Ë»ö</button> 				
  				<button type="button" class="btn btn-default" id="addPost" name="addPost">±Û¾²±â</button>
  				<input type="hidden" name=meetId value="${param.meetId}"/>
  				<input type="hidden" id="currentPage" name="currentPage" value=""/>
