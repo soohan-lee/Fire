@@ -294,7 +294,7 @@ var userId = "${sessionScope.user.userId}"; //sender
    <div class="container toolbar ">
 <header class="blog-header">
             <div class="nav-scroller  mb-2 toolbar-logo">
-                <a href="/index.jsp"><img src="../resources/images/uploadFiles/icon/Morack.png" style="width:auto;height: 250px;"></a>
+                <a href="/index.jsp"><img src="../resources/images/uploadFiles/icon/Morack.png" style="width:200;height: 200px;"></a>
             </div>     
             </header>
            </div>

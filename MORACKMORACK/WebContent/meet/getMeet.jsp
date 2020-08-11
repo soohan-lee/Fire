@@ -497,15 +497,15 @@ $(function(){
 
 <br>
 <br>
-<div style="float:right;">
-<c:if test="${empty meetMem}">
-<button type="button" class="draw meet" id="joinMeet">모임가입</button>
-</c:if>
-<c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}">
-<button type="button" class="draw meet" id="inviteToMessage" >쪽지 초대</button>
-</c:if>
+<!-- <div style="float:right;"> -->
+<%-- <c:if test="${empty meetMem}"> --%>
+<!-- <button type="button" class="draw meet" id="joinMeet">모임가입</button> -->
+<%-- </c:if> --%>
+<%-- <c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}"> --%>
+<!-- <button type="button" class="draw meet" id="inviteToMessage" >쪽지 초대</button> -->
+<%-- </c:if> --%>
 
-</div>
+<!-- </div> -->
 </section>
 
 <section style="float: left; margin-bottom:10px;">

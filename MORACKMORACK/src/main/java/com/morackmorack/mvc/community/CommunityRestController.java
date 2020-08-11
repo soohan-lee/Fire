@@ -3,16 +3,19 @@ package com.morackmorack.mvc.community;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,16 +114,81 @@ public class CommunityRestController {
 		return map;
 	}
 	
-	@RequestMapping(value="/json/addComment", method=RequestMethod.POST)
-	public void addComment(@RequestBody Map<String,Object> map, HttpSession session, Comments comments) throws Exception {
+	@RequestMapping(value="/json/addComments", method=RequestMethod.POST)
+	public int addComments(@RequestBody Map<String,Object> map, HttpSession session, Comments comments) throws Exception {
 		
 		User user = ((User)session.getAttribute("user"));
 		
 		comments.setPostNo((int)map.get("postNo"));
-		comments.setUser(user);
 		comments.setCoContent((String)map.get("coContent"));
+		comments.setUser(user);
+		
 		communityService.addComments(comments);
+		
+		return 2;
+	}
+	
+	@RequestMapping(value="/json/getComments/{commentNo}", method=RequestMethod.GET)
+	public Comments getComments(@PathVariable("commentNo") int commentNo) throws Exception {
+		
+		Comments comments = communityService.getComments(commentNo);;
+		
+		return comments;
+	}
+	
+	@RequestMapping(value="/json/getCommentsList/{postNo}", method=RequestMethod.GET)
+	public Map<String,Object> getCommentsList(@PathVariable("postNo") int postNo)throws Exception {
+		
+		Map<String,Object> map = communityService.getCommentsList(postNo);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		String jsonValue = objectMapper.writeValueAsString(map.get("list"));
+		
+		List<Comments> list = objectMapper.readValue(jsonValue, new TypeReference<List<Comments>>() {} );
+		
+		for (int i=0 ; i<list.size() ; i++) {
+			Comments str = list.get(i);
+			System.out.println("000"+str);
+		}
+		map.put("list", map.get("list"));
+		map.put("totalCount", map.get("totalCount"));
+		
+		return map;
+	}
+	
+	@RequestMapping(value="/json/updateComments/{commentNo}", method=RequestMethod.GET)
+	public Comments updateComments(@PathVariable("commentNo") int commentNo) throws Exception{
+	
+		Comments comments = communityService.getComments(commentNo);
+		
+		return comments;
+	}
+	
+	@RequestMapping(value="/json/updateComments", method=RequestMethod.POST)
+	public Comments updateComments(@RequestBody Map<String, String> map2, HttpSession session, Comments comments) throws Exception{
+
+		User user = ((User)session.getAttribute("user"));
+
+		comments.setCommentNo(Integer.valueOf(map2.get("commentNo")));
+		System.out.println(map2);
+		System.out.println("³Ñ°Ü");
+		
+		
+		comments.setCoContent(map2.get("coContent"));
+		comments.setUser(user);
+		communityService.updateComments(comments);
+		
+		return comments;
 	}
 	
 	
+	@RequestMapping(value="/json/deleteComment/{commentNo}", method=RequestMethod.GET)
+	public int deleteComments(@PathVariable("commentNo") int commentNo) throws Exception{
+
+		Comments comments = communityService.getComments(commentNo);
+		
+		communityService.deleteComments(comments);
+		return 2;
+	}
 }

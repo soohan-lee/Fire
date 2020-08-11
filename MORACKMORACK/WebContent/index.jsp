@@ -33,8 +33,9 @@ h2 {
 </header>
 
 <video autoplay="true" loop="loop" muted>
-			
-<source src="resources/images/uploadFiles/morack.mp4" />
+		
+<source src="resources/images/uploadFiles/morack.mp4"  />
+
 
 </video>
 

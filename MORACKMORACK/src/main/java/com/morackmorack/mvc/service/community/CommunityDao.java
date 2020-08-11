@@ -29,7 +29,7 @@ public interface CommunityDao {
 	
 	public void updateComments(Comments comments) throws Exception ;
 	
-	public void deleteComments(int commentNo) throws Exception ; 
+	public void deleteComments(Comments comments) throws Exception ; 
 	
 	public int getTotalCount(String meetId) throws Exception ;
 	

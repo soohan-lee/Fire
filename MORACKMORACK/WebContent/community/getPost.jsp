@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page import="com.morackmorack.mvc.service.domain.*" %>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +72,9 @@ $(function (){
 		<button type="button" name="getPostList" class="btn btn-outline-warning">목록</button>
 		</c:if>
 		</article>
+	<div class="container">
+		<jsp:include page="/community/getCommentsList.jsp"/>
+	</div>
 </div>
 
 </body>

@@ -80,27 +80,27 @@ import com.morackmorack.mvc.service.domain.User;
 		@Override
 		public Comments getComments(int commentNo) throws Exception {
 			// TODO Auto-generated method stub
-			return null;
+			return sqlSession.selectOne("CommunityMapper.getComments", commentNo);
 		}
 		@Override
 		public List<Comments> getCommentsList(int postNo) throws Exception {
 			// TODO Auto-generated method stub
-			return null;
+			return sqlSession.selectList("CommunityMapper.getCommentsList", postNo);
 		}
 		@Override
 		public void updateComments(Comments comments) throws Exception {
 			// TODO Auto-generated method stub
-			
+			sqlSession.update("CommunityMapper.updateComments", comments);
 		}
 		@Override
-		public void deleteComments(int commentNo) throws Exception {
+		public void deleteComments(Comments comments) throws Exception {
 			// TODO Auto-generated method stub
-			
+			sqlSession.delete("CommunityMapper.deleteComments", comments);
 		}
 		@Override
 		public int getCommentsTotalCount(int postNo) throws Exception {
 			// TODO Auto-generated method stub
-			return 0;
+			return sqlSession.selectOne("CommunityMapper.getCommentsTotalCount", postNo);
 		}
 		
 		
