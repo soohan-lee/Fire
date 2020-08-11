@@ -42,17 +42,17 @@ $(function(){
 			
 	$("#meetImg, #meetName").on("click", function(){
 		var meetId = $(this).next().val();
-		self.location="/meet/getMeet/"+meetId;
+		window.location.href ="/meet/getMeet/"+meetId;
 	})
 	
 	$("button[id^='outMeet']").on("click", function(){
 		var meetId = $(this).next().val();
-		self.location="/meet/delMeet/0?meetId="+meetId;
+		window.location.href ="/meet/delMeet/0?meetId="+meetId;
 	})
 	
 	$("button[id^='delMeet']").on("click", function(){
 		var meetId = $(this).next().val();
-		self.location="/meet/delMeet/1?meetId="+meetId;
+		window.location.href ="/meet/delMeet/1?meetId="+meetId;
 	})
 	
 	if(message != null){

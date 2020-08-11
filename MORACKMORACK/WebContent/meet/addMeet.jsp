@@ -295,7 +295,7 @@ $(function(){
 <jsp:include page="/toolbar.jsp" />
 </header>
 
-<div class="container" style="margin-top:150px">
+<div class="container" style="margin-top:50px">
 <form class="form-horizontal" enctype="multipart/form-data">
 	
    	 	
@@ -308,32 +308,19 @@ $(function(){
 			<div id="meetImgPrev"></div>
 			</a>
   
+  
+  <p style="margin-top:20px"><strong>모임 간략 소개</strong></p>
+	<input type="text" id="sIntro" name="sIntro" class="form-control" style="height:100px; width:500px"/><br/>
+  
+  
 	<div>
 		<p style="text-align:left;">
 		<label for="exampleInputFile" style="text-align:left">모임 상세 소개 입력</label>   
 		<span style="float:right;">
-		 <input class="btn btn-default" type="button" id="addImg" name="addImg" value="이미지 추가" style="margin-right:50px"> </span>
 	</div>
 	
-	<div id="addDiv">
-	<div class="row">
-		<div class="col-xs-6 col-md-3">
-    		<a href="#" class="thumbnail" id="lImgThum" style="height:220px; width:220px">
-			<!-- <input type="file" name="file" id="lImg1" style="display: none;" multiple/>  -->  
-			<div id="preview"></div>
-			</a>
-		</div>
-  		
-  		<div class="col-xs-6 col-md-3" style="margin-left:120px">
-    		<a href="#" class="thumbnail" id="lImgThum" style="height:220px; width:220px">
-			<!-- <input type="file" name="file" id="lImg2" style="display: none;" multiple/>  -->
-			<div id="preview"></div>
-			</a>
-		</div>
-	</div>
-	</div>
 	
-		<textarea form="inform" cols="10" rows="20" wrap="soft" id="lIntro" name="lIntro" class="form-control"></textarea>
+		<textarea form="inform"  style="height:200px; width:500px"  wrap="soft" id="lIntro" name="lIntro" class="form-control"></textarea>
 		
 	</div>
 </div>
@@ -395,15 +382,6 @@ $(function(){
 
 	<input type="hidden" name="meetLoc" id="meetLoc" value=""/>
      	        	  
- 
-	<p style="margin-top:20px"><strong>모임 간략 소개</strong></p>
-	<input type="text" id="sIntro" name="sIntro" class="form-control" style="height:100px; width:500px"/><br/>
-
-
-	<p style="margin-top:20px"><strong>해시태그 입력</strong></p>  <!-- <input type="text" id="getHash" name="getHash" value=""/> -->
-	<!-- <textarea form="inform" cols="40" rows="10" wrap="hard" id="beforeHash" name="beforeHash" class="form-control" required></textarea> -->
-	<textarea cols="40" rows="10" wrap="hard" id="hash" name="hash" class="form-control"></textarea>
-	<ol id="list">
 
 	</ol>
  </div>    

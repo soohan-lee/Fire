@@ -174,20 +174,13 @@ public class MeetDaoImpl implements MeetDao {
 		sqlSession.insert("MeetMapper.addWishMeet", map);
 	}
 	
-	public Map getWishMeet(String meetId, String userId) {
+	public WishMeet getWishMeet(String meetId, String userId) {
 		Map map = new HashMap();
 		map.put("meetId", meetId);
 		map.put("userId", userId);
 		
-		WishMeet wishMeet = sqlSession.selectOne("MeetMapper.getWishMeet", map);
-		int wishCount = sqlSession.selectOne("MeetMapper.getWishMeetCount", userId);
 		
-		map = new HashMap();
-		
-		map.put("wishMeet", wishMeet);
-		map.put("wishCount", wishCount);
-				
-		return map;
+		return sqlSession.selectOne("MeetMapper.getWishMeet", map);
 	}
 	
 	public Map listWishMeet(String userId){

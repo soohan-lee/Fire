@@ -14,8 +14,6 @@
 @font-face {
 src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot');  src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff') format('woff'), url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
-
-
 .sidebar-image{
   width: 70px;
   height: 70px;
@@ -25,9 +23,6 @@ src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halfl
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
-
-
 .sidebar-li{
   cursor: pointer;
   user-select: none;
@@ -55,8 +50,6 @@ src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halfl
   font-color:#000000;
   font-size:15px;
 }
-
-
 #sideNickName{
     font-size : 25px;
     font-family: 'Nanum Pen Script', cursive;
@@ -101,24 +94,24 @@ margin-left : 5px;
 	<c:if test="${empty sessionScope.user}">비회원</c:if> <c:if test="${!empty sessionScope.user}">${user.nickName}</c:if>
 		</strong>
 	</li>
-  <li class="sidebar-li" role="presentation"><i class="fas fa-home"></i><p class="glyphicon glyphicon-triangle-bottom"> Home</p></li>
+  <li class="sidebar-li" role="presentation" id="home"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</li>
   <c:if test="${!empty meetMem && meetMem.joinCode eq '1'.charAt(0)}">
-  <li class="sidebar-li" role="presentation"><i class="fas fa-user"></i><p class="glyphicon glyphicon-triangle-bottom"> 모임 회원</p></li>
-  <li class="sidebar-li" role="presentation"><i class="fas fa-comments"></i><p class="glyphicon glyphicon-triangle-bottom">모임 커뮤니티</p></li>
-  <li class="sidebar-li" role="presentation"><i class="fas fa-heart"></i><p class="glyphicon glyphicon-triangle-bottom"> 오프라인 모임 목록 </p></li>
+  <li class="sidebar-li" role="presentation" id ="meetMem2"><i class="fas fa-user"></i>&nbsp;&nbsp;모임 회원</li>
+   <li class="sidebar-li" role="presentation" id ="community"><i class="fas fa-comments"></i>&nbsp;&nbsp;모임 커뮤니티</li>
+  <li class="sidebar-li" role="presentation" id="listOffMeet"><i class="fas fa-heart"></i>&nbsp;&nbsp;오프라인 모임 목록 </li>
   </c:if>
   <c:if test="${!empty meetMem && meetMem.meetRole eq '0'.charAt(0)}">
-  <li class="sidebar-li" role="presentation"><i class="fas fa-flag"></i><p class="glyphicon glyphicon-triangle-bottom">오프라인 모임 생성  </p></li>
-  <li class="sidebar-li" role="presentation"><i class="fas fa-users"></i><p class="glyphicon glyphicon-triangle-bottom">가입 신청 회원</p></li>
+  <li class="sidebar-li" role="presentation" id="addOffMeet"><i class="fas fa-flag"></i>&nbsp;&nbsp;오프라인 모임 생성</li>
+  <li class="sidebar-li" role="presentation" id="listJoinMeetUser"><i class="fas fa-users"></i>&nbsp;&nbsp;가입 신청 회원</li>
   
   </c:if>
   
   <c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}">
-  <li class="sidebar-li" role="presentation"><i class="fas fa-envelope"></i><p class="glyphicon glyphicon-triangle-bottom">쪽지 초대</p></li>
+  <li class="sidebar-li" role="presentation" id="inviteToMessage"><i class="fas fa-envelope"></i>&nbsp;&nbsp;쪽지 초대</li>
   </c:if>
   
   <c:if test="${empty meetMem}">
-	<li class="sidebar-li" role="presentation"><i class="fas fa-handshake"></i><p class="glyphicon glyphicon-triangle-bottom">모임가입</p></li>
+	<li class="sidebar-li" role="presentation" id="joinMeet"><i class="fas fa-handshake"></i>&nbsp;&nbsp;모임가입</li>
   </c:if> 
 </ul>
 
@@ -251,13 +244,10 @@ margin-left : 5px;
 
 
 <script type="text/javascript">
-
 $(function(){
-
 	var meetId = $("#meetId").val();
 	var joinMessage = $("#joinMessage").val();
 	var isModal = $('#isModal').val();
-
 	
 	if(joinMessage == '1'){
 		$('#modalBox').modal('show');
@@ -269,40 +259,30 @@ $(function(){
 	}else if(isModal == '2'){		
 		$('#modalBox2').modal('show');
 	}
-
-$("p:contains('Home')").on("click", function() {
+$("#home").on("click", function() {
     $(self.location).attr("href", "/meet/getMeet/${meetId}");
 });
-
-$("p:contains('모임 회원')").on("click", function() {
+$("#meetMem2").on("click", function() {
     $(self.location).attr("href", "/meet/listMeetMem/${meetId}");
 });
-
-$("p:contains('모임 커뮤니티')").on("click", function() {
+$("#community").on("click", function() {
     $(self.location).attr("href", "/community/getPostList?meetId=${meetId}");
 });
-
-$("p:contains('오프라인 모임 목록')").on("click", function() {
+$("#listOffMeet").on("click", function() {
     $(self.location).attr("href", "/offmeet/getOffList?meetId=${meetId}");
 });
-
-$("p:contains('가입 신청 회원')").on("click", function() {
+$("#listJoinMeetUser").on("click", function() {
     $(self.location).attr("href", "/meet/listJoinMeetUser/${meetId}");
 });
-
-
-$("p:contains('오프라인 모임 생성')").on("click", function() {
+$("#addOffMeet").on("click", function() {
     $(self.location).attr("href", "/offmeet/addOffView?meetId=${meetId}");
 });
-
-$("p:contains('쪽지 초대')").on("click", function(){			
+$("#inviteToMessage").on("click", function(){			
 	window.location.href = "/friend/listFriend/1?isModal=2&meetId="+meetId;
 });
-
-$("p:contains('모임가입')").on("click", function(){	
+$("#joinMeet").on("click", function(){	
 	window.location.href = "/meet/joinMeet?meetId="+meetId;	
 });
-
 $("a[id^='invMeet']").on("click", function(){
 	var userId = $(this).next().val();
 	var nickName = $(this).next().next().val();
@@ -313,30 +293,19 @@ $("a[id^='invMeet']").on("click", function(){
 	$('#modalBox3').modal('show');
 	
 });
-
-
 $('#myModal,#myModal2').on('show.bs.modal', function (event) { // myModal 윈도우가 오픈할때 아래의 옵션을 적용
   var button = $(event.relatedTarget) // 모달 윈도우를 오픈하는 버튼
   var titleTxt = button.data('title') // 버튼에서 data-title 값을 titleTxt 변수에 저장
   var modal = $(this)
   modal.find('.modal-title').text('Title : ' + titleTxt) // 모달위도우에서 .modal-title을 찾아 titleTxt 값을 치환
 });
-
 $("#inputIntro").on("click", function(){
 	var intro = $("#intro").val();
 	$("form").attr("method", "POST").attr("action", "/meet/joinMeet").submit();
 });
-
 $("#inputInvMessage").on("click", function(){
 	var invMessage = $("#invMessage").val();
 	$("form").attr("method", "POST").attr("action", "/message/invMeet").submit();
 });
-
-
 })
-
-
-
-
-
 </script>

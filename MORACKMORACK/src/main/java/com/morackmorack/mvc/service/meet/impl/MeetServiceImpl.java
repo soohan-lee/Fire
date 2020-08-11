@@ -124,7 +124,7 @@ public class MeetServiceImpl implements MeetService{
 		meetDao.addWishMeet(userId, meetId);
 	}
 	
-	public Map getWishMeet(String meetId, String userId) {
+	public WishMeet getWishMeet(String meetId, String userId) {
 		return meetDao.getWishMeet(meetId, userId);
 	}
 	
