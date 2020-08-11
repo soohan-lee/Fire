@@ -112,6 +112,7 @@ margin-left : 5px;
   
   <c:if test="${empty meetMem}">
 	<li class="sidebar-li" role="presentation" id="joinMeet"><i class="fas fa-handshake"></i>&nbsp;&nbsp;모임가입</li>
+	<li class="sidebar-li" role="presentation" id="addWishMeet"><i class="fas fa-shopping-basket"></i>&nbsp;&nbsp;찜하기</li>
   </c:if> 
 </ul>
 

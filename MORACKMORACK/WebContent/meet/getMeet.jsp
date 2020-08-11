@@ -110,17 +110,17 @@
   left: 40px;
 }
 
-#addWishMeet{
- border-top-left-radius: 8px;
- 	border-top-right-radius: 8px;
- 	border-bottom-left-radius: 8px;
- 	border-bottom-right-radius: 8px;
- 	margin-right-9px;
-  	border : 1px solid #D2691E;
- 	background-color:rgba(0,0,0,0);
- 	color: #D2691E;
-    margin-right: 200px;
-}
+/* #addWishMeet{ */
+/*  border-top-left-radius: 8px; */
+/*  	border-top-right-radius: 8px; */
+/*  	border-bottom-left-radius: 8px; */
+/*  	border-bottom-right-radius: 8px; */
+/*  	margin-right-9px; */
+/*   	border : 1px solid #D2691E; */
+/*  	background-color:rgba(0,0,0,0); */
+/*  	color: #D2691E; */
+/*     margin-right: 200px; */
+/* } */
 
 button {
   background: #ebc088;
@@ -373,10 +373,10 @@ function addWishMeet(meetId) {
 
 <br>
 <br>
-<div style="float:right;">
-<c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}">
-<button type="button" class="draw meet" id="addWishMeet" >찜하기</button>
-</c:if>
+<!-- <div style="float:right;"> -->
+<%-- <c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}"> --%>
+<!-- <button type="button" class="draw meet" id="addWishMeet" >찜하기</button> -->
+<%-- </c:if> --%>
 
 </div>
 </section>
