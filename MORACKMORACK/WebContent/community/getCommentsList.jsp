@@ -65,7 +65,7 @@ function fncGetCommentsList(){
 								+"<input type='hidden' class='commentNo' name='commentNo' value=" + JSONData.list[i].commentNo + ">"
 								
 								+"<br>"
-								
+								+"<img src='/resources/images/uploadFiles/user/"+JSONData.list[i].user.profileImg+"'  alt='프로필사진' style='height: 55px; width: 55px; float: left; margin-right: 10px; margin-bottom: 10px;'>"
 								+"<p style='font-size: 14px; color:DodgerBlue; font-weight: 600; float: left;'>" +JSONData.list[i].user.userId + "&nbsp;&nbsp;&nbsp;</p>"
 								+"<p style='font-size: 11px; color:gray; font-weight: 400;'>" + date.getFullYear()+".0"+parseInt(date.getMonth()+1)+"."+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"</span>"
 								+"<p id= 'none"+ JSONData.list[i].commentNo+"' style='font-size: 15px; padding: 14px 0px; font-weight: 400;'>"
@@ -148,22 +148,18 @@ $(document).on("click", ".updateComments button", function(){
 
 </head>
 <body>
+
+	<div class="border-bottom mt-2 mb-4 py-4"></div>
+	<div class="container">
 	<form name="addCommentsView" id="addCommentsView">
 		<input type="hidden" id="portNo" name="postNo" value="${community.postNo}"/>
-		<div class="form-row d-file">
-			<div class="border-bottom mt-2 mb-4 py-4">
-				<div class="form-row d-flex justify-content-center">
+			<div class="form-row d-file">
 					<textarea class="form-control col-9 col-md-10 mr-1"
 						id="coContent" name="coContent" rows="3" maxlength="500"></textarea>
 					<button class="col-2 col-md-1 btn btn-outline-info" id="addComments">등록</button>
-
-
 				</div>
-
-			</div>
-		</div>
 	</form>
-
+	</div>
 </body>
 
 </html>

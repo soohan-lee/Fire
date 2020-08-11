@@ -10,9 +10,69 @@
 	<jsp:include page="/common/listCdn.jsp"/>
 
 <style>
-  body {
-            padding-top : 50px;
-        }
+.image{
+  width: 50px;
+  height: 50px;
+  border-radius: 35%;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+	#header{
+	z-index : 1;
+	}	
+			
+ 	#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+
+
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+
+
 </style>
 
 <script type="text/javascript">
@@ -56,8 +116,17 @@
 		<jsp:include page ="/toolbar.jsp"/>
 	</header>
 	
+	<div id="head">
 	
-	<div class ="container">
+		<div class="inner">
+			<header>
+				<h1>모임 자유 게시판</h1>
+				<input type ="hidden" id="meetId" name="meetId" value="${param.meetId}">
+			</header>
+		</div>
+	</div>
+	
+<div class ="container" style="margin-top:30px;">
 		<input type="hidden" name=meetId value="${meet.meetId}"/>
 	<input type="hidden" name=meetMem value="${meetMem}"/>
 	<div class ="row">
@@ -108,10 +177,10 @@
 		<c:forEach var="community" items="${list}">
 			<c:set var="i" value="${i+1}"/>
 			<tr>
-			<td align="left">${i}</td>
-			<td align="left">${community.title}</td><input type ="hidden" name="postNo" id="postNo" value="${community.postNo}"/>
-			<td align="left">${community.user.userId}</td>
-			<td align="left">${community.regDate}</td>
+			<td align="left" style="font-size:22px">${i}</td>
+			<td align="left" style="font-size:22px">${community.title}</td><input type ="hidden" name="postNo" id="postNo" value="${community.postNo}"/>
+			<td align="left"style="font-size:15px"><img class="image" src="/resources/images/uploadFiles/user/${community.user.profileImg}"><br/>(${community.user.nickName})</td>
+			<td align="left" style="font-size:22px">${community.regDate}</td>
 			</tr>
 		</c:forEach>
 		</tbody>

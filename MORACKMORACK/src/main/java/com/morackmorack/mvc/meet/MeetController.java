@@ -439,11 +439,11 @@ public class MeetController {
 		if(listMeetMem != null) {
 			for(int i=0; i<listMeetMem.size(); i++) {
 				if(!listMeetMem.get(i).getUser().getUserId().equals(userId)) {
-				if(friendService.isFriend(userId, listMeetMem.get(i).getUser().getUserId())){
-				listMeetMem.get(i).setFriendFlag(true);
-				}else {
-					listMeetMem.get(i).setFriendFlag(false);
-						}
+//				if(friendService.isFriend(userId, listMeetMem.get(i).getUser().getUserId())){
+//				listMeetMem.get(i).setFriendFlag(true);
+//				}else {
+//					listMeetMem.get(i).setFriendFlag(false);
+//						}
 					}
 				}
 			}

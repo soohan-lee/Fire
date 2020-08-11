@@ -110,12 +110,13 @@ public class CommunityController {
 		
 		System.out.println("search"+search);
 		
-		System.out.println(map.get("list")+"1234");
+		Meet meet = meetService.getMeet(meetId);
+		
 		
 		Page resultPage = new Page (search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
 		
 		mav.addObject("list", map.get("list"));
-		mav.addObject("meetMem", meetMem);
+		mav.addObject("meet", meet);
 		mav.addObject("resultPage", resultPage);
 		mav.addObject("search", search);
 		mav.addObject("totalCount", map.get("totalCount"));

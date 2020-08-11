@@ -85,7 +85,13 @@ import com.morackmorack.mvc.service.domain.User;
 		@Override
 		public List<Comments> getCommentsList(int postNo) throws Exception {
 			// TODO Auto-generated method stub
-			return sqlSession.selectList("CommunityMapper.getCommentsList", postNo);
+			List<Comments> list = sqlSession.selectList("CommunityMapper.getCommentsList", postNo);
+			
+			for(int i = 0 ; i<list.size() ; i++) {
+				list.get(i).setUser((User)sqlSession.selectOne("UserMapper.getUser", list.get(i).getUser().getUserId()));
+			}
+			
+			return list;
 		}
 		@Override
 		public void updateComments(Comments comments) throws Exception {
