@@ -12,10 +12,13 @@
 <title>모임 상세 조회</title>
 
 <jsp:include page="/common/listCdn.jsp" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
 @font-face { font-family: 'yg-jalnan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'MapoGoldenPier'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
 
 .form__field {
   width: 300px;
@@ -26,14 +29,10 @@
   border: 0;
   outline: 0;
   padding: 22px 18px;
-
 }
-
 *, *:after, *:before {
   box-sizing: border-box;
 }
-
-
 /*=====================*/
 .checkbox {
   position: relative;
@@ -92,7 +91,6 @@
 .checkbox input:checked + label:after {
   left: 40px;
 }
-
 .model-4 .checkbox label {
   background: #bbb;
   height: 25px;
@@ -112,9 +110,8 @@
   left: 40px;
 }
 
-
-#inviteToMessage{
-	 border-top-left-radius: 8px;
+#addWishMeet{
+ border-top-left-radius: 8px;
  	border-top-right-radius: 8px;
  	border-bottom-left-radius: 8px;
  	border-bottom-right-radius: 8px;
@@ -122,23 +119,8 @@
   	border : 1px solid #D2691E;
  	background-color:rgba(0,0,0,0);
  	color: #D2691E;
- 	margin-right: 400px;
+    margin-right: 200px;
 }
-
-
-#joinMeet{
-	 border-top-left-radius: 8px;
- 	border-top-right-radius: 8px;
- 	border-bottom-left-radius: 8px;
- 	border-bottom-right-radius: 8px;
- 	margin-right-9px;
-  	border : 1px solid #D2691E;
- 	background-color:rgba(0,0,0,0);
- 	color: #D2691E;
- 	padding: 10px 25px;
-    margin-right: 400px;
-}
-
 
 button {
   background: #ebc088;
@@ -159,7 +141,6 @@ button::before, button::after {
   width: 800%;
   height: 100%;
 }
-
 .draw {
   -webkit-transition: color 0.25s;
   transition: color 0.25s;
@@ -196,7 +177,6 @@ button::before, button::after {
   -webkit-transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
   transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }
-
 .meet:hover {
   color: #fbca67;
 }
@@ -214,7 +194,6 @@ button::before, button::after {
   -webkit-transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
   transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
 }
-
 .buttons {
   isolation: isolate;
 }
@@ -242,170 +221,24 @@ button::before, button::after {
      color:#777;
 }
 
-#mainCart{
-	width: 340px;
-	height: 62px;
-	margin: auto;
-	background: #ececec;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	display: block;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-		0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-a.add-to-cart {
-	width: 216px;
-	height: 48px;
-	background: #ffab00;
-	font-size: 18px;
-	line-height: 48px;
-	letter-spacing: 2px;
-	color: rgb(255, 255, 255);
-	text-transform: uppercase;
-	-moz-border-radius: 24px;
-	-webkit-border-radius: 24px;
-	border-radius: 24px;
-	text-decoration: none;
-	text-align: center;
-	left: 24px;
-	position: absolute;
-	top: 48px;
-	display: block;
-	box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16),
-		0 3px 6px rgba(255, 171, 0, 0.23);
-	-moz-box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16),
-		0 3px 6px rgba(255, 171, 0, 0.23);
-	-webkit-box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16),
-		0 3px 6px rgba(255, 171, 0, 0.23);
-}
-
-a.add-to-cart.size {
-	width: 28px;
-	left: 88px;
-	font-size: 0;
-	color: #e7bb45;
-	letter-spacing: 0;
-	-webkit-transition: 0.2s linear;
-	-moz-transition: 0.2s linear;
-	-ms-transition: 0.2s linear;
-	-o-transition: 0.2s linear;
-	transition: 0.2s linear;
-}
-
-a.add-to-cart.hover {
-	-webkit-transition: 0.2s linear;
-	-moz-transition: 0.2s linear;
-	-ms-transition: 0.2s linear;
-	-o-transition: 0.2s linear;
-	transition: 0.2s linear;
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	transform: rotate(180deg);
-	-webkit-transform-origin: 108px 24px;
-	-moz-transform-origin: 108px 24px;
-	-o-transform-origin: 108px 24px;
-	-ms-transform-origin: 108px 24px;
-	transform-origin: 108px 24px;
-}
-
-a.cart {
-	width: 72px;
-	height: 72px;
-	-moz-border-radius: 36px;
-	-webkit-border-radius: 36px;
-	border-radius: 36px;
-	font-size: 18px;
-	text-align: center;
-	color: #616161;
-	text-decoration: none;
-	position: absolute;
-	right: 24px;
-	top: 36px;
-	display: block;
-	background: #535558
-		url(http://images.vfl.ru/ii/1484930184/14435803/15757225.png) center no-repeat;
-	background-size: 36px;
-	box-shadow: 0 3px 6px rgba(97, 97, 97 0.16), 0 3px 6px rgba(97, 97, 97 0.23);
-	-moz-box-shadow: 0 3px 6px rgba(97, 97, 97 0.16),
-		0 3px 6px rgba(97, 97, 97 0.23);
-	-webkit-box-shadow: 0 3px 6px rgba(97, 97, 97 0.16),
-		0 3px 6px rgba(97, 97, 97 0.23);
-}
-a.cart > span {
-	width: 24px;
-	height: 24px;
-	font-size: 16px;
-	color: #fff;
-	line-height: 24px;
-	position: absolute;
-	-moz-border-radius: 12px;
-	-webkit-border-radius: 12px;
-	border-radius: 12px;
-	display: block;
-	transform: scale(0);
-	-o-transform: scale(0);
-	-ms-transform: scale(0);
-	-moz-transform: scale(0);
-	-webkit-transform: scale(0);
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto;
-	background: #ffab00;
-	box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16),
-		0 3px 6px rgba(255, 171, 0, 0.23);
-	-moz-box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16),
-		0 3px 6px rgba(255, 171, 0, 0.23);
-	-webkit-box-shadow: 0 3px 6px rgba(255, 171, 0, 0.16),
-		0 3px 6px rgba(255, 171, 0, 0.23);
-}
-a.cart > span.counter {
-	left: 48px;
-	bottom: 48px;
-	-webkit-transition: 0.2s linear;
-	-moz-transition: 0.2s linear;
-	-ms-transition: 0.2s linear;
-	-o-transition: 0.2s linear;
-	transition: 0.2s linear;
-	transform: scale(1);
-	-o-transform: scale(1);
-	-ms-transform: scale(1);
-	-moz-transform: scale(1);
-	-webkit-transform: scale(1);
-}
-
 #mainMeetName{
 font-family: 'yg-jalnan';
 text-size : 50px;
 }
-
 #mainHashtag{
 font-family: 'MapoGoldenPier'
 }
 
+
+ 
 </style>
 
 
 <script type ="text/javascript">
-
 $(function(){
-
 	var meetId = $("#meetId").val();
 	var joinMessage = $("#joinMessage").val();
 	var isModal = $('#isModal').val();
-
 	
 	if(joinMessage == '1'){
 		$('#modalBox').modal('show');
@@ -418,19 +251,7 @@ $(function(){
 		$('#modalBox2').modal('show');
 	}
 	
-	$("#joinMeet").on("click", function(){	
-		window.location.href = "/meet/joinMeet?meetId="+meetId;	
-	});
-	
-	$("#inviteToMessage").on("click", function(){			
-		window.location.href = "/friend/listFriend/1?isModal=2&meetId="+meetId;
-	});
-	
-	
-	$("#inviteToKakao").on("click", function(){
-		window.location.href = "#";
-	});
-	
+
 	
 	$("#addOffMeet").on("click", function(){
 		window.location.href = "/offmeet/addOffView?meetId="+meetId;
@@ -464,9 +285,64 @@ $(function(){
 		var invMessage = $("#invMessage").val();
 		$("form").attr("method", "POST").attr("action", "/message/invMeet").submit();
 	});
-
-
 })
+
+
+$(function() {
+		$("#addWishMeet").bind("click", function(event) {
+			event.preventDefault();
+			swal({ 
+				title: "찜리스트에 저장하시겠습니까?",
+			     text: "",
+			     icon: "info",
+			     buttons: ["취소", "확인"]
+				}).then((YES) => {
+				if(YES) {
+				addWishMeet('${meet.meetId}');
+			}else{
+				return;
+			}
+		  });
+		})
+	});
+	
+function addWishMeet(meetId) {
+	var meetId = '${meet.meetId}';
+	$.ajax({
+		url : "../../meet/json/addWishMeet/" + meetId + "",
+		method : "GET",
+		dataType : "json",
+		headers : {
+			"Accept" : "application/json",
+			"Content-Type" : "application/json"
+		},
+		success : function(returnData) {
+			var message = returnData.message;
+			if (message == "ok") {
+				swal({
+					  icon : 'info',
+					  title : "찜리스트에 등록되었습니다.",
+					  text:" ",
+					  closeOnClickOutside : false,
+					  button: "확인"
+				})
+				return;
+			} else {
+ 				swal({
+ 					  icon : 'info',
+ 					  title : "찜리스트에 이미 등록된 모임입니다.",
+ 					  text:" ",
+ 					  closeOnClickOutside : false,
+ 					  button: "확인"
+ 				})
+ 				return;
+			}
+		}
+	});
+
+}
+
+
 </script>
 
 </head>
@@ -497,15 +373,12 @@ $(function(){
 
 <br>
 <br>
-<!-- <div style="float:right;"> -->
-<%-- <c:if test="${empty meetMem}"> --%>
-<!-- <button type="button" class="draw meet" id="joinMeet">모임가입</button> -->
-<%-- </c:if> --%>
-<%-- <c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}"> --%>
-<!-- <button type="button" class="draw meet" id="inviteToMessage" >쪽지 초대</button> -->
-<%-- </c:if> --%>
+<div style="float:right;">
+<c:if test="${!empty meetMem and meetMem.joinCode eq '1'.charAt(0)}">
+<button type="button" class="draw meet" id="addWishMeet" >찜하기</button>
+</c:if>
 
-<!-- </div> -->
+</div>
 </section>
 
 <section style="float: left; margin-bottom:10px;">
