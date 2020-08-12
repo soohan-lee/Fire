@@ -29,7 +29,7 @@ public interface CommunityService {
 	
 	public Map<String, Object> getCommentsList(int postNo) throws Exception ;
 	
-	public void deleteComments(int commentNo) throws Exception ;
+	public void deleteComments(Comments comments) throws Exception ;
 
 }
 

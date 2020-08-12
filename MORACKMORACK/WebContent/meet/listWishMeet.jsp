@@ -18,13 +18,13 @@ $(function(){
 	$("a[id^=delWishMeet]").on("click", function(){
 		var meetId = $(this).next().val();
 		
-		self.location("/meet/delWishMeet/"+meetId+"/wish");
+		window.location.href ="/meet/delWishMeet/"+meetId+"/wish";
 	})
 	
 	$("p[id^=meetName]").on("click", function(){
 		var meetId = $(this).next().val();
 		
-		self.location("/meet/getMeet/"+meetId);
+		window.location.href ="/meet/getMeet/"+meetId;
 	})
 	
 })

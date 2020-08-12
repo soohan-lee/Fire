@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -20,20 +20,15 @@
   color: #9c9c9c;
   font: 1rem "PT Sans", sans-serif;
 }
-
-
 a {
   color: inherit;
 }
 a:hover {
   color: #7f8ff4;
 }
-
-
 .uppercase {
   text-transform: uppercase;
 }
-
 .btn {
   display: inline-block;
   background: transparent;
@@ -64,7 +59,6 @@ a:hover {
 .btn--inside {
   margin-left: -66px;
 }
-
 .form__field {
   width: 360px;
   background: #fff;
@@ -75,13 +69,11 @@ a:hover {
   outline: 0;
   padding: 22px 18px;
 }
-
 @charset "UTF-8";
 fieldset {
   border: none;
   padding: 40px;
 }
-
 .input-field {
   position: relative;
   padding: 30px 10px 0;
@@ -134,7 +126,6 @@ fieldset {
 .input-field textarea {
   height: 80px;
 }
-
 .list-group {
   list-style: none;
   margin: 0 0 50px;
@@ -145,7 +136,6 @@ fieldset {
   display: inline-block;
   margin-right: 100px;
 }
-
 .input + label {
   position: relative;
   font-size: 15px;
@@ -228,7 +218,6 @@ fieldset {
   -webkit-transform: scale(1);
           transform: scale(1);
 }
-
 #box {
   width: 100px;
   height: 100px;
@@ -236,24 +225,19 @@ fieldset {
   background: #ff0;
   opacity: 0;
 }
-
 .category-li{
 padding: 30px 30px 30px 30px;
 }
-
-
 .wrapper {
     max-width: 1000px;
     margin: 0 auto
 }
-
 .wrapper:before,
 .wrapper:after {
     content: '';
     display: table;
     clear: both
 }
-
 .pic {
     position: relative;
     overflow: hidden;
@@ -270,9 +254,7 @@ padding: 30px 30px 30px 30px;
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
 	
-
 }
-
 .pic-3d {
     -webkit-perspective: 500;
     -moz-perspective: 500;
@@ -285,7 +267,6 @@ padding: 30px 30px 30px 30px;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d
 }
-
 .pic-caption {
     cursor: default;
     position: absolute;
@@ -300,7 +281,6 @@ padding: 30px 30px 30px 30px;
     -khtml-opacity: 0;
     opacity: 0
 }
-
 .pic-image {
     -webkit-transform: scale(1.02);
     -moz-transform: scale(1.02);
@@ -308,7 +288,6 @@ padding: 30px 30px 30px 30px;
     -ms-transform: scale(1.02);
     transform: scale(1.02)
 }
-
 .pic:hover .pic-image {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -316,11 +295,9 @@ padding: 30px 30px 30px 30px;
     -ms-transform: scale(1);
     transform: scale(1)
 }
-
 .pic-title {
     font-size: 1.8em
 }
-
 a,
 a:hover,
 .pic .pic-image,
@@ -333,7 +310,6 @@ a:hover,
     -ms-transition: all 0.5s ease;
     transition: all 0.5s ease
 }
-
 .pic:hover .bottom-to-top,
 .pic:hover .top-to-bottom,
 .pic:hover .left-to-right,
@@ -367,7 +343,6 @@ a:hover,
     -ms-tap-highlight-color: transparent;
     tap-highlight-color: transparent
 }
-
 .open-down {
     -webkit-transform: rotateX(-180deg);
     -moz-transform: rotateX(-180deg);
@@ -377,7 +352,6 @@ a:hover,
     top: 0;
     left: 0
 }
-
 .pic:hover .open-down {
     -webkit-transform: rotateX(0);
     -moz-transform: rotateX(0);
@@ -385,29 +359,24 @@ a:hover,
     -ms-transform: rotateX(0);
     transform: rotateX(0)
 }
-
 #meetDetail{
 font-family: 'InfinitySans-BoldA1';
 }
-
 #meetDetail h4{
 font-family: 'MapoGoldenPier'; 
 }
-
 br{
     font-family:initial;
 }
-
 </style>
 
 
 <script type ="text/javascript">
-
 $(function (){
 	
 	$("#meetDetail, #meetName").on("click", function(){
 		var meetId = $(this).next().val();
-		self.location="/meet/getMeet/"+meetId;
+		window.location.href ="/meet/getMeet/"+meetId;
 	})
 	
 	$("#searchMeet").on("click", function(){
@@ -442,9 +411,7 @@ function myButton() {
   aaa.style.backgroundColor = "red"; 
   aaa.style.opacity = "1.0";
 }
-
 })
-
 </script>
 
 </head>
@@ -542,5 +509,3 @@ function myButton() {
 </form>
 </body>
 </html>
-
-

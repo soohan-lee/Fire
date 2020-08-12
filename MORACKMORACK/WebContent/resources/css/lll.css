@@ -1,0 +1,262 @@
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+textarea,
+p,
+th,
+td,
+input,
+select,
+button {
+    margin: 0;
+    padding: 0
+}
+
+fieldset
+{
+    border: 0 none
+}
+
+dl,
+ul,
+ol,
+menu,
+li {
+    list-style: none
+}
+
+
+input,
+select,
+textarea,
+button {
+    vertical-align: middle;
+    font-size: 100%
+}
+
+button {
+    border: 0 none;
+    background-color: transparent;
+    cursor: pointer
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+
+
+
+input[type='text'],
+input[type='submit'] {
+    -webkit-appearance: none;
+    border-radius: 0
+}
+
+
+
+
+
+th,
+td,
+input,
+select,
+textarea,
+button {
+    font-size: 14px;
+    letter-spacing: -0.25px;
+    line-height: 1.5;
+    font-family: notosans, 'Apple SD Gothic Neo', 'Malgun Gothic', '癲ル슪�삕�뜝�럡�꽠鶯ㅼ렕猿딆맶�뜝�럥�쑋濚밸㉡�맀占쎌맶�뜝�룞�삕�뜝�럡�돦�뜝�럥�맶�뜝�럥�쐾�뜝�럥占쏙옙 癲ル슪�삕�뜝�떬�씮�굲占쎈쐻占쎈윪繹먮끝異��뜝�룞�삕�몭�궪�삕占쎄뎡占쎈쐻占쎈윥占쎈룯�뜝�럥�맶�뜝�럥吏쀥뜝�럩援�', '癲ル슪�삕�뜝�럡�꽣�뜝�럡�뀣�뜝�럥�맶�뜝�럥�쑅占쎈쐻占쎈쑆獄�占쏙옙�쐻占쎈쑕占쎌맶�뜝�럥�쑅�뜝�럥�늹�썒占쏙옙援�占쎌굲', dotum, sans-serif;
+    color: #333;
+    word-break: keep-all
+}
+
+
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+var {
+    font-style: normal;
+    font-weight: normal
+}
+
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none
+}
+
+select::-ms-expand {
+    display: none
+}
+
+
+
+.thumb_img {
+    display: block;
+    height: auto;
+    vertical-align: top
+}
+
+
+
+.content-board {
+    width: 840px;
+    margin: 90px auto 160px
+    
+}
+
+
+.content-board .warp_board {
+    margin-top: 30px;
+    border-top: 2px solid #333
+}
+
+
+
+.content-board .list_news li {
+    padding: 22px 0 22px;
+    border-bottom: 1px solid #e6e6e6
+}
+
+.content-board .list_news li::after {
+    display: block;
+    clear: both;
+    content: ''
+}
+
+.content-board .list_news .link_news {
+    display: block
+}
+
+.content-board .list_news .link_news.before_thumb {
+    margin-right: 235px
+}
+
+.content-board .list_news .tit_news {
+    display: block;
+    overflow: hidden;
+    margin-top: 3px;
+    font-size: 18px;
+    font-weight: normal;
+    white-space: nowrap;
+    word-break: break-all;
+    text-overflow: ellipsis
+}
+
+.content-board .list_news .link_news:not(.tablet_hover):hover .tit_news {
+    text-decoration: underline
+}
+
+.content-board .list_news .link_thumb {
+    float: right;
+    position: relative;
+    margin: -24px 0 0 35px
+}
+
+.content-board .list_news .thumb_img {
+    width: 120px;
+    /*height: 126px;*/
+    vertical-align: top
+}
+
+.content-board .list_news .link_thumb::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    content: ''
+}
+
+.content-board .list_news .txt_news {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 50px;
+    margin: 8px 0 20px;
+    font-size: 15px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.67;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-all
+}
+
+.content-board .list_news .txt_news>img {
+    display: none
+}
+
+.content-board .list_news .txt_date {
+    font-size: 13px;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: 0
+}
+
+.content-board .tit_board {
+    padding-bottom: 22px;
+    border-bottom: 2px solid #333
+}
+
+.content-board .tit_board h4 {
+    font-weight: value;
+    font-size: 20px;
+    line-height: 1.20
+}
+
+.content-board .tit_board span {
+    display: block;
+    margin-top: 4px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 2.5;
+    color: #666
+}
+
+.content-board .tit_board imag{
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.content-board .txt_board {
+    margin-top: 31px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.88;
+    color: #666;
+    word-break: normal
+}
+
+.content-board .txt_board a {
+    font-weight: 400;
+    color: #000
+}

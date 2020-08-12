@@ -95,11 +95,11 @@
 			 ) countTable						
 	 </select>
 	 
-	 <insert id="addComments"		parameterType="comments" >
+	  <insert id="addComments"		parameterType="comments" >
 		INSERT
-		INTO comments( comments_no , post_no , user_id , COMMENT_CONTENT , reg_date ) 
+		INTO comments( comment_no , post_no , user_id , COMMENT_CONTENT , reg_date , parent_comment_no) 
 		VALUES	 ( seq_comments_no.NEXTVAL , #{postNo:INTEGER} , #{user.userId:VARCHAR} , 
-							 #{coContent:VARCHAR}, SYSDATE)
+							 #{coContent:VARCHAR}, SYSDATE, #{parentCommentNo:NUMERIC})
 	</insert>
 	
 	<select id="getComments" parameterType="int" resultMap="commentsSelectMap">
@@ -108,25 +108,44 @@
 		WHERE comment_no = #{value}
 	</select>
 	
-	<select id ="getCommentsList" parameterType="map" resultMap="commentsSelectMap">
+	<select id ="getCommentsList" parameterType="int" resultMap="commentsSelectMap">
 		SELECT *
 		FROM (
 				SELECT inner_table.*
 				FROM (
-					SELECT comments_no, post_no, comment_content, reg_date, parent_comment_no
+					SELECT c.comment_no, c.user_id , p.post_no, c.comment_content, c.reg_date
 					FROM comments c, communities p
 					WHERE c.post_no = p.post_no
-						AND c.post_no = #{postNo}
-					ORDER BY reg_date DESC) inner_table) 
+						AND c.post_no = #{value}
+					ORDER BY c.reg_date DESC) inner_table) 
 	</select>
 	
 	<select id ="updateComments" parameterType="comments">
 		UPDATE comments
 		<set>
-			comment_content=#{commentContent}
+			comment_content=#{coContent}
 		</set>
 		WHERE comment_no = #{commentNo}
 	</select>
 	
-<!-- 	<delete id="deleteComments" parameterType="int"> -->
+	<delete id="deleteComments" parameterType="int"> 
+		DELETE
+		FROM comments
+		WHERE comment_no = {value}
+	</delete>
+	
+	<select id ="getCommentsTotalCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM(
+				SELECT *
+				FROM (
+					SELECT inner_table.*
+					FROM (
+						SELECT c.comment_no, p.post_no, c.comment_content, c.reg_date, c.parent_comment_no
+						FROM comments c, communities p
+						WHERE c.post_no = p.post_no
+							AND c.post_no = #{postNo}
+						ORDER BY c.reg_date DESC) inner_table) 
+		) countTable
+	</select>
 </mapper>

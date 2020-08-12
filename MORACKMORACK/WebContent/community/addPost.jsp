@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,63 @@
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <title>글쓰기</title>
+<style>
+	#header{
+	z-index : 1;
+	}	
+			
+ 	#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
 
+
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+
+
+</style>
 <script type="text/javascript">
 function fncAddPost(){
 $("form").attr("method","POST").attr("action","/community/addPost").attr("enctype","multipart/form-data").submit();
@@ -77,16 +135,33 @@ function sendFile(file,editor){
 		processData:false,
 		success :function(data){ //처리가 성공할 경우
 			//에디터 이미지 출력
-			$(editor).summernote('insertImage',data.url);
+			console.log("img"+$("<img>"));
+        	
+        	console.log("img1"+$("<img>"));
+       		$(editor).summernote('insertImage', data.url);
+       		
+       		$("img").css("width","100%");
+       		console.log("img2"+$("img"));
 		}
 	});
 }
 
 </script>
+
 </head>
 <body>
 
-<div class="container">
+<div id="head">
+	
+		<div class="inner">
+			<header>
+				<h1>모임 자유 게시판</h1>
+				<input type ="hidden" id="meetId" name="meetId" value="${param.meetId}">
+			</header>
+		</div>
+	</div>
+
+<div class="container" style="margin-top:30px;">
 		
 		<form class="form-horizontal">
 		

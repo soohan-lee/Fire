@@ -21,6 +21,7 @@ import com.morackmorack.mvc.common.Search;
 import com.morackmorack.mvc.service.community.CommunityService;
 import com.morackmorack.mvc.service.domain.Community;
 import com.morackmorack.mvc.service.domain.Meet;
+import com.morackmorack.mvc.service.domain.MeetMem;
 import com.morackmorack.mvc.service.domain.User;
 import com.morackmorack.mvc.service.meet.MeetService;
 import com.morackmorack.mvc.service.user.UserService;
@@ -94,7 +95,7 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="getPostList")
-	public ModelAndView getPostList(@RequestParam("meetId") String meetId, @ModelAttribute("search") Search search) throws Exception {
+	public ModelAndView getPostList(@RequestParam("meetId") String meetId, @ModelAttribute ("meetMem") MeetMem meetMem, @ModelAttribute("search") Search search) throws Exception {
 		
 		if (search.getCurrentPage()==0) {
 			search.setCurrentPage(1);
@@ -107,13 +108,15 @@ public class CommunityController {
 		
 		Map<String,Object> map = communityService.getPostList(search, meetId);
 		
-
+		System.out.println("search"+search);
 		
-		System.out.println(map.get("list")+"1234");
+		Meet meet = meetService.getMeet(meetId);
+		
 		
 		Page resultPage = new Page (search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(),pageUnit,pageSize);
 		
 		mav.addObject("list", map.get("list"));
+		mav.addObject("meet", meet);
 		mav.addObject("resultPage", resultPage);
 		mav.addObject("search", search);
 		mav.addObject("totalCount", map.get("totalCount"));

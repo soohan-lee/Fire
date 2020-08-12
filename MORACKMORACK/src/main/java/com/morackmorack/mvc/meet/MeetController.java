@@ -262,15 +262,12 @@ public class MeetController {
 		if(user != null) {
 			String userId = user.getUserId();
 			MeetMem meetMem = meetService.getMeetMem(meetId, userId);
-			Map map = meetService.getWishMeet(meetId, userId);
+		
 			
 			if(meetMem != null) {
 				mav.addObject("meetMem", meetMem);
 			}					
-			if(map.get("wishMeet") != null) {
-				mav.addObject("wishMeet", map.get("wishMeet"));
-			}
-			mav.addObject("wishCount", map.get("wishCount"));
+			
 		}
 			
 		Meet meet = meetService.getMeet(meetId);
@@ -386,7 +383,6 @@ public class MeetController {
 		if(user != null) {
 			String userId = user.getUserId();
 			MeetMem meetMem = meetService.getMeetMem(meetId, userId);
-			Map map = meetService.getWishMeet(meetId, userId);
 			
 			if(meetMem != null) {
 				mav.addObject("meetMem", meetMem);
@@ -443,11 +439,11 @@ public class MeetController {
 		if(listMeetMem != null) {
 			for(int i=0; i<listMeetMem.size(); i++) {
 				if(!listMeetMem.get(i).getUser().getUserId().equals(userId)) {
-				if(friendService.isFriend(userId, listMeetMem.get(i).getUser().getUserId())){
-				listMeetMem.get(i).setFriendFlag(true);
-				}else {
-					listMeetMem.get(i).setFriendFlag(false);
-						}
+//				if(friendService.isFriend(userId, listMeetMem.get(i).getUser().getUserId())){
+//				listMeetMem.get(i).setFriendFlag(true);
+//				}else {
+//					listMeetMem.get(i).setFriendFlag(false);
+//						}
 					}
 				}
 			}

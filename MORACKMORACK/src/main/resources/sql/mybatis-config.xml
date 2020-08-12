@@ -21,6 +21,7 @@
 		<typeAlias alias="friend" type="com.morackmorack.mvc.service.domain.Friend"/>
 		<typeAlias alias="notify" type="com.morackmorack.mvc.service.domain.Notify"/>
 		<typeAlias alias="community" type="com.morackmorack.mvc.service.domain.Community"/>
+		<typeAlias alias="comments" type="com.morackmorack.mvc.service.domain.Comments"/>
 		<typeAlias alias="files" type="com.morackmorack.mvc.service.domain.Files"/>
 		<typeAlias alias="offMeet" type="com.morackmorack.mvc.service.domain.OffMeet"/>
 		<typeAlias alias="meetMemOffMeet" type="com.morackmorack.mvc.service.domain.MeetMemOffMeet"/>

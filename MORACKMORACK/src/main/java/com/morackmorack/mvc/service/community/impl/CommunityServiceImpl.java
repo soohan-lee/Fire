@@ -126,9 +126,9 @@ import com.morackmorack.mvc.service.domain.Community;
 
 
 		@Override
-		public void deleteComments(int commentNo) throws Exception {
+		public void deleteComments(Comments comments) throws Exception {
 			// TODO Auto-generated method stub
-			communityDao.deleteComments(commentNo);
+			communityDao.deleteComments(comments);
 		}
 
 

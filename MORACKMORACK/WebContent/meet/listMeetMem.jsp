@@ -12,8 +12,30 @@
 
 <jsp:include page="/common/listCdn.jsp" />
 <jsp:useBean id="today" class="java.util.Date"/>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
 
 <style>
+	    #user2{
+	    font-family: 'Nanum Pen Script', cursive;
+	    font-size: 20pt;
+	    
+	   }
+		#user{
+		  font-family: 'Nanum Pen Script', cursive;
+		  font-size: 20pt;
+		}
+
+    	 div.h3  {
+            display: inline-block;
+        }
+        
+        
+        table  {
+            font-size: 10pt;
+        }
+        
+        
 button {
     width:100px;
     background-color: #FFA69E;
@@ -38,16 +60,78 @@ A:link {text-decoration:none; color:#646464;}
 A:visited {text-decoration:none; color:#646464;}
 A:active {text-decoration:none; color:#646464;}
 A:hover {text-decoration:none; color:#646464;}
+
+.image{
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+	
+	
+
 </style>
 
 <script type ="text/javascript">
 $(function(){
 
 	$("button[id^='sendMessage']").on("click", function(){	
-		var userId = $(this).next().val();
+		var userId = "${sendMessage}";
 		var meetId = $(this).next().next().val();
 		
-		self.location="/message/sendMessage?userId="+userId+"&meetId="+meetId;
+		window.location.href ="/message/sendMessage?userId="+userId+"&meetId="+meetId;
 	});
 	
 	$("button[id^='reqFriend']").on("click", function(){
@@ -57,27 +141,15 @@ $(function(){
 		var userId = $(this).next().val();
 		var meetId = $(this).next().next().val();
 
-		self.location = "/friend/reqFriend?userId="+userId+"&"+"meetId="+meetId;
+		window.location.href = "/friend/reqFriend?userId="+userId+"&"+"meetId="+meetId;
 	});
 	
 	$("button[id^='notifyUserView']").on("click", function(){
 		var userId = $(this).next().val();
 		var meetId = $(this).next().next().val();
-		self.location = "/notify/notifyUserView?userId="+userId;
+		window.location.href = "/notify/notifyUserView?userId="+userId;
 	});
 	
-	$("button[id^='provideStaff']").on("click", function(){		
-		var userId = $(this).next().val();
-		var meetId  = $(this).next().next().val();
-		self.location = "/meet/providePstn/1/"+userId+"/"+meetId;
-				
-	});
-	
-	$("button[id^='provideLeader']").on("click", function(){
-		var userId = $(this).next().val();
-		var meetId  = $(this).next().next().val();
-		self.location = "/meet/providePstn/0/"+userId+"/"+meetId;
-	});
 	
 });
 
@@ -86,7 +158,6 @@ $(function(){
 
 </head>
 <body>
-<form>
 
 <input type="hidden" id="joinMessage" value="${joinMessage}"/>
 <input type="hidden" id="meetId" name="meetId" value="${meet.meetId}"/>
@@ -96,81 +167,68 @@ $(function(){
 <jsp:include page="/toolbar.jsp" />
 </header>
 
-<section style="float: left; margin-top:100px;">
-<jsp:include page="/meet/sidebar.jsp" />
-</section>
 
-<section style="float: left; margin-left:100px">
-<div style="text-align: center;">
-<section id="container" style="text-align: center;">
-    <div id="title">
-        <h2>모임 회원 목록</h2>
-    </div>
-    <table class="table table-hover">
-        <tr>
-        	<td></td>
-        	<td>이미지</td>
-            <td>닉네임</td>
-            <td>모임 가입 날짜</td>
-            <td>성별</td>
-            <td>나이</td>
-<!--             <td>회원 관심 카테고리</td> -->
-             <c:if test="${meetMem.meetRole eq '0'.charAt(0)}">
-            <td>블랙리스트 이력</td>
-            </c:if>
-            <td></td>
-        </tr>
-        
-        <c:forEach var="listMeetMem" items="${listMeetMem}" varStatus="status"> 
-            <tr>
-            	<td>
-            	<c:if test="${listMeetMem.meetRole eq '0'.charAt(0)}">모임장</c:if>
-            	<c:if test="${listMeetMem.meetRole eq '1'.charAt(0)}">참모진</c:if>
-            	<c:if test="${listMeetMem.meetRole eq '2'.charAt(0)}">모임원</c:if>
-            	</td>
-                <td>${listMeetMem.user.profileImg}</td>
-                <td>${listMeetMem.user.nickName}(${listMeetMem.user.userId})</td>
-                <td><fmt:formatDate value="${listMeetMem.joinDate}" pattern="yyyy.MM.dd" /></td>
-                <td>${listMeetMem.user.gender}</td>             
-                <td>${listMeetMem.user.birthday}</td>              
-<%--                 <td><c:forEach var="category" items="${listMeetMem.user.category}"> ${category} </c:forEach></td> --%>
-                 <c:if test="${meetMem.meetRole eq '0'.charAt(0)}">
-                <td><c:forEach var="blacklist" items="${listMeetMem.blackList}"> ${blacklist} </c:forEach></td> 
-                </c:if>
-                <td>
+
+<div id="head">
+		
+		
+			<div class="inner">
+				<header>
+				<h1>모임 회원 리스트</h1>
+				</header>
+			</div>
+
+		</div>
+			<section style="float: left; margin-top:100px;">
+		<jsp:include page="/meet/sidebar.jsp" />
+		</section>
+<br>
+<br>
+<br>
+<br>
+<form>
+<div class="container" >
+
+				<table class="table">
+					  <thead>
+					    <tr id="user">
+					    <th scope="col">프로필</th>
+						<th scope="col">닉네임</th>
+			    		<th scope="col">성별</th>	
+			    		<th scope="col">생년월일</th>	
+					    <th scope="col">모임 가입 날짜</th>
+					    <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+       
+       		 <c:forEach var="listMeetMem" items="${listMeetMem}" varStatus="status"> 
+              <tr  id="user2">
+					    <th scope="row"><img class="image" src="/resources/images/uploadFiles/user/${listMeetMem.user.profileImg}"></th>
+			     		  <td>${listMeetMem.user.nickName}</td>
+					      <td>${listMeetMem.user.gender}</td>
+					      <td><fmt:formatDate value="${listMeetMem.user.birthday}" pattern="yyyy-MM-dd"/></td>
+					      <td><fmt:formatDate value="${listMeetMem.joinDate}" pattern="yyyy-MM-dd" /></td>
+					 	  <td>
+					 	  <button type="button" id="reqFriend">친구 신청</button>
+					 	  <input type="hidden" value="${listMeetMem.user.userId}"/>
+					 	  <input type="hidden" value="${listMeetMem.meet.meetId}"/> 
+					 	  <button type="button" id="sendMessage">쪽지 보내기</button  > 
+					 	  <input type="hidden" value="${listMeetMem.user.userId}"/>
+					 	  <input type="hidden" value="${listMeetMem.meet.meetId}"/> 
+					 	  <button type="button" id="notifyUserView">회원 신고</button>  
+					 	  <input type="hidden" value="${listMeetMem.user.userId}"/> 				    
+						  </td>
+					    </tr>
+			
                 
-                
-                <c:if test="${sessionScope.user.userId ne listMeetMem.user.userId}">               
-                <c:if test="${listMeetMem.friendFlag eq false}">
-                <button type="button" id="reqFriend${status.count}">친구 신청</button>
-                <input type="hidden" value="${listMeetMem.user.userId}"/><input type="hidden" value="${listMeetMem.meet.meetId}"/>
-                </c:if>
-                
-                
-                <button type="button" id="sendMessage${status.count}">쪽지 보내기</button>
-                <input type="hidden" id="userIdforMessage" value="${listMeetMem.user.userId}"/>
-                <input type="hidden" id="meetIdforMessage" value="${listMeetMem.meet.meetId}"/>
-                                             
-                <button type="button" id="notifyUserView${status.count}">회원 신고</button>
-                <input type="hidden" value="${listMeetMem.user.userId}"/><input type="hidden" value="${listMeetMem.meet.meetId}"/><br/> <br/>
-                
-                <c:if test="${meetMem.meetRole eq '0'.charAt(0)}">
-                <button type="button" id="provideStaff${status.count}">참모진 임명</button>
-                <input type="hidden" value="${meetMem.user.userId}"/>
-                <input type="hidden" value="${meetMem.meet.meetId}"/>
-                <button type="button" id="provideLeader${status.count}">모임장 위임</button>
-                <input type="hidden" value="${meetMem.user.userId}"/>
-                <input type="hidden" value="${meetMem.meet.meetId}"/><br/>   
-                </c:if>
-                </c:if>       
-                </td>
-            </tr>
+              
+               
             </c:forEach>
-        
-    </table>
-    </section>
+ 			 </tbody>
+		</table>
     </div>
-</section>
+
 </form>
 </body>
 </html>
