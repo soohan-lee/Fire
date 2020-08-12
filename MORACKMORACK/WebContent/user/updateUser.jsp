@@ -14,6 +14,8 @@
 	
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
+	<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gaegu&family=Single+Day&display=swap" rel="stylesheet">
+	
 	<!-- cdn부분
 	
 	참조 : http://getbootstrap.com/css/   참조
@@ -38,6 +40,192 @@
 		body {
             padding-top : 50px;
         }
+        
+        div {
+        	font-family: 'Gaegu', cursive;
+        }
+        
+       /*  body {
+		  background: #ccffff;
+		} */
+		h1 {
+		  position: relative;
+		  text-align: center;
+		  color: #353535;
+		  font-size: 50px;
+		  font-family: "Cormorant Garamond", serif;
+		}
+		
+		p {
+		  font-family: 'Lato', sans-serif;
+		  font-weight: 300;
+		  text-align: center;
+		  font-size: 18px;
+		  color: #676767;
+		}
+		.frame {
+		  width: 90%;
+		  margin: 40px auto;
+		  text-align: center;
+		}
+		button {
+		  margin: 20px;
+		}
+		.custom-btn {
+		  width: 130px;
+		  height: 40px;
+		  color: #fff;
+		  border-radius: 5px;
+		  padding: 10px 25px;
+		  font-family: 'Lato', sans-serif;
+		  font-weight: 500;
+		  background: transparent;
+		  cursor: pointer;
+		  transition: all 0.3s ease;
+		  position: relative;
+		  display: inline-block;
+		   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+		   7px 7px 20px 0px rgba(0,0,0,.1),
+		   4px 4px 5px 0px rgba(0,0,0,.1);
+		}
+		
+		/* 9 */
+		.btn-9 {
+		  border: none;
+		  transition: all 0.3s ease;
+		  overflow: hidden;
+		}
+		.btn-9:after {
+		  position: absolute;
+		  content: " ";
+		  z-index: -1;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		   background-color: #1fd1f9;
+		background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+		  transition: all 0.3s ease;
+		}
+		.btn-9:hover {
+		  background: transparent;
+		  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+		              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+		    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+		    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+		  color: #fff;
+		}
+		.btn-9:hover:after {
+		  -webkit-transform: scale(2) rotate(180deg);
+		  transform: scale(2) rotate(180deg);
+		  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+		              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+		    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+		    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+		}
+		
+		/* 10 */
+		.btn-10 {
+		  background: rgb(22,9,240);
+		background: linear-gradient(0deg, rgba(22,9,240,1) 0%, rgba(49,110,244,1) 100%);
+		  color: #fff;
+		  border: none;
+		  transition: all 0.3s ease;
+		  overflow: hidden;
+		}
+		.btn-10:after {
+		  position: absolute;
+		  content: " ";
+		  top: 0;
+		  left: 0;
+		  z-index: -1;
+		  width: 100%;
+		  height: 100%;
+		  transition: all 0.3s ease;
+		  -webkit-transform: scale(.1);
+		  transform: scale(.1);
+		}
+		.btn-10:hover {
+		  color: #fff;
+		  border: none;
+		  background: transparent;
+		}
+		.btn-10:hover:after {
+		  background: rgb(0,3,255);
+		background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
+		  -webkit-transform: scale(1);
+		  transform: scale(1);
+		}
+		
+		/* 16 */
+		.btn-16 {
+		  border: none;
+		  color: #000;
+		}
+		.btn-16:after {
+		  position: absolute;
+		  content: "";
+		  width: 0;
+		  height: 100%;
+		  top: 0;
+		  left: 0;
+		  direction: rtl;
+		  z-index: -1;
+		  box-shadow:
+		   -7px -7px 20px 0px #fff9,
+		   -4px -4px 5px 0px #fff9,
+		   7px 7px 20px 0px #0002,
+		   4px 4px 5px 0px #0001;
+		  transition: all 0.3s ease;
+		}
+		.btn-16:hover {
+		  color: #000;
+		}
+		.btn-16:hover:after {
+		  left: auto;
+		  right: 0;
+		  width: 100%;
+		}
+		.btn-16:active {
+		  top: 2px;
+		}
+		
+		/* 13 */
+		.btn-13 {
+		  background-color: #89d8d3;
+		background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+		  border: none;
+		  z-index: 1;
+		}
+		.btn-13:after {
+		  position: absolute;
+		  content: "";
+		  width: 100%;
+		  height: 0;
+		  bottom: 0;
+		  left: 0;
+		  z-index: -1;
+		  border-radius: 5px;
+		   background-color: #4dccc6;
+		background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+		  box-shadow:
+		   -7px -7px 20px 0px #fff9,
+		   -4px -4px 5px 0px #fff9,
+		   7px 7px 20px 0px #0002,
+		   4px 4px 5px 0px #0001;
+		  transition: all 0.3s ease;
+		}
+		.btn-13:hover {
+		  color: #fff;
+		}
+		.btn-13:hover:after {
+		  top: 0;
+		  height: 100%;
+		}
+		.btn-13:active {
+		  top: 2px;
+		}
+        
     </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -46,7 +234,7 @@
 		//============= "수정"  Event 연결 =============
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$( "button.btn.btn-primary" ).on("click" , function() {
+			$( "button.custom-btn.btn-9" ).on("click" , function() {
 				fncUpdateUser();
 			});
 		});	
@@ -55,7 +243,7 @@
 		//============= "취소"  Event 처리 및  연결 =============
 		$(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
+			$("button.custom-btn.btn-10").on("click" , function() {
 				$("form")[0].reset();
 			});
 		});	
@@ -367,7 +555,7 @@
 				<input type="text" class="form-control" id="sample4_detailAddress" placeholder="상세주소" name="daddress">
 		    </div>
 		    <div class="col-sm-3">
-		      <button type="button" class="btn btn-info" onclick="sample4_execDaumPostcode()" value="주소검색">주소검색</button>
+		      <button type="button" class="custom-btn btn-13" onclick="sample4_execDaumPostcode()" value="주소검색">주소검색</button>
 		    </div>
 		  </div>
 		  
@@ -411,9 +599,10 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >변 &nbsp;경</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a>
-			  <button type="button" class="btn btn-primary" onclick="location.href='/index.jsp' ">메인페이지</button>
+		      <button type="button" class="custom-btn btn-9"  >변 &nbsp;경</button>
+			  <!-- <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a> -->
+			  <button type="button" class="custom-btn btn-10" >취 &nbsp;소</button>
+			  <button type="button" class="custom-btn btn-16" onclick="location.href='/index.jsp' ">메인페이지</button>
 		    </div>
 		  </div>
 		</form>

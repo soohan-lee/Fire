@@ -11,6 +11,10 @@
 <head>
 	<meta charset="UTF-8">
 	
+	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+	
+	<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+	
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
@@ -30,6 +34,201 @@
             margin-top: 10px;
         }
         
+        div {
+			font-family: 'Single Day', cursive;
+		}
+        
+        /* body {
+		  background: #ffff00;
+		} */
+		h1 {
+		  position: relative;
+		  text-align: center;
+		  color: #353535;
+		  font-size: 50px;
+		  font-family: 'Single Day', cursive;
+		}
+		
+		p {
+		  font-family: 'Lato', sans-serif;
+		  font-weight: 300;
+		  text-align: center;
+		  font-size: 18px;
+		  color: #676767;
+		}
+		.frame {
+		  width: 90%;
+		  margin: 40px auto;
+		  text-align: center;
+		}
+		button {
+		  margin: 20px;
+		}
+		.custom-btn {
+		  width: 130px;
+		  height: 40px;
+		  color: #fff;
+		  border-radius: 5px;
+		  padding: 10px 25px;
+		  font-family: 'Lato', sans-serif;
+		  font-weight: 500;
+		  background: transparent;
+		  cursor: pointer;
+		  transition: all 0.3s ease;
+		  position: relative;
+		  display: inline-block;
+		   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+		   7px 7px 20px 0px rgba(0,0,0,.1),
+		   4px 4px 5px 0px rgba(0,0,0,.1);
+		}
+		
+		/* 5 */
+		.btn-5 {
+		  width: 130px;
+		  height: 40px;
+		  line-height: 42px;
+		  padding: 0;
+		  border: none;
+		  background: rgb(255,27,0);
+		background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
+		}
+		.btn-5:hover {
+		  color: #f0094a;
+		  background: transparent;
+		   box-shadow:none;
+		}
+		.btn-5:before,
+		.btn-5:after{
+		  content:'';
+		  position:absolute;
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0;
+		  background: #f0094a;
+		  box-shadow:
+		   -1px -1px 5px 0px #fff,
+		   7px 7px 20px 0px #0003,
+		   4px 4px 5px 0px #0002;
+		  transition:400ms ease all;
+		}
+		.btn-5:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+		.btn-5:hover:before,
+		.btn-5:hover:after{
+		  width:100%;
+		  transition:800ms ease all;
+		}
+		
+		/* 3 */
+		.btn-3 {
+		  background: rgb(0,172,238);
+		background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+		  width: 130px;
+		  height: 40px;
+		  line-height: 42px;
+		  padding: 0;
+		  border: none;
+		  
+		}
+		.btn-3 span {
+		  position: relative;
+		  display: block;
+		  width: 100%;
+		  height: 100%;
+		}
+		.btn-3:before,
+		.btn-3:after {
+		  position: absolute;
+		  content: "";
+		  right: 0;
+		  top: 0;
+		   background: rgba(2,126,251,1);
+		  transition: all 0.3s ease;
+		}
+		.btn-3:before {
+		  height: 0%;
+		  width: 2px;
+		}
+		.btn-3:after {
+		  width: 0%;
+		  height: 2px;
+		}
+		.btn-3:hover{
+		   background: transparent;
+		  box-shadow: none;
+		}
+		.btn-3:hover:before {
+		  height: 100%;
+		}
+		.btn-3:hover:after {
+		  width: 100%;
+		}
+		.btn-3 span:hover{
+		   color: rgba(2,126,251,1);
+		}
+		.btn-3 span:before,
+		.btn-3 span:after {
+		  position: absolute;
+		  content: "";
+		  left: 0;
+		  bottom: 0;
+		   background: rgba(2,126,251,1);
+		  transition: all 0.3s ease;
+		}
+		.btn-3 span:before {
+		  width: 2px;
+		  height: 0%;
+		}
+		.btn-3 span:after {
+		  width: 0%;
+		  height: 2px;
+		}
+		.btn-3 span:hover:before {
+		  height: 100%;
+		}
+		.btn-3 span:hover:after {
+		  width: 100%;
+		}
+		
+		/* 14 */
+		.btn-14 {
+		  background: rgb(255,151,0);
+		  border: none;
+		  z-index: 1;
+		}
+		.btn-14:after {
+		  position: absolute;
+		  content: "";
+		  width: 100%;
+		  height: 0;
+		  top: 0;
+		  left: 0;
+		  z-index: -1;
+		  border-radius: 5px;
+		  background-color: #eaf818;
+		  background-image: linear-gradient(315deg, #eaf818 0%, #f6fc9c 74%);
+		   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+		   7px 7px 20px 0px rgba(0,0,0,.1),
+		   4px 4px 5px 0px rgba(0,0,0,.1);
+		  transition: all 0.3s ease;
+		}
+		.btn-14:hover {
+		  color: #000;
+		}
+		.btn-14:hover:after {
+		  top: auto;
+		  bottom: 0;
+		  height: 100%;
+		}
+		.btn-14:active {
+		  top: 2px;
+		}
+        
     </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -39,7 +238,7 @@
 		//============= "가입"  Event 연결 =============
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$( "button.btn.btn-primary" ).on("click" , function() {
+			$( "button.custom-btn.btn-3" ).on("click" , function() {
 				fncAddUser();
 			});
 		});	
@@ -48,7 +247,8 @@
 		//============= "취소"  Event 처리 및  연결 =============
 		$(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
+			/* $("a[href='#' ]").on("click" , function() { */
+			$("button.custom-btn.btn-5").on("click" , function() {
 				$("form")[0].reset();
 			});
 		});	
@@ -549,7 +749,7 @@
 				
 		    </div>
 		    <div class="col-sm-3">
-		      <button type="button" class="btn btn-info" onclick="sample4_execDaumPostcode()" value="주소검색">주소검색</button>
+		      <button type="button" class="custom-btn btn-14" onclick="sample4_execDaumPostcode()" value="주소검색">주소검색</button>
 		    </div>
 		  </div>
 		  
@@ -594,8 +794,9 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >가 &nbsp;입</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a>
+		      <button type="button" class="custom-btn btn-3"  ><span>가 &nbsp;입</span></button>
+			  <!-- <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a> -->
+			  <button type="button" class="custom-btn btn-5" ><span>취&nbsp;소</span></button>
 		    </div>
 		  </div>
 		</form>
