@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 	<jsp:include page="/common/listCdn.jsp"/>
-	<link rel="stylesheet" href="../resources/css/lll.css" type="text/css">
+<!-- 	<link rel="stylesheet" href="../resources/css/lll.css" type="text/css"> -->
 <title>Insert title here</title>
 
 <script type="text/javascript">

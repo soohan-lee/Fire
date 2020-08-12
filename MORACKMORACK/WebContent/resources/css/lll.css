@@ -224,9 +224,9 @@ select::-ms-expand {
 }
 
 .content-board .tit_board h4 {
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 1.36
+    font-weight: value;
+    font-size: 20px;
+    line-height: 1.20
 }
 
 .content-board .tit_board span {
@@ -236,6 +236,15 @@ select::-ms-expand {
     font-size: 12px;
     line-height: 2.5;
     color: #666
+}
+
+.content-board .tit_board imag{
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .content-board .txt_board {
