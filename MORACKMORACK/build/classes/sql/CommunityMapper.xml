@@ -131,7 +131,13 @@
 	<delete id="deleteComments" parameterType="int"> 
 		DELETE
 		FROM comments
-		WHERE comment_no = {value}
+		WHERE comment_no = #{value}
+	</delete>
+	
+	<delete id="allDeleteComments" parameterType="int">
+		DELETE
+		FROM comments
+		WHERE post_no = #{postNo}
 	</delete>
 	
 	<select id ="getCommentsTotalCount" parameterType="int" resultType="int">
