@@ -53,7 +53,7 @@
 					<input class="form-control" type="password" id="password" name="password" />
 				</div>
 				<div class="form-group has-feedback">
-		    		<label class="control-label" for="userPass">비밀번호 확인</label>
+		    		<label class="control-label" for="password">비밀번호 확인</label>
 		      		<input type="password" class="form-control" id="password2" name="password2" placeholder="비밀번호 확인">
 		  		</div>
 				<div class="form-group has-feedback">
