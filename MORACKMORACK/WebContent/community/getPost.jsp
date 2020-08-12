@@ -21,18 +21,18 @@ $(function (){
 		$('button[name=updatePost]').on("click",function(){
 			var postNo = $('input[name=postNo]').val();
 			var meetId = $('input[name=meetId]').val();
-// 			alert(postNo+"흐음"+meetId)
+
 			window.location.href="/community/updatePostView?postNo="+postNo+"&meetId="+meetId;
 		})
 		$('button[name=deletePost]').on("click",function(){
 			var postNo = $('input[name=postNo]').val();
 			var meetId = $('input[name=meetId]').val();
-// 			alert(meetId);
+
 			window.location.href="/community/deletePost?postNo="+postNo+"&meetId="+meetId;
 		})
 		$('button[name=getPostList]').on("click",function(){
 			var meetId = $('input[name=meetId]').val();
-// 			alert(meetId);
+
 			window.location.href="/community/getPostList?meetId="+meetId;
 		})
 	})

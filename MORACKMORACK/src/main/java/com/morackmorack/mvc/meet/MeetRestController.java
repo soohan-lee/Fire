@@ -74,4 +74,27 @@ public class MeetRestController {
 		}
 		return map;
 	}
+	
+
+	@RequestMapping(value = "json/delWishMeet/{meetId}", method = RequestMethod.GET)
+	public Map delWishMeet(HttpServletRequest request, @PathVariable("meetId") String meetId) {
+		System.out.println("/meet/delWishMeet :GET");
+		System.out.println("¿©±â");
+		Map map = new HashMap();
+		
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		String userId = user.getUserId();
+
+		meetService.delWishMeet(userId, meetId);
+	    
+		String	 message = "1";
+
+		map.put("result", message);
+    	System.out.println("map=========="+map);
+		return map;
+	}
+	
+
+	
 }

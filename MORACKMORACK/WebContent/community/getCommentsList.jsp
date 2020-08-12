@@ -58,7 +58,7 @@ function fncGetCommentsList(){
 						
 						var displayValue = "";
 						var totalCount = "<h6 style='margin-bottom:-24px'>댓글&nbsp;"+JSONData.totalCount+"</h6>"
-						alert("흐음"+JSONData.totalCount);
+
 						for(i=0; i < JSONData.list.length; i++){
 							var date = new Date(Number(JSONData.list[i].regDate));
 							displayValue += "<h6>"

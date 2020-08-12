@@ -9,8 +9,8 @@
 <meta charset="EUC-KR">
 <title>모임 목록 조회</title>
 
-<jsp:include page="/common/listCdn.jsp" />t>
-
+<jsp:include page="/common/listCdn.jsp" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
 <style>
 @font-face { font-family: 'InfinitySans-BoldA1'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -253,7 +253,9 @@ padding: 30px 30px 30px 30px;
     -o-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
-	
+    font-family: 'Nanum Pen Script', cursive;
+    font-size : 25px;
+
 }
 .pic-3d {
     -webkit-perspective: 500;
@@ -266,6 +268,7 @@ padding: 30px 30px 30px 30px;
     -o-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d
+
 }
 .pic-caption {
     cursor: default;
@@ -368,6 +371,87 @@ font-family: 'MapoGoldenPier';
 br{
     font-family:initial;
 }
+
+
+#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+
+
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+	
+	#meetTypeismul{
+	font-family: 'Nanum Pen Script', cursive;
+    font-size : 50px;
+	}
+	
+    #meetTypeisone{
+	font-family: 'Nanum Pen Script', cursive;
+    font-size : 50px;
+	}
+	
+	.meeting{
+  	position: absolute;
+ 	left: 120px;
+	}
+	
+	#bar{
+	font-family: 'Nanum Pen Script', cursive;
+    font-size : 50px;
+	}
+	
+	#searchKeyword{	
+	margin-top : 50px;
+	}
+	
+	.container__item{
+/*  	 float : right  */
+ 	 position: absolute;
+     right: 170px;
+	}
 </style>
 
 
@@ -425,13 +509,36 @@ function myButton() {
 <jsp:include page="/toolbar.jsp" />
 </header>
 
+
+
+<div id="head">
+
+			<div class="inner">
+				<header>
+					<h1>모임 리스트</h1>
+				</header>
+			</div>
+		
+	
+		</div>
+		
+		<br>
+
 <div class="container">
 <c:if test="${search.searchType eq 0}">
-
-<h4 style="text-align:right">유형 검색 목록</h4>
-	<div style="text-align:center; margin-top:50px">
-	<h4><a id="meetTypeismul">다수인 모임</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="meetTypeisone">2인 모임</a></h4>
-	</div>
+	
+	
+	 <div class = "meeting">
+	 <div id ="meetTypeismul" style="display:inline-block; font-weight: bold; margin-top: 40px;margin-bottom:20px; ">
+              다수인 모임
+      </div>
+      <div id ="bar" style="font-family:'NIXGONM-Vb';display:inline-block;font-weight: bold; margin-top: 40px;margin-bottom:20px;opacity: 1;">
+        |
+      </div>
+      <div id ="meetTypeisone" style= "display:inline-block;font-weight: bold; margin-top: 40px;margin-bottom:20px;">
+        2인 모임
+      </div>
+     </div> 
 	
 </c:if>
 
@@ -465,22 +572,18 @@ function myButton() {
 	</div>
 </div>
 
+</br>
+</br>
+</br>
 
 <div style="text-align:center; margin-top:50px">
 <div class="row" style="display:inline-block">
 
 	<c:forEach var="meet" items="${listMeet}">
   		<div class="col-sm-6 col-md-4">
-     	<%-- <img id="listMeetImg" src="/resources/images/uploadFiles/meet/${meet.meetImg}" alt="MORACK MORACK" title="${meet.meetName}" style="hight:500px; width:500px">
-     	 <div class="caption">
-        <h3></h3>
-        <p id="meetName">${meet.meetName}</p><input type="hidden" value="${meet.meetId}"/>
-        <p>${meet.memNum}/${meet.maxNum}</p>
-      	</div>
-    	</div> --%>
-    	 <!--Effect: Open Down -->
+  		
             <div class="pic pic-3d" style="padding: 10px 10px 10px 10px;">
-                <img src="/resources/images/uploadFiles/meet/${meet.meetImg}" class="pic-image" style="hight:500px; width:500px;">
+                <img src="/resources/images/uploadFiles/meet/${meet.meetImg}" class="pic-image" style="height:400px; width:400px;">
                  <div class="caption">
                  
                  <br/><p id="meetName">${meet.meetName}</p>

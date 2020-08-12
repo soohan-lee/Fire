@@ -65,6 +65,49 @@ src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halfl
 .fas fa-home{
 margin-left : 5px;
 }
+
+#home{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+#meetMem2{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#community{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#listOffMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#listJoinMeetUser{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#addOffMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+#inviteToMessage{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#joinMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#addWishMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
 </style>
 
 

@@ -330,9 +330,6 @@ var userId = "${sessionScope.user.userId}"; //sender
             <li>
               <a href="/meet/listMeet?searchType2=1">카테고리 검색</a>
             </li>
-            <li>
-              <a href="/meet/listMeet?searchType2=2">해시태그 검색</a>
-            </li>
           </ul>
         </li>
         <li>
@@ -365,9 +362,6 @@ var userId = "${sessionScope.user.userId}"; //sender
             </li>
             <li>
               <a href="/user/updateUser?userId=${user.userId}">내 정보 변경</a>
-            </li>
-            <li>
-              <a href="/user/delUser?userId=${user.userId}">회원 탈퇴</a>
             </li>
           </ul>
         </li>
