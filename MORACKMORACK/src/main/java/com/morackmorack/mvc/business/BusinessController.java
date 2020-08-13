@@ -105,11 +105,20 @@ public class BusinessController {
 //	listBusiness
 //	업체 목록
 	@RequestMapping( value="listBusiness", method=RequestMethod.GET )
-	public ModelAndView listBusiness( ) throws Exception {
+	public ModelAndView listBusiness(HttpServletRequest request) throws Exception {
 
 		System.out.println("/business/listBusiness : GET");
-		
+	
 		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		
+		if(user == null) {
+			mv.setViewName("/user/loginView.jsp");
+			return mv;
+		 }
+
 		List<Business> businessList = new ArrayList<>();
 		Search search = new Search();
 		

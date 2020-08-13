@@ -94,9 +94,6 @@ $(function(){
      	 받는 사람<br/><br/>
       <span id="listFriendOn" class="glyphicon glyphicon-user" style=" font-size: 60px; float:left;"></span>
 	      	<div id="messageDetail" style="margin-left:100px; margin-botton:300px;">
-	      	모임명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${meet.meetName}<br/> 
-	      	<input type="hidden" id="meetId" name="meetId" value="${meet.meetId}"/>
-	      	<input type="hidden" id="meetName" name="meetName" value="${meet.meetName}"/>
 			수신자 ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${recvUser.userId}<br/>	
 			<input type="hidden" id="recvId" name="recvId" value="${recvUser.userId}"/>
 			수신자 닉네임 &nbsp; ${recvUser.nickName}<br/>	
