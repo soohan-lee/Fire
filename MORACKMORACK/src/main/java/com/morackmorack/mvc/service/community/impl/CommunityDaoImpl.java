@@ -65,6 +65,7 @@ import com.morackmorack.mvc.service.domain.User;
 		@Override
 		public void deletePost(int postNo) throws Exception {
 			// TODO Auto-generated method stub
+			sqlSession.delete("CommunityMapper.allDeleteComments", postNo);
 			sqlSession.update("CommunityMapper.deletePost", postNo);
 		}
 		@Override

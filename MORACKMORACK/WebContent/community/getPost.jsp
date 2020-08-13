@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 	<jsp:include page="/common/listCdn.jsp"/>
-<!-- 	<link rel="stylesheet" href="../resources/css/lll.css" type="text/css"> -->
+	<link rel="stylesheet" href="../resources/css/lll.css" type="text/css">
 <title>Insert title here</title>
 
 <script type="text/javascript">
@@ -65,6 +65,7 @@ $(function (){
 		<button type="button" name="updatePost" class="btn btn-outline-info">수정하기</button>
 		<button type="button" name="deletePost" class="btn btn-outline-warning">삭제하기</button>
 		</c:if>
+		<button type="button" name="getPostList" class="btn btn-outline-warning">목록</button>
 		</div>
 		<br><br>
 		</div>
@@ -78,7 +79,7 @@ $(function (){
 	<br><br><br><br><br>
 
 
-		<button type="button" name="getPostList" class="btn btn-outline-warning">목록</button>
+		
 		<jsp:include page="/community/getCommentsList.jsp"/>
 		<div class="border-bottom mt-2 mb-4 py-4" id="hh"></div>
 		</article>
