@@ -385,10 +385,7 @@ public String listOffPay(@ModelAttribute("search") Search search, Model model,Ht
 
  System.out.println("컨트롤러 시작 ");
 	user = (User) session.getAttribute("user");
-	
-	if(user == null) {
-		return "forward:/user/loginView.jsp";
-	 }
+
 	
 	if (search.getCurrentPage() == 0) {
 		search.setCurrentPage(1);
@@ -428,15 +425,7 @@ public String listBusinessPay(@ModelAttribute("search") Search search, Model mod
 
 
 	user = ((User)session.getAttribute("user"));
-	
-	if(user == null) {
-		return "forward:/user/loginView.jsp";
-	 }
-	
 	String userId = user.getUserId();
-	
-	
-	
 	
 	Map<String, Object> map = offMeetService.listBusinessPay(search, userId);
 	

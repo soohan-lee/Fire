@@ -280,7 +280,15 @@ var userId = "${sessionScope.user.userId}"; //sender
         </li>
           
          <li>
-          <a href="/user/addUser">회원가입</a>
+          <a href="#!">회원가입</a>
+           <ul class="nav-dropdown">
+            <li>
+              <a href="/user/addUser">회원가입</a>
+            </li>
+            <li>
+              <a href="/business/addBusiness">업체 회원가입</a>
+            </li>
+          </ul>
           </li>
           </c:if>
           

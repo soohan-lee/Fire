@@ -213,6 +213,11 @@ $(function(){
 					 	  <button type="button" id="reqFriend">친구 신청</button>
 					 	  <input type="hidden" value="${listMeetMem.user.userId}"/>
 					 	  <input type="hidden" value="${listMeetMem.meet.meetId}"/> 
+					 	  <button type="button" id="sendMessage">쪽지 보내기</button  > 
+					 	  <input type="hidden" value="${listMeetMem.user.userId}"/>
+					 	  <input type="hidden" value="${listMeetMem.meet.meetId}"/> 
+					 	  <button type="button" id="notifyUserView">회원 신고</button>  
+					 	  <input type="hidden" value="${listMeetMem.user.userId}"/> 				    
 						  </td>
 					    </tr>
 			

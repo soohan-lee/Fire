@@ -447,9 +447,6 @@ function addWishMeet(meetId) {
 <div class="modal-body">
     	<div class="col-xs-6 col-md-12">
     		<c:forEach var="friend" items="${listFriend}" varStatus="status">
-    		<c:if test="${!empty friend.myFriend.userId}">
-    		친구리스트에 친구가 없습니다.
-    		</c:if>
     		${friend.myFriend.profileImg} <a id="invMeet${status.count}"> ${friend.myFriend.userId} </a> <input type="hidden"  value="${friend.myFriend.userId}"/><input type="hidden" value="${friend.myFriend.nickName}"/>
 			<br/><br/>
 			</c:forEach>

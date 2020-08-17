@@ -471,7 +471,7 @@ public class MeetController {
 	}
 
 	@RequestMapping(value = "listMyMeet", method = RequestMethod.GET)
-	public ModelAndView listMyMeet(HttpServletRequest request) {
+	public ModelAndView listMyMeet(HttpServletRequest request, @RequestParam(value = "message", required = false) String message) {
 		System.out.println("/meet/listMyMeet : GET");
 
 		ModelAndView mav = new ModelAndView();
@@ -488,6 +488,9 @@ public class MeetController {
 
 		List<MeetMem> listMyMeet = meetService.listMyMeet(userId);
 
+		if (message != null) {
+			mav.addObject("message", message);
+		}
 
 		mav.addObject("listMyMeet", listMyMeet);
 		mav.setViewName("/meet/listMyMeet.jsp");
@@ -495,7 +498,48 @@ public class MeetController {
 		return mav;
 	}
 
-	
+	@RequestMapping(value = "delMeet/{delFlag}", method = RequestMethod.GET)
+	public String delMyMeet(HttpServletRequest request, @RequestParam("meetId") String meetId,
+			@PathVariable("delFlag") String delFlag) throws Exception {
+		System.out.println("/meet/delMyMeet : GET");
+
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+
+		String userId = user.getUserId();
+
+		Meet meet = meetService.getMeet(meetId);
+		String message = "";
+
+		if (delFlag.equals("0")) { // 탈퇴 0
+			if (meet.getLeaderId().equals(userId)) {
+				message = "0"; // 모임장은 탈퇴 불가 위임 후 탈퇴 가능
+				return "/meet/listMyMeet?message=" + message;
+			} else {
+				meetService.outMeet(userId, meetId);
+				meet.setMemNum(meet.getMemNum() - 1);
+				meetService.updateMeet(meet);
+
+				if (meet.getMeetType() == '1') {
+					user.setMeetCount(user.getMeetCount() - 1);
+					userService.updateUser(user);
+				}
+			}
+		} else { // 삭제 1
+			if (meet.getLeaderId().equals(userId)) {
+				if (meet.getMemNum() > 1) {
+					message = "1"; // 모임원 존재하므로 삭제 불가
+					return "/meet/listMyMeet?message=" + message;
+				} else {
+					meetService.outMeet(userId, meetId);
+					meetService.delMeet(meetId);
+				}
+			}
+		}
+
+		return "/meet/listMyMeet?message=" + message;
+	}
+
 	@RequestMapping(value = "addWishMeet", method = RequestMethod.GET)
 	public ModelAndView addWishMeet(HttpServletRequest request, @RequestParam("meetId") String meetId) {
 		System.out.println("/meet/addWishMeet :GET");

@@ -177,10 +177,10 @@
 		<c:forEach var="community" items="${list}">
 			<c:set var="i" value="${i+1}"/>
 			<tr>
-			<td align="left" style="font-size:22px">${i}</td>
-			<td align="left" style="font-size:22px">${community.title}</td><input type ="hidden" name="postNo" id="postNo" value="${community.postNo}"/>
+			<td align="left" style="font-size:18px">${i}</td>
+			<td align="left" style="font-size:18px">${community.title}</td><input type ="hidden" name="postNo" id="postNo" value="${community.postNo}"/>
 			<td align="left"style="font-size:15px"><img class="image" src="/resources/images/uploadFiles/user/${community.user.profileImg}"><br/>(${community.user.nickName})</td>
-			<td align="left" style="font-size:22px">${community.regDate}</td>
+			<td align="left" style="font-size:18px">${community.regDate}</td>
 			</tr>
 		</c:forEach>
 		</tbody>

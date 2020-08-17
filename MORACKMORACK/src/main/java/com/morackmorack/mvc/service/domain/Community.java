@@ -9,8 +9,6 @@ public class Community {
 	private char communityName;
 	private User  user;
 	private Meet meet; 
-	private OffMeet offMeet;
-	private Business business;
 	private String title; 
 	private String content;
 	private Date regDate;
@@ -51,21 +49,7 @@ public class Community {
 		this.meet = meet;
 	}
 
-	public OffMeet getOffMeet() {
-		return offMeet;
-	}
 
-	public void setOffMeet(OffMeet offMeet) {
-		this.offMeet = offMeet;
-	}
-
-	public Business getBusiness() {
-		return business;
-	}
-
-	public void setBusiness(Business business) {
-		this.business = business;
-	}
 
 	public String getTitle() {
 		return title;
@@ -130,7 +114,7 @@ public class Community {
 	@Override
 	public String toString() {
 		return "Community [postNo=" + postNo + ", communityName=" + communityName + ", user=" + user + ", meet=" + meet
-				+ ", offMeet=" + offMeet + ", title=" + title + ", content=" + content + ", regDate=" + regDate
+				 + ", title=" + title + ", content=" + content + ", regDate=" + regDate
 				+ ", modDate=" + modDate + ", viewCount=" + viewCount + ", likeCount=" + likeCount + ", rvStar="
 				+ rvStar + "]";
 	}

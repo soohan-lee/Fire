@@ -210,9 +210,8 @@ font-family: 'Nanum Pen Script', cursive;
 <div class="modal-body">
     	<div class="col-xs-6 col-md-12">
     		<c:forEach var="friend" items="${listFriend}" varStatus="status">
-    		<img class="sidebar-image" src="/resources/images/uploadFiles/user/${friend.myFriend.profileImg}"> <a id="invMeet${status.count}"><font size="5">${friend.myFriend.nickName}</font>(${friend.myFriend.userId})</a> <input type="hidden"  value="${friend.myFriend.userId}"/><input type="hidden" value="${friend.myFriend.nickName}"/>
+    			<img class="sidebar-image" src="/resources/images/uploadFiles/user/${friend.myFriend.profileImg}"> <a id="invMeet${status.count}"><font size="5">${friend.myFriend.nickName}</font>(${friend.myFriend.userId})</a> <input type="hidden"  value="${friend.myFriend.userId}"/><input type="hidden" value="${friend.myFriend.nickName}"/>
 			<br/><br/>
-
 			</c:forEach>
 </div>
 <div class="modal-footer">
@@ -322,8 +321,8 @@ $("#listJoinMeetUser").on("click", function() {
 $("#addOffMeet").on("click", function() {
     $(self.location).attr("href", "/offmeet/addOffView?meetId=${meetId}");
 });
-$("#inviteToMessage").on("click", function(){		
-  $(self.location).attr("href", "/friend/listFriend/1?isModal=2&meetId=${meetId}");
+$("#inviteToMessage").on("click", function(){			
+	window.location.href = "/friend/listFriend/1?isModal=2&meetId="+meetId;
 });
 $("#joinMeet").on("click", function(){	
 	window.location.href = "/meet/joinMeet?meetId="+meetId;	
