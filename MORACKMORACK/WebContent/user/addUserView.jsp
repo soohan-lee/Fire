@@ -13,7 +13,7 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 	
-	<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Single+Day&display=swap" rel="stylesheet">
 	
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
@@ -34,19 +34,20 @@
             margin-top: 10px;
         }
         
-        div {
-			font-family: 'Single Day', cursive;
+        body > div {
+			font-family: 'Single Day', 'Chilanka';
 		}
         
         /* body {
 		  background: #ffff00;
 		} */
+		
 		h1 {
 		  position: relative;
 		  text-align: center;
 		  color: #353535;
 		  font-size: 50px;
-		  font-family: 'Single Day', cursive;
+		  font-family: 'Single Day', 'Chilanka';
 		}
 		
 		p {
@@ -241,7 +242,7 @@
 			$( "button.custom-btn.btn-3" ).on("click" , function() {
 				fncAddUser();
 			});
-		});	
+		});
 		
 		
 		//============= "취소"  Event 처리 및  연결 =============
@@ -310,7 +311,6 @@
 							//alert(JSONdata);
 							//alert(JSONData)
 							//alert(JSONData.result)
-							
 						
 						}
 					});
@@ -632,18 +632,22 @@
 
 <body>
 
+<header>
+<jsp:include page="/toolbar.jsp" />
+</header>
+
 	<!-- ToolBar Start /////////////////////////////////////-->
-	<div class="navbar  navbar-default">
+	<!-- <div class="navbar  navbar-default">
         <div class="container">
         	<a class="navbar-brand" href="/index.jsp">morackmorack</a>
    		</div>
-   	</div>
+   	</div> -->
    	<!-- ToolBar End /////////////////////////////////////-->
 
 	<!--  화면구성 div Start /////////////////////////////////////-->
 	<div class="container">
 	
-		<h1 class="bg-primary text-center">회 원 가 입</h1>
+		<h1>회 원 가 입</h1>
 		
 		<!-- form Start /////////////////////////////////////-->
 		<form class="form-horizontal">

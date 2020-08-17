@@ -14,7 +14,7 @@
 	
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
-	<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gaegu&family=Single+Day&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Single+Day&display=swap" rel="stylesheet">
 	
 	<!-- cdn부분
 	
@@ -37,12 +37,12 @@
    
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
-		body {
+		/* body {
             padding-top : 50px;
-        }
+        } */
         
-        div {
-        	font-family: 'Gaegu', cursive;
+        body > div {
+			font-family: 'Single Day', 'Chilanka';        
         }
         
        /*  body {
@@ -155,39 +155,6 @@
 		background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
 		  -webkit-transform: scale(1);
 		  transform: scale(1);
-		}
-		
-		/* 16 */
-		.btn-16 {
-		  border: none;
-		  color: #000;
-		}
-		.btn-16:after {
-		  position: absolute;
-		  content: "";
-		  width: 0;
-		  height: 100%;
-		  top: 0;
-		  left: 0;
-		  direction: rtl;
-		  z-index: -1;
-		  box-shadow:
-		   -7px -7px 20px 0px #fff9,
-		   -4px -4px 5px 0px #fff9,
-		   7px 7px 20px 0px #0002,
-		   4px 4px 5px 0px #0001;
-		  transition: all 0.3s ease;
-		}
-		.btn-16:hover {
-		  color: #000;
-		}
-		.btn-16:hover:after {
-		  left: auto;
-		  right: 0;
-		  width: 100%;
-		}
-		.btn-16:active {
-		  top: 2px;
 		}
 		
 		/* 13 */
@@ -458,6 +425,10 @@
 
 <body>
 
+<header>
+<jsp:include page="/toolbar.jsp" />
+</header>
+
 	<!-- ToolBar Start /////////////////////////////////////-->
 	<%-- <jsp:include page="/layout/toolbar.jsp" /> --%>
    	<!-- ToolBar End /////////////////////////////////////-->
@@ -602,7 +573,6 @@
 		      <button type="button" class="custom-btn btn-9"  >변 &nbsp;경</button>
 			  <!-- <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a> -->
 			  <button type="button" class="custom-btn btn-10" >취 &nbsp;소</button>
-			  <button type="button" class="custom-btn btn-16" onclick="location.href='/index.jsp' ">메인페이지</button>
 		    </div>
 		  </div>
 		</form>

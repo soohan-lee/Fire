@@ -505,9 +505,9 @@ $( function() {
 		}
 		
 		//////////////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
-		//$("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
+		//("form").attr("method","POST").attr("action","/user/login").attr("target","_parent").submit();
 		////////////////////////////////////////////////////////////////////////////////////
-		$.ajax(
+		   $.ajax(
 				{
 					url : "/user/json/login",
 					method : "POST" ,
@@ -535,9 +535,7 @@ $( function() {
 							
 							//[방법2]
 							//window.parent.document.location.reload();
-							
 						}else{
-							/* alert("아이디, 패스워드를 확인하시고 다시 로그인..."); */
 							swal({
 								title: "아이디, 패스워드를 확인하시고 다시 로그인...",
 								text: "",
@@ -545,7 +543,8 @@ $( function() {
 							});
 						}
 					}
-			});
+			});  
+ 
 			////////////////////////////////////////////////////////////////////////////////////////////////	
 	});
 });

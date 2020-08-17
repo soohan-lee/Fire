@@ -14,7 +14,7 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 	
-	<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Single+Day&display=swap" rel="stylesheet">
 	
 	<!-- cdn부분
 	
@@ -35,12 +35,12 @@
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
- 		body {
+ 		/* body {
             padding-top : 50px;
-        }
+        } */
         
-        div {
-			font-family: 'Single Day', cursive;        
+        body > div {
+			font-family: 'Single Day', 'Chilanka';        
         }
         
         /* body {
@@ -157,86 +157,6 @@
 		.btn-4 span:hover:after {
 		  width: 100%;
 		}
-		
-		/* 6 */
-		.btn-6 {
-		  background: rgb(247,150,192);
-		background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 100%);
-		  line-height: 42px;
-		  padding: 0;
-		  border: none;
-		}
-		.btn-6 span {
-		  position: relative;
-		  display: block;
-		  width: 100%;
-		  height: 100%;
-		}
-		.btn-6:before,
-		.btn-6:after {
-		  position: absolute;
-		  content: "";
-		  height: 0%;
-		  width: 1px;
-		 box-shadow:
-		   -1px -1px 20px 0px rgba(255,255,255,1),
-		   -4px -4px 5px 0px rgba(255,255,255,1),
-		   7px 7px 20px 0px rgba(0,0,0,.4),
-		   4px 4px 5px 0px rgba(0,0,0,.3);
-		}
-		.btn-6:before {
-		  right: 0;
-		  top: 0;
-		  transition: all 500ms ease;
-		}
-		.btn-6:after {
-		  left: 0;
-		  bottom: 0;
-		  transition: all 500ms ease;
-		}
-		.btn-6:hover{
-		  background: transparent;
-		  color: #76aef1;
-		  box-shadow: none;
-		}
-		.btn-6:hover:before {
-		  transition: all 500ms ease;
-		  height: 100%;
-		}
-		.btn-6:hover:after {
-		  transition: all 500ms ease;
-		  height: 100%;
-		}
-		.btn-6 span:before,
-		.btn-6 span:after {
-		  position: absolute;
-		  content: "";
-		  box-shadow:
-		   -1px -1px 20px 0px rgba(255,255,255,1),
-		   -4px -4px 5px 0px rgba(255,255,255,1),
-		   7px 7px 20px 0px rgba(0,0,0,.4),
-		   4px 4px 5px 0px rgba(0,0,0,.3);
-		}
-		.btn-6 span:before {
-		  left: 0;
-		  top: 0;
-		  width: 0%;
-		  height: .5px;
-		  transition: all 500ms ease;
-		}
-		.btn-6 span:after {
-		  right: 0;
-		  bottom: 0;
-		  width: 0%;
-		  height: .5px;
-		  transition: all 500ms ease;
-		}
-		.btn-6 span:hover:before {
-		  width: 100%;
-		}
-		.btn-6 span:hover:after {
-		  width: 100%;
-		}
         
      </style>
     
@@ -258,6 +178,10 @@
 
 <body>
 
+<header>
+<jsp:include page="/toolbar.jsp" />
+</header>
+
 	<!-- ToolBar Start /////////////////////////////////////-->
 	<%-- <jsp:include page="/layout/toolbar.jsp" /> --%>
    	<!-- ToolBar End /////////////////////////////////////-->
@@ -266,7 +190,7 @@
 	<div class="container">
 	
 		<div class="page-header">
-	       <h3 class=" text-info">회원정보조회</h3>
+	       <h3 class=" text-info">내정보조회</h3>
 	       <h5 class="text-muted">내 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
 	    </div>
 	
@@ -329,9 +253,8 @@
 		
 		<div class="row">
 	  		<div class="col-md-12 text-center ">
-	  			<button type="button" class="custom-btn btn-4">내정보수정</button>
+	  			<button type="button" class="custom-btn btn-4">내정보변경</button>
 	  			
-	  			<button type="button" class="custom-btn btn-6" onclick="location.href='/index.jsp' ">메인페이지</button>
 	  		</div>
 		</div>
 		
