@@ -33,7 +33,7 @@ public class FriendServiceImpl implements FriendService {
 		friendDao.reqFriend(friend);
 	}
 
-	public List<Friend> listRecvFriend(String receiverId) throws Exception{
+	public Map<String,Object> listRecvFriend(String receiverId) throws Exception{
 		return friendDao.listRecvFriend(receiverId);
 	}
 

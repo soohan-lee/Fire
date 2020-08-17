@@ -11,12 +11,12 @@
 
 <style>
 	    #recvFriendList{
-	    font-family: 'Nanum Pen Script', cursive;
+/* 	    font-family: 'Nanum Pen Script', cursive; */
 	    font-size: 20pt;
 	    
 	   }
 		#friend{
-		  font-family: 'Nanum Pen Script', cursive;
+/* 		  font-family: 'Nanum Pen Script', cursive; */
 		  font-size: 20pt;
 		}
 
@@ -182,7 +182,8 @@ $(function(){
 				<td>${friend.reqFriend.userName}</td>
 				<td>${friend.reqFriend.gender}</td>
 				<td><fmt:formatDate value="${friend.reqFriendDate}" pattern="yyyy-MM-dd"/></td>				
-				<td><input type="button" id="getFriend" value="상세 조회">
+				<td>
+<!-- 				<input type="button" id="getFriend" value="상세 조회"> -->
 					<input type="button" id="okFriend" value="승인"> 
 					<input type="button" id="denyFriend" value="거절">
 					<input type="hidden" value="${friend.friendNo}"/>

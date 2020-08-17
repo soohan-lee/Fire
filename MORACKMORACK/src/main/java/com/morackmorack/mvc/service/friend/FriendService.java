@@ -10,7 +10,7 @@ public interface FriendService {
 	
 public void reqFriend(Friend friend) throws Exception;
 	
-	public List<Friend> listRecvFriend(String receiverId) throws Exception;
+	public Map<String,Object> listRecvFriend(String receiverId) throws Exception;
 	
 	public Map<String, Object> listFriend(String userId) throws Exception;
 	

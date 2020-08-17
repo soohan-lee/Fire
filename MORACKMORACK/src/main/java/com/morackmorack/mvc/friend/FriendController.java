@@ -85,8 +85,8 @@ public class FriendController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(listFlag.equals("0")) {
-			listFriend = friendService.listRecvFriend(userId);
-			mav.addObject("listFriend", listFriend);
+			map = friendService.listRecvFriend(userId);
+			mav.addObject("listFriend", map.get("listRecvFriend"));
 			mav.setViewName("/friend/listRecvFriend.jsp"); //나한테 친구 신청한 사람 (listRecvFriend.jsp 페이지에서 수락/거절)			
 		}else if(listFlag.equals("1")) {
 			map = friendService.listFriend(userId);
