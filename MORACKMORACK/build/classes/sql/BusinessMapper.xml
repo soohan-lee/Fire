@@ -109,6 +109,7 @@
 			<if test=" searchKeyword!=null and searchKeyword!='' ">
 				 AND business_name LIKE '%'||#{searchKeyword}||'%'
 			</if>
+			AND ROWNUM <![CDATA[<=]]> 3
 		ORDER BY reg_date
 	</select>
 	
