@@ -103,7 +103,6 @@
 					      <th scope="col">오프라인 모임 장소</th>
 					      <th scope="col">오프라인 모임 날짜</th>
 					      <th scope="col">오프라인 모임 시간</th>
-					      <th scope="col">현재 인원 수</th>
 					      <th scope="col">최대 인원 수</th>
 					    </tr>
 					  </thead>
@@ -113,7 +112,6 @@
 					       <td>${offMeet.offLoc}</td>
 			     		   <td>${offMeet.offDate}</td>
 					      <td>${offMeet.offTime}</td>
-					      <td>${offMeet.offMem}명</td>
  					      <td>${offMeet.offMax}명</td>
 					    </tr>
 					  </tbody>
@@ -140,7 +138,7 @@
 	<div class="row">
 	 	<div class="col-xs-4 col-md-2" style="margin-top:20px;"><strong>참여비</strong></div> 
 		<input type="hidden" name="amount" value= "	${offMeet.amount}"/>
-		<div class="col-xs-8 col-md-4" style="margin-top:20px;"> <fmt:formatNumber value="${pay.offMeet.amount}" pattern="###,###" /></div> 
+		<div class="col-xs-8 col-md-4" style="margin-top:20px;"> <fmt:formatNumber value="${pay.offMeet.amount}" pattern="###,###" />원</div> 
  	 </div> 
  	 
  	 

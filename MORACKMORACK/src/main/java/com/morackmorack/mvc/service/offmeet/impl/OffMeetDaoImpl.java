@@ -113,23 +113,6 @@ public class OffMeetDaoImpl implements OffMeetDao{
 		return sqlSession.selectOne("OffMeetMapper.getBusinessPayTotalCount", userId);
 	}
 	
-	@Override
-	public List<Pay> listReserveBusiness(Search search) throws Exception {
-			
-		return sqlSession.selectList("OffMeetMapper.listReserveBusiness" , search);
-	}
-
-	@Override
-	public int getReserveTotalCount(Search search) throws Exception {
-		
-		return sqlSession.selectOne("OffMeetMapper.getReserveTotalCount", search);
-	}
-
-	@Override
-	public Pay getReserveBusiness(int payNo) throws Exception {
-	
-		return sqlSession.selectOne("OffMeetMapper.getReserveBusiness", payNo);
-	}
 
 	@Override
 	public void addOff_MeetMem(int memNo, int offNo) {

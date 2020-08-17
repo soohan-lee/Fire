@@ -143,25 +143,7 @@ private String uploadFile(String originalName, byte[] fileData) throws Exception
 	return savedName;
 }
 
-@RequestMapping(value = "updateOffView", method=RequestMethod.GET)
-public String updateOffView(@RequestParam("offNo") int offNo, Model model) throws Exception{
-	
 
-	OffMeet offMeet = offMeetService.getOff(offNo);
-	model.addAttribute("offMeet", offMeet);
-
-	return "forward:/offMeet/updateOff.jsp";
-}
-
-
-@RequestMapping(value="updateOff", method =RequestMethod.POST)
-public String updateOff (@RequestParam("offNo") int offNo, Model model) throws Exception{
-	
-	OffMeet offMeet = offMeetService.getOff(offNo);
-	model.addAttribute("offMeet", offMeet);
-	
-	return "forward:/offMeet/updateOff.jsp";
-}
 
 @RequestMapping(value ="getInfoOff", method=RequestMethod.GET)
 public String getOff(@RequestParam("meetId") String meetId, @RequestParam("offNo") int offNo, Model model, HttpSession session) throws Exception{
@@ -335,7 +317,6 @@ public String addBusinessPay(@RequestParam ("menuNo") int menuNo, @RequestParam 
 
 @RequestMapping (value="payOkBusiness", method = RequestMethod.POST)
 public String payOkBusiness (@ModelAttribute ("pay") Pay pay, @RequestParam ("businessId") String businessId,  @RequestParam ("reserveDate") String reserveDate, @RequestParam ("reserveStartTime") String reserveStartTime, @RequestParam ("reserveEndTime") String reserveEndTime,  @RequestParam ("amount") int amount, @RequestParam ("businessMenuCnt") int businessMenuCnt,  HttpSession session, Model model) throws Exception{
-	System.out.println("시작");
 
 	
 	pay.setUser((User)session.getAttribute("user"));
@@ -385,7 +366,10 @@ public String listOffPay(@ModelAttribute("search") Search search, Model model,Ht
 
  System.out.println("컨트롤러 시작 ");
 	user = (User) session.getAttribute("user");
-
+	
+	if(user == null) {
+		return "forward:/user/loginView.jsp";
+	 }
 	
 	if (search.getCurrentPage() == 0) {
 		search.setCurrentPage(1);
@@ -425,7 +409,15 @@ public String listBusinessPay(@ModelAttribute("search") Search search, Model mod
 
 
 	user = ((User)session.getAttribute("user"));
+	
+	if(user == null) {
+		return "forward:/user/loginView.jsp";
+	 }
+	
 	String userId = user.getUserId();
+	
+	
+	
 	
 	Map<String, Object> map = offMeetService.listBusinessPay(search, userId);
 	

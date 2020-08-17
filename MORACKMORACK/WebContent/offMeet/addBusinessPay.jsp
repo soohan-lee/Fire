@@ -140,7 +140,7 @@ $(function() {
 					      <th scope="row">${business.businessName}</th>
 			     		  <td>${business.businessLoc}</td>
 					      <td>${business.businessPhone}</td>
-					      <td>${business.businessStartTime}/${business.businessEndTime}</td>
+					      <td>${business.businessStartTime}~${business.businessEndTime}</td>
 					    </tr>
 					  </tbody>
 				</table>

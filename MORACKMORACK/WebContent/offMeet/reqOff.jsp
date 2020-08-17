@@ -214,8 +214,8 @@ $( "#button2" ).on("click" , function() {
 			     		  <td>${offMeet.offLoc}</td>
 					      <td>${offMeet.offDate}</td>
 					      <td>${offMeet.offTime}</td>
-					  	  <td>${offMeet.offMem}</td>
- 					     <td>${offMeet.offMax}</td>
+					  	  <td>${offMeet.offMem}Έν</td>
+ 					     <td>${offMeet.offMax}Έν</td>
 					    </tr>
 					  </tbody>
 				</table>

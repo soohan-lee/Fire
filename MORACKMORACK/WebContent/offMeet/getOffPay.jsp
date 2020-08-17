@@ -13,10 +13,56 @@
 	<jsp:include page="/common/listCdn.jsp" />
 
 	<style>
- 		body {
-            padding-top : 50px;
-        }
-        
+
+    #head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+
+
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}    
         
    	 div.h3  {
             background-color: #D2691E;
@@ -85,6 +131,15 @@ $(function() {
 </header>
 
 
+<div id="head">			
+			<div class="inner">
+				<header>
+				<h1>오프라인 모임 참여 결제 내역</h1>
+				</header>
+			</div>
+
+		</div>
+		
 <div class="container getOrder" >
 		
  	 

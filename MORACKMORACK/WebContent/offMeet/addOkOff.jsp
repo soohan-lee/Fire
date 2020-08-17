@@ -15,11 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 	
 	<style>	
-	
- 		body {
-            padding-top : 50px;
-        }
-        
+
     	.addOkOff{
          font-family: 'Nanum Pen Script', cursive;
          font-size : 40px;

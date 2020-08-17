@@ -14,10 +14,6 @@ public interface OffMeetService {
 	
 	public void addOff(OffMeet offMeet) throws Exception;
 
-	public void updateOff(OffMeet offMeet) throws Exception;
-	
-	public void delOffMeet(int offNo) throws Exception;
-	
 	public OffMeet getOff(int offNo) throws Exception;
     
     public void addOffPay(Pay pay) throws Exception;
@@ -32,13 +28,7 @@ public interface OffMeetService {
   
 	public Map<String, Object> listOffPay(Search search, String userId) throws Exception;
 	
-	public Map<String, Object> listOffMem(Search search) throws Exception;
-	
 	public Map<String,Object> listBusinessPay(Search search, String userId) throws Exception;
-	
-	public Map <String, Object> listReserveBusiness(Search search) throws Exception;
-
-	public Pay getReserveBusiness(int payNo) throws Exception;
 	
 	public void addOff_MeetMem(int memNo, int offNo);
 	

@@ -37,15 +37,6 @@ public class OffMeetServiceImpl implements OffMeetService{
 		offMeetDao.addOff(offMeet);
 	}
 
-	public void updateOff(OffMeet offMeet) throws Exception {
-		offMeetDao.updateOff(offMeet);
-	}
-	
-
-	public void delOffMeet(int offNo) throws Exception {
-		offMeetDao.delOffMeet(offNo);
-	}
-	
 	
 	public OffMeet getOff(int offNO) throws Exception {
 		System.out.println("시작=-----------------");
@@ -104,49 +95,6 @@ public class OffMeetServiceImpl implements OffMeetService{
 		
 		System.out.println(map);
 		return map;
-	}
-
-	@Override
-	public Map<String, Object> listOffMem(Search search) throws Exception {
-		
-		List<Pay> list= offMeetDao.listOffMem(search);
-		
-		return null;
-	}
-	
-	//참여자 확인 미완성
-	public Map<String, Object> getJoinMemberList(Search search) throws Exception {
-		
-		List<Pay> list= offMeetDao.listOffMem(search);
-		int totalCount = offMeetDao.getTotalOffMemCount(search);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("list", list);
-		map.put("totalCount", new Integer(totalCount));
-		
-		System.out.println(map);
-		
-		return map;
-	}
-
-
-	public Map<String, Object> listReserveBusiness(Search search) throws Exception {
-		
-		List <Pay> list =offMeetDao.listReserveBusiness(search);
-		int totalCount = offMeetDao.getReserveTotalCount(search);
-		
-		Map <String, Object> map = new HashMap <String, Object>();
-		
-		map.put("list", list);
-		map.put("totalCount", new Integer(totalCount));
-		return map;
-	}
-
-	@Override
-	public Pay getReserveBusiness(int payNo) throws Exception {
-		
-		return offMeetDao.getReserveBusiness(payNo);
 	}
 
 	@Override

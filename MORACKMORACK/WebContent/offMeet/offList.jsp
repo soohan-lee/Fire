@@ -299,9 +299,9 @@ $(function() {
                 <span class="pic-caption open-down" id="offMeetDetail">
                 
                <br/><h1 class="pic-title">${offMeet.offName}</h1><br/><br/>
-		        <h4>참여 장소 : ${offMeet.offLoc}</h4>
-		        <h4>참여 날짜 : ${offMeet.offDate}</h4>
-		        <h4>참여인원  : ${offMeet.offMem}/${offMeet.offMax}</h4>
+		        <h4>모임 장소 : ${offMeet.offLoc}</h4>
+		        <h4>모임 날짜 : ${offMeet.offDate}</h4>
+		        <h4>모임 인원  : ${offMeet.offMem}/${offMeet.offMax}</h4>
             </span>
       	<input type="hidden" name="meetId" value="${meet.meetId}"/>
     	<input type="hidden" name="offNo"value="${offMeet.offNo }" />
