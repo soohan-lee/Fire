@@ -65,6 +65,49 @@ src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halfl
 .fas fa-home{
 margin-left : 5px;
 }
+
+#home{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+#meetMem2{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#community{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#listOffMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#listJoinMeetUser{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#addOffMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+#inviteToMessage{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#joinMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
+
+#addWishMeet{
+font-size: 25px;
+font-family: 'Nanum Pen Script', cursive;
+}
 </style>
 
 
@@ -167,8 +210,9 @@ margin-left : 5px;
 <div class="modal-body">
     	<div class="col-xs-6 col-md-12">
     		<c:forEach var="friend" items="${listFriend}" varStatus="status">
-    			<img class="sidebar-image" src="/resources/images/uploadFiles/user/${friend.myFriend.profileImg}"> <a id="invMeet${status.count}"><font size="5">${friend.myFriend.nickName}</font>(${friend.myFriend.userId})</a> <input type="hidden"  value="${friend.myFriend.userId}"/><input type="hidden" value="${friend.myFriend.nickName}"/>
+    		<img class="sidebar-image" src="/resources/images/uploadFiles/user/${friend.myFriend.profileImg}"> <a id="invMeet${status.count}"><font size="5">${friend.myFriend.nickName}</font>(${friend.myFriend.userId})</a> <input type="hidden"  value="${friend.myFriend.userId}"/><input type="hidden" value="${friend.myFriend.nickName}"/>
 			<br/><br/>
+
 			</c:forEach>
 </div>
 <div class="modal-footer">
@@ -278,8 +322,8 @@ $("#listJoinMeetUser").on("click", function() {
 $("#addOffMeet").on("click", function() {
     $(self.location).attr("href", "/offmeet/addOffView?meetId=${meetId}");
 });
-$("#inviteToMessage").on("click", function(){			
-	window.location.href = "/friend/listFriend/1?isModal=2&meetId="+meetId;
+$("#inviteToMessage").on("click", function(){		
+  $(self.location).attr("href", "/friend/listFriend/1?isModal=2&meetId=${meetId}");
 });
 $("#joinMeet").on("click", function(){	
 	window.location.href = "/meet/joinMeet?meetId="+meetId;	

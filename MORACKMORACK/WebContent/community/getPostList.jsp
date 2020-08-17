@@ -94,7 +94,7 @@
 		$("td:nth-child(2)").on("click",function(){
 			
 			var postNo = $(this).next().val();
-// 			alert(postNo);
+
 			self.location="/community/getPost?postNo="+postNo;
 			
 		});
@@ -102,7 +102,7 @@
 		$("#search").on("click",function(){
 			$("#currentPage").val(currentPage);
 			var meetId = $(this).next().val();
-// 			alert("¿§Çð")
+
 			$("form").attr("method","GET").attr("action","/community/getPostList?meetId="+meetId).submit();
 		})
 	})

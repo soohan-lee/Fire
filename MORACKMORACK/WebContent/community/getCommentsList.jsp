@@ -7,7 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
 
+textarea{
+
+		width:100px;
+		height:100px;
+		resize:none;
+
+}
+
+</style>
 
 
 <script type="text/javascript">
@@ -58,7 +68,7 @@ function fncGetCommentsList(){
 						
 						var displayValue = "";
 						var totalCount = "<h6 style='margin-bottom:-24px'>댓글&nbsp;"+JSONData.totalCount+"</h6>"
-						alert("흐음"+JSONData.totalCount);
+
 						for(i=0; i < JSONData.list.length; i++){
 							var date = new Date(Number(JSONData.list[i].regDate));
 							displayValue += "<h6>"
@@ -153,9 +163,10 @@ $(document).on("click", ".updateComments button", function(){
 	<div class="container">
 	<form name="addCommentsView" id="addCommentsView">
 		<input type="hidden" id="portNo" name="postNo" value="${community.postNo}"/>
+		<img src='../resources/images/uploadFiles/user/${user.profileImg}' style='height: 50px; width: 50px; float: left; margin:10px 10px 10px 0;'>
 			<div class="form-row d-file">
 					<textarea class="form-control col-9 col-md-10 mr-1"
-						id="coContent" name="coContent" rows="3" maxlength="500"></textarea>
+						id="coContent" name="coContent" style="width:65%; height:100px;" ></textarea>
 					<button class="col-2 col-md-1 btn btn-outline-info" id="addComments">등록</button>
 				</div>
 	</form>
