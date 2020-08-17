@@ -84,11 +84,19 @@ public class UserController {
 	
 	
 	@RequestMapping( value="getUser", method=RequestMethod.GET )
-	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
+	public String getUser( HttpServletRequest request, @RequestParam("userId") String userId , Model model, HttpSession session ) throws Exception {
 		
 		System.out.println("/user/getUser : GET");
+		
+		session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		
+		if(user == null) {
+			return "redirect:/user/loginView.jsp";
+		 }
+		
 		//Business Logic
-		User user = userService.getUser(userId);
+		 user = userService.getUser(userId);
 		
 		// Model 과 View 연결
 		model.addAttribute("user", user);
@@ -98,11 +106,19 @@ public class UserController {
 	
 
 	@RequestMapping( value="updateUser", method=RequestMethod.GET )
-	public String updateUser( @RequestParam("userId") String userId , Model model ) throws Exception{
+	public String updateUser( HttpServletRequest request, @RequestParam("userId") String userId , Model model, HttpSession session) throws Exception{
 
 		System.out.println("/user/updateUser : GET");
+		
+		session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		
+		if(user == null) {
+			return "redirect:/user/loginView.jsp";
+		 }
+		
 		//Business Logic
-		User user = userService.getUser(userId);
+		 user = userService.getUser(userId);
 		// Model 과 View 연결
 		model.addAttribute("user", user);
 		
