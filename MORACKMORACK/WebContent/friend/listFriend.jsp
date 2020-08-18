@@ -146,7 +146,7 @@ $(function(){
 
 	<div class="inner">
 		<header>
-			<h1>친구목록</h1>
+			<h1>내 친구 목록</h1>
 		</header>
 	</div>
 	
@@ -162,6 +162,9 @@ $(function(){
 <div class="container">
 
 <strong> 내 친구 ${friendCount} 명 </strong>
+
+<br>
+<br>
 		<table class="table">
 			<thead>
 				<tr id="friend">

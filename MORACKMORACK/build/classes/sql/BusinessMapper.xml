@@ -110,8 +110,20 @@
 				 AND business_name LIKE '%'||#{searchKeyword}||'%'
 			</if>
 			AND ROWNUM <![CDATA[<=]]> 3
+		ORDER BY business_Id desc
+	</select>
+		
+	
+<select  id="listBusiness"	parameterType="search"	resultMap="BusinessSelectMap">
+		SELECT business_id, business_name, business_loc, business_phone, category_no, business_img , business_start_time, business_end_time
+		FROM business
+		WHERE 1=1
+			<if test=" searchKeyword!=null and searchKeyword!='' ">
+				 AND business_name LIKE '%'||#{searchKeyword}||'%'
+			</if>
 		ORDER BY reg_date
 	</select>
+	
 	
 	<!-- SQL : Business_DELETE -->
 	<delete  id="delBusiness"	parameterType="String">

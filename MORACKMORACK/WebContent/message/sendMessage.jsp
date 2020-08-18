@@ -37,6 +37,57 @@ button:hover {
 #messageDetail{
 font-family: 'MapoGoldenPier'; 
 }
+
+#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+
+
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+	
 </style>
 
 
@@ -81,6 +132,17 @@ $(function(){
 <jsp:include page="/toolbar.jsp" />
 </header>
 
+
+<div id="head">
+
+	<div class="inner">
+		<header>
+			<h1>쪽지함</h1>
+		</header>
+	</div>
+	
+</div>
+
 <section style="float: left; margin-top:100px;">
 <jsp:include page="/message/sidebar.jsp" />
 </section>
@@ -89,14 +151,11 @@ $(function(){
 
 <form>
 <aside>
-<div style="padding:40px; background-color:#E7D5BD; height:900px; width:1200px; margin-left:300px; margin-top:150px; padding:10px">
+<div style="padding:40px; background-color:#E7D5BD; height:800px; width:1200px; margin-left:200px; margin-top:95px; padding:10px">
       <div id="messageDetail" style="padding:30px; background-color:#ffffff; height:25%; width:100%; opacity:0.8; display: inline-block; margin-top:20px">
      	 받는 사람<br/><br/>
       <span id="listFriendOn" class="glyphicon glyphicon-user" style=" font-size: 60px; float:left;"></span>
 	      	<div id="messageDetail" style="margin-left:100px; margin-botton:300px;">
-	      	모임명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${meet.meetName}<br/> 
-	      	<input type="hidden" id="meetId" name="meetId" value="${meet.meetId}"/>
-	      	<input type="hidden" id="meetName" name="meetName" value="${meet.meetName}"/>
 			수신자 ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${recvUser.userId}<br/>	
 			<input type="hidden" id="recvId" name="recvId" value="${recvUser.userId}"/>
 			수신자 닉네임 &nbsp; ${recvUser.nickName}<br/>	
@@ -106,7 +165,7 @@ $(function(){
       </div>
 
 <div>
-<textarea rows="25" cols="160" id="content" name="content" style="margin-top:30px; opacity:0.8;"></textarea>
+<textarea rows="25" cols="154" id="content" name="content" style="margin-top:30px; opacity:0.8;"></textarea>
 </div>
 <div style="float: right; padding:10px">
 <button type="button" id="ok" style="margin-right:30px">취소</button>

@@ -122,7 +122,7 @@ public class BusinessController {
 		List<Business> businessList = new ArrayList<>();
 		Search search = new Search();
 		
-		businessList = businessService.getBusinessList(search);
+		businessList = businessService.listBusiness(search);
 
 		System.out.println(businessList);
 		
@@ -131,6 +131,9 @@ public class BusinessController {
 		
 		return mv;
 	}
+	
+	
+	
 
 	
 //	2020-07-27 ¼­¿¬Èñ

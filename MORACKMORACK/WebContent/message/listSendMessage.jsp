@@ -56,6 +56,57 @@ font-family: 'MapoGoldenPier';
 br{
     font-family:initial;
 }
+
+#head {
+		position: relative;
+		background-image: url("/resources/images/uploadFiles/offmeet/offMeet.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-attachment: fixed;
+		color: #fff;
+		text-align: center;
+		padding: 7.5em 0 2em 0;
+		cursor: default;
+	
+
+
+		.inner {
+			position: relative;
+			z-index: 1;
+			margin: 0;
+			display: inline-block;
+			VERTICAL-ALIGN: MIDDLE; 
+		}
+
+
+		 . p {
+			font-size: 1.25em;
+		}
+
+		h1 {
+			color: #fff;
+			font-size: 3em;
+			line-height: 1em;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		hr {
+			top: 1.5em;
+			margin-bottom: 3em;
+			border-bottom-color: rgba(192, 192, 192, 0.35);
+			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
+
+			&:before, &:after {
+				background: rgba(192, 192, 192, 0.35);
+			}
+		}
+
+	
+	}
+	
 </style>
 
 
@@ -78,13 +129,24 @@ $(function (){
 <jsp:include page="/toolbar.jsp" />
 </header>
 
+<div id="head">
+
+	<div class="inner">
+		<header>
+			<h1>쪽지함</h1>
+		</header>
+	</div>
+	
+</div>
+
+
 <section style="float: left; margin-top:100px;">
 <jsp:include page="/message/sidebar.jsp" />
 </section>
 
 <aside>
 
-<div style="text-align:center; margin-top:50px;">
+<div style="text-align:left; margin-top:95px; margin-left:300px;">
 <div class="row" style="display:inline-block; background-color:#E7D5BD">
 
 	<c:forEach var="message" items="${listSendMessage}">
@@ -109,8 +171,8 @@ $(function (){
        	<c:if test="${empty message.receiver.profileImg and message.receiver.gender eq '여'}">
        	<img class="sidebar-image" src="/resources/images/uploadFiles/woman.png">
        	</c:if>
-		        <h4>${message.receiver.userId}</h4>
-		        <h4>${message.receiver.nickName}</h4>
+		        <h4><strong>받는 사람 ID : </strong>&nbsp;${message.receiver.userId}</h4>
+		        <h4><strong>받는 사람 닉네임 : </strong>&nbsp;${message.receiver.nickName}</h4>
             </span>
             <input type="hidden" value="${message.messageNo}"/>
             </div>

@@ -48,6 +48,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.getBusinessList(search);
 	}
 	
+	
+	public List<Business> listBusiness(Search search) throws Exception{
+		return businessDao.listBusiness(search);
+	}
+	
+	
 	public void delBusiness(String businessId) throws Exception{
 		businessDao.delBusiness(businessId);
 	}

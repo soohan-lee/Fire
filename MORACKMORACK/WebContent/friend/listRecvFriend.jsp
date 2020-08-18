@@ -146,7 +146,7 @@ $(function(){
 		
 			<div class="inner">
 				<header>
-				<h1>모임 회원 리스트</h1>
+				<h1>친구 신청 조회 리스트</h1>
 				</header>
 			</div>
 
@@ -181,7 +181,7 @@ $(function(){
 				<td>${friend.reqFriend.nickName}(${friend.reqFriend.userId})</td>
 				<td>${friend.reqFriend.userName}</td>
 				<td>${friend.reqFriend.gender}</td>
-				<td><fmt:formatDate value="${friend.reqFriendDate}" pattern="yyyy-MM-dd"/></td>				
+				<td>${friend.reqFriendDate}</td>				
 				<td>
 <!-- 				<input type="button" id="getFriend" value="상세 조회"> -->
 					<input type="button" id="okFriend" value="승인"> 

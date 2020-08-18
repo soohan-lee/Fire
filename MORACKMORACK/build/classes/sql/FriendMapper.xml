@@ -31,7 +31,7 @@
 	<select id="listFriend" parameterType="String" resultMap="friendSelectMap">
 		SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
 		FROM friend
-		WHERE recv_friend_id = #{value} or req_friend_id = #{value} and friend_code='1'
+		WHERE (recv_friend_id = #{value} or req_friend_id = #{value}) and friend_code='1'
 	</select>
 	
 	<select id="getFriend" parameterType="String" resultMap="friendSelectMap">
@@ -55,7 +55,7 @@
 		SELECT COUNT(*)
 		FROM ( SELECT friend_no, req_friend_id, recv_friend_id, friend_code, req_friend_date, friend_date
 				FROM friend
-				WHERE recv_friend_id = #{value} or req_friend_id = #{value} and friend_code='1')
+				WHERE (recv_friend_id = #{value} or req_friend_id = #{value}) and friend_code='1')
 	</select>
 	
 	<select id="isFriend" parameterType="map" resultMap="friendSelectMap">

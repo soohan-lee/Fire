@@ -23,6 +23,10 @@ public interface BusinessService {
 	// ¾÷Ã¼ ¸ñ·Ï
 	public List<Business> getBusinessList(Search search) throws Exception;
 	
+	
+	public List<Business> listBusiness(Search search) throws Exception;
+	
+	
 	// Á¦ÈÞ ÇØÁö(¾÷Ã¼ Å»Åð)
 	public void delBusiness(String businessId) throws Exception;
 	

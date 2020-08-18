@@ -22,6 +22,9 @@ public interface BusinessDao {
 	// LIST BUSIENSS
 	public List<Business> getBusinessList(Search search) throws Exception;
 	
+	
+	public List<Business> listBusiness(Search search) throws Exception;
+	
 	// DELETE BUSINESS
 	public void delBusiness(String businessId) throws Exception;
 	

@@ -51,6 +51,12 @@ public class BusinessDaoImpl implements BusinessDao {
 		return sqlSession.selectList("BusinessMapper.getBusinessList", search);
 	}
 	
+	
+	public List<Business> listBusiness(Search search) throws Exception {
+		return sqlSession.selectList("BusinessMapper.listBusiness", search);
+	}
+	
+	
 	public void delBusiness(String businessId) throws Exception {
 		sqlSession.delete("BusinessMapper.delBusiness", businessId);
 	}
