@@ -177,7 +177,7 @@ font-family: 'Nanum Pen Script', cursive;
 <div class="modal-body">
     	<div class="col-xs-6 col-md-12">
     	<div class="col-xs-6 col-md-5" style="margin-top:20px">
-     		 <img src="/resources/images/uploadFiles/meet/${meet.meetImg}" width="250" height="250" alt="MORACK MORACK" class="img-circle"/> 
+     		 <img src="/resources/images/uploadFiles/meet/${meet.meetImg}" width="200" height="200" alt="MORACK MORACK" class="img-circle"/> 
  		 </div>
  		 <div class="col-xs-6 col-md-7" style="margin-top:30px">
   		<strong>¸ğÀÓ¸í</strong>

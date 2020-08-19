@@ -204,7 +204,7 @@ $(function(){
        
        		 <c:forEach var="listMeetMem" items="${listMeetMem}" varStatus="status"> 
               <tr  id="user2">
-					    <th scope="row"><img class="image" src="/resources/images/uploadFiles/user/${listMeetMem.user.profileImg}"></th>
+					    <th scope="row"><img class="image" src="/resources/images/uploadFiles/user/${listMeetMem.user.profileImg}" onError="this.src='/resources/images/uploadFiles/Morack.png'"></th>
 			     		  <td>${listMeetMem.user.nickName}</td>
 					      <td>${listMeetMem.user.gender}</td>
 					      <td><fmt:formatDate value="${listMeetMem.user.birthday}" pattern="yyyy-MM-dd"/></td>

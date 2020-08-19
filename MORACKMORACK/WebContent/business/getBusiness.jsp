@@ -384,7 +384,7 @@ bottom:50px;
 	    	<span style="width:50%; float:left;">
 	    		<h3 id="businessName"><string>${business.businessName}</string></h3></br>
 	    		<input type="hidden" id="businessId" name="businessId" value="${business.businessId }"/>
-				<img src="/resources/images/uploadFiles/business/${business.businessImg}" style="height:300px; width:400px" >
+				<img src="/resources/images/uploadFiles/business/${business.businessImg}" style : width="400" height="400" >
 				<div> </br>
 				<h2 id ="bussinessLoc"><span class="fas fa-map-marker-alt"></span>&nbsp;&nbsp; ${business.businessLoc}</h2>
 				</div>

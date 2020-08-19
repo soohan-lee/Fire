@@ -69,7 +69,7 @@ var amount = '${menu.businessMenuFee* businessMenuCnt}';
 
 	IMP.request_pay({
 	    pg : 'inicis',
-	    pay_method : 'vbank',
+	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : businessName,
 	    amount : amount,

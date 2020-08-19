@@ -194,7 +194,7 @@ $(function (){
        
        		 <c:forEach var="joinMeetUser" items="${listJoinMeetUser}" varStatus="status"> 
               <tr  id="user2">
-					    <th scope="row"><img class="image" src="/resources/images/uploadFiles/user/${joinMeetUser.user.profileImg}"></th>
+					    <th scope="row"><img class="image" src="/resources/images/uploadFiles/user/${joinMeetUser.user.profileImg}" onError="this.src='/resources/images/uploadFiles/Morack.png'"></th>
 			     		  <td>${joinMeetUser.user.nickName}</td>
 					      <td><c:if test="${joinMeetUser.user.gender eq '남'}">남자</c:if><c:if test="${joinMeetUser.user.gender eq '여'}">여자</c:if></td>
 					      <td><fmt:formatDate value="${joinMeetUser.user.birthday}" pattern="yyyy-MM-dd"/></td>
